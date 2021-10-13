@@ -129,7 +129,7 @@ async def on_guild_join(guild):
 async def on_message(message):
     ''' run on message sent to a channel '''
     # allow messages from test bot
-    if message.author.bot and message.author.id == 889697640411955251:
+    if message.author.bot and message.author.id == 897663217755623458:
         ctx = await bot.get_context(message)
         await bot.invoke(ctx)
 
@@ -273,9 +273,6 @@ async def begin_tests(ctx):
     ''' start test command '''
     global TESTING_MODE
 
-    if ctx.author.id != 889697640411955251:
-        return
-
     TESTING_MODE = True
 
     test_oh_chan = next((ch for ch in ctx.guild.text_channels
@@ -294,8 +291,6 @@ async def begin_tests(ctx):
 @bot.command('end-tests')
 async def end_tests(ctx):
     ''' end tests command '''
-    if ctx.author.id != 889697640411955251:
-        return
 
     await office_hours.close_oh(ctx.guild, 'test')
 
