@@ -12,7 +12,7 @@ TOKEN = os.getenv('TESTING_BOT_TOKEN')
 
 testing_bot = discord.Client()
 
-TEST_GUILD_ID = 884852950634209300
+TEST_GUILD_ID = 139565116151562240
 
 async def run_tests():
     exit_status = 0
