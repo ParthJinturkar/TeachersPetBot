@@ -18,10 +18,14 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-#GUILD = 'TeachersPet-Dev'
+
+GUILD = os.getenv("GUILD")
+# GUILD = 'TeachersPet-Dev'
 TESTING_MODE = None
 
-intents=discord.Intents.all()
+UNVERIFIED_ROLE_NAME = os.getenv("UNVERIFIED_ROLE_NAME")
+
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', intents=intents)
 
 ###########################
@@ -93,20 +97,20 @@ async def on_guild_join(guild):
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             await channel.send('Hi there, I\'m TeachersPetBot, and I\'m here' +
-                'to help you manage your class discord! Let\'s do some quick setup.')
-            #create roles if they don't exist
+                ' to help you manage your class discord! Let\'s do some quick setup. ')
+            # create roles if they don't exist
             if 'Instructor' in guild.roles:
                 await channel.send("Instructor Role already exists")
             else:
                 await guild.create_role(name="Instructor", colour=discord.Colour(0x0062ff),
                                         permissions=discord.Permissions.all())
-            #Assign Instructor role to admin
+            # Assign Instructor role to admin
             leader = guild.owner
             leadrole = get(guild.roles, name='Instructor')
             await channel.send(leader.name + " has been given Instructor role!")
             await leader.add_roles(leadrole, reason=None, atomic=True)
             await channel.send("To assign more Instructors, type \"!setInstructor @<member>\"")
-            #Create Text channels if they don't exist
+            # Create Text channels if they don't exist
             if 'instructor-commands' not in guild.text_channels:
                 await guild.create_text_channel('instructor-commands')
                 await channel.send("instructor-commands channel has been added!")

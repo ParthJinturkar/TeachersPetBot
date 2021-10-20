@@ -103,7 +103,7 @@ def update_calendar():
     if past_events != '':
         CALENDAR_EMBED.add_field(name="Past Events", value=past_events, inline=True)
 
-    #CALENDAR_EMBED.add_field(name="Current Events", value=events, inline=False)
+    # CALENDAR_EMBED.add_field(name="Current Events", value=events, inline=False)
 
     if future_events != '':
         CALENDAR_EMBED.add_field(name="Coming up", value=future_events, inline=True)
