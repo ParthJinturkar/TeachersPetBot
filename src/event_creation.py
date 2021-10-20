@@ -6,9 +6,9 @@ from discord_components import Button, ButtonStyle, Select, SelectOption
 import validators
 from src.utils import wait_for_msg
 from src import office_hours
-import cal
+from src import cal
 
-import db
+from src import db
 
 BOT = None
 

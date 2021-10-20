@@ -1,7 +1,7 @@
 from datetime import datetime
 import discord
 
-import db
+from src import db
 
 BOT = None
 CALENDAR_EMBED = None

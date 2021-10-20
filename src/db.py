@@ -25,3 +25,41 @@ def mutation_query(sql, args=()):
     cur = CON.cursor()
     cur.execute(sql, args)
     CON.commit()
+
+def add_Tables(db):
+    db.mutation_query('''
+            CREATE TABLE IF NOT EXISTS ta_office_hours (
+                guild_id    INT,
+                ta          VARCHAR(50),
+                day         INT,
+                begin_hr    INT,
+                begin_min   INT,
+                end_hr      INT,
+                end_min     INT
+            )
+        ''')
+
+    db.mutation_query('''
+            CREATE TABLE IF NOT EXISTS exams (
+                guild_id    INT,
+                title       VARCHAR(50),
+                desc        VARCHAR(300),
+                date        VARCHAR(10),
+                begin_hr    INT,
+                begin_min   INT,
+                end_hr      INT,
+                end_min     INT
+            )
+        ''')
+
+    db.mutation_query('''
+            CREATE TABLE IF NOT EXISTS assignments (
+                guild_id    INT,
+                title       VARCHAR(50),
+                link        VARCHAR(300),
+                desc        VARCHAR(300),
+                date        VARCHAR(10),
+                due_hr      INT,
+                due_min     INT
+            )
+        ''')

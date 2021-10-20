@@ -5,7 +5,7 @@ from datetime import datetime, time
 import discord
 from discord.ext import tasks
 
-import db
+from src import db
 
 
 ###########################
