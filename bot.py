@@ -76,10 +76,18 @@ async def on_ready():
             due_min     INT
         )
     ''')
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            bot.load_extension(f"cogs.{filename[:-3]}")
 
-    event_creation.init(bot)
-    office_hours.init(bot)
-    await cal.init(bot)
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name="Over This Server")
+
+    print("READY!")
+
+    # event_creation.init(bot)
+    # office_hours.init(bot)
+    # await cal.init(bot)
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
