@@ -4,8 +4,8 @@
 import datetime
 from discord_components import Button, ButtonStyle, Select, SelectOption
 import validators
-from utils import wait_for_msg
-import office_hours
+from src.utils import wait_for_msg
+from src import office_hours
 import cal
 
 import db
