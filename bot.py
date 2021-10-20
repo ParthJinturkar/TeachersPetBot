@@ -83,7 +83,7 @@ async def on_ready():
                 leadrole = get(guild.roles, name='Instructor')
                 await channel.send(leader.name + " has been given Instructor role!")
                 await leader.add_roles(leadrole, reason=None, atomic=True)
-                await channel.send("To assign more Instructors, type \"!setInstructor @<member>\"")
+                await channel.send("To assign more Instructors, type \"!setInstructor.py @<member>\"")
                 # Create Text channels if they don't exist
                 if 'instructor-commands' not in guild.text_channels:
                     await guild.create_text_channel('instructor-commands')
@@ -159,7 +159,7 @@ async def on_ready():
     # Outputs:
     #      - Sends confirmation back to channel
     ###########################
-    @bot.command(name='setInstructor', help='Set member to Instructor.')
+    @bot.command(name='setInstructor.py', help='Set member to Instructor.')
     @commands.has_role('Instructor')
     async def set_instructor(ctx, member: discord.Member):
         ''' set instructor role command '''
