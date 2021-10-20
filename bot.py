@@ -18,9 +18,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv("GUILD")
 # GUILD = 'TeachersPet-Dev'
 
-
-UNVERIFIED_ROLE_NAME = os.getenv("UNVERIFIED_ROLE_NAME")
-
 intents = Intents.all()
 bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', intents=intents)
 
