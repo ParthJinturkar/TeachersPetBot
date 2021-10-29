@@ -25,7 +25,7 @@ async def display_events(ctx):
         MSG = await ctx.send(embed=CALENDAR_EMBED)
     else:
         # otherwise, edit the saved message from earlier
-        await MSG.edit(embed=CALENDAR_EMBED)
+        await ctx.edit(embed=CALENDAR_EMBED)
 
 
 ###########################
