@@ -5,23 +5,28 @@ from discord.ext import commands
 # ----------------------------------------------------------------------------------------------
 # Returns the ping of the bot, useful for testing bot lag and as a simple functionality command
 # ----------------------------------------------------------------------------------------------
+from src import office_hours
+
+
 class Helpful(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
 
-    # -------------------------------------------------------------------------------------------------------
-    #    Function: ping(self, ctx)
-    #    Description: prints the current ping of the bot, used as a test function
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: prints the current ping of the bot, with an upper bound of 999999999 to avoid float errors
-    # -------------------------------------------------------------------------------------------------------
-    @commands.command()
-    async def ping3(self, ctx):
-        # We set an upper bound on the ping of the bot to prevent float_infinity situations which crash testing
-        await ctx.send(f"Pong! My ping currently is {round(min(999999999, self.bot.latency * 1000))}ms")
+    ###########################
+    # Function: oh
+    # Description: command related office hour and send to office_hours module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - command: specific command to run
+    #      - *args: arguments for command
+    # Outputs:
+    #      - Office hour details and options
+    ###########################
+    @commands.command(name='oh', help='Operations relevant for office hours.')
+    async def office_hour_command(self, ctx, command, *args):
+        ''' run office hour commands with various args '''
+        await office_hours.office_hour_command(ctx, command, *args)
 
 
 # -------------------------------------

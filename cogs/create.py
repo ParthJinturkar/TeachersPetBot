@@ -28,7 +28,7 @@ class Create(commands.Cog):
     async def create_event(self, ctx):
         ''' run event creation interface '''
         TESTING_MODE = False
-        await event_creation.create_event(ctx, TESTING_MODE)
+        await event_creation.create_event(ctx, False)
 
 
 # -------------------------------------

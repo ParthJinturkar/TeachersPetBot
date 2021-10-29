@@ -5,7 +5,6 @@ from discord.utils import get
 from discord.ext import commands
 from dotenv import load_dotenv
 from discord_components import DiscordComponents
-from discord.ext.commands import Bot
 from discord import Intents
 from src import profanity, db, event_creation, office_hours, cal
 
@@ -29,7 +28,7 @@ bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', in
 @bot.event
 async def on_ready():
     ''' run on bot start-up '''
-    # DiscordComponents(bot)
+    DiscordComponents(bot)
     db.connect()
     db.add_Tables(db)
     guild = discord.utils.get(bot.guilds, name=GUILD)
@@ -58,43 +57,43 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-    ###########################
-    # Function: on_guild_join
-    # Description: run when a user joins a guild with the bot present
-    # Inputs:
-    #      - guild: the guild the user joined from
-    ###########################
-    @ bot.event
-    async def on_guild_join(guild):
-        ''' run on member joining guild '''
-        for channel in guild.text_channels:
-            if channel.permissions_for(guild.me).send_messages:
-                await channel.send('Hi there, I\'m TeachersPetBot, and I\'m here' +
-                                   ' to help you manage your class discord! Let\'s do some quick setup. ')
-                # create roles if they don't exist
-                if 'Instructor' in guild.roles:
-                    await channel.send("Instructor Role already exists")
-                else:
-                    await guild.create_role(name="Instructor", colour=discord.Colour(0x0062ff),
-                                            permissions=discord.Permissions.all())
-                # Assign Instructor role to admin
-                leader = guild.owner
-                leadrole = get(guild.roles, name='Instructor')
-                await channel.send(leader.name + " has been given Instructor role!")
-                await leader.add_roles(leadrole, reason=None, atomic=True)
-                await channel.send("To assign more Instructors, type \"!setInstructor.py @<member>\"")
-                # Create Text channels if they don't exist
-                if 'instructor-commands' not in guild.text_channels:
-                    await guild.create_text_channel('instructor-commands')
-                    await channel.send("instructor-commands channel has been added!")
-                if 'q-and-a' not in guild.text_channels:
-                    await guild.create_text_channel('q-and-a')
-                    await channel.send("q-and-a channel has been added!")
-                if 'course-calendar' not in guild.text_channels:
-                    await guild.create_text_channel('course-calendar')
-                    await channel.send("course-calendar channel has been added!")
+###########################
+# Function: on_guild_join
+# Description: run when a user joins a guild with the bot present
+# Inputs:
+#      - guild: the guild the user joined from
+###########################
+@ bot.event
+async def on_guild_join(guild):
+    ''' run on member joining guild '''
+    for channel in guild.text_channels:
+        if channel.permissions_for(guild.me).send_messages:
+            await channel.send('Hi there, I\'m TeachersPetBot, and I\'m here' +
+                               ' to help you manage your class discord! Let\'s do some quick setup. ')
+            # create roles if they don't exist
+            if 'Instructor' in guild.roles:
+                await channel.send("Instructor Role already exists")
+            else:
+                await guild.create_role(name="Instructor", colour=discord.Colour(0x0062ff),
+                                        permissions=discord.Permissions.all())
+            # Assign Instructor role to admin
+            leader = guild.owner
+            leadrole = get(guild.roles, name='Instructor')
+            await channel.send(leader.name + " has been given Instructor role!")
+            await leader.add_roles(leadrole, reason=None, atomic=True)
+            await channel.send("To assign more Instructors, type \"!setInstructor.py @<member>\"")
+            # Create Text channels if they don't exist
+            if 'instructor-commands' not in guild.text_channels:
+                await guild.create_text_channel('instructor-commands')
+                await channel.send("instructor-commands channel has been added!")
+            if 'q-and-a' not in guild.text_channels:
+                await guild.create_text_channel('q-and-a')
+                await channel.send("q-and-a channel has been added!")
+            if 'course-calendar' not in guild.text_channels:
+                await guild.create_text_channel('course-calendar')
+                await channel.send("course-calendar channel has been added!")
 
-            break
+        break
 
     ###########################
     # Function: on_message
@@ -102,41 +101,56 @@ async def on_ready():
     # Inputs:
     #      - message: the message the user sent to a channel
     ###########################
-    @bot.event
-    async def on_message(message):
-        ''' run on message sent to a channel '''
+@bot.event
+async def on_message(message):
+    ''' run on message sent to a channel '''
 
 
-        if message.author == bot.user:
-            return
+    if message.author == bot.user:
+       return
 
-        if profanity.check_profanity(message.content):
-            await message.channel.send(message.author.name + ' says: ' +
-                                       profanity.censor_profanity(message.content))
-            await message.delete()
+    if profanity.check_profanity(message.content):
+        await message.channel.send(message.author.name + ' says: ' +
+                                  profanity.censor_profanity(message.content))
+        await message.delete()
 
-        await bot.process_commands(message)
+    await bot.process_commands(message)
 
-        if message.content == 'hey bot':
-            response = 'hey yourself ;)'
-            await message.channel.send(response)
+    if message.content == 'hey bot':
+        response = 'hey yourself ;)'
+        await message.channel.send(response)
 
-    ###########################
-    # Function: on_message_edit
-    # Description: run when a user edits a message
-    # Inputs:
-    #      - before: the old message
-    #      - after: the new message
-    ###########################
-    @bot.event
-    async def on_message_edit(before, after):
-        ''' run on message edited '''
-        if profanity.check_profanity(after.content):
-            await after.channel.send(after.author.name + ' says: ' +
-                                     profanity.censor_profanity(after.content))
-            await after.delete()
+###########################
+# Function: on_message_edit
+# Description: run when a user edits a message
+# Inputs:
+#      - before: the old message
+#      - after: the new message
+###########################
+@bot.event
+async def on_message_edit(before, after):
+    ''' run on message edited '''
+    if profanity.check_profanity(after.content):
+        await after.channel.send(after.author.name + ' says: ' +
+                                 profanity.censor_profanity(after.content))
+        await after.delete()
 
+# ----------------------------------
+#    Function: on_member_join(member)
+#    Description: Command for shutting down the bot
+#    Inputs:
+#    - ctx: used to access the values passed through the current context
+#    Outputs:
+#    -
+# ----------------------------------
+@bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
+@commands.has_permissions(administrator=True)
+async def shutdown(ctx):
+    db.shutdown()
+    await ctx.send('Shutting Down bot')
+    print("Bot closed successfully")
+    ctx.bot.logout()
+    exit()
 
 ''' run bot command '''
 bot.run(TOKEN)
-

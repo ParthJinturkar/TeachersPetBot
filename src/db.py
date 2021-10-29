@@ -26,6 +26,10 @@ def mutation_query(sql, args=()):
     cur.execute(sql, args)
     CON.commit()
 
+def shutdown():
+    CON.close()
+    print("The SQLite connection is closed")
+
 def add_Tables(db):
     db.mutation_query('''
             CREATE TABLE IF NOT EXISTS ta_office_hours (
