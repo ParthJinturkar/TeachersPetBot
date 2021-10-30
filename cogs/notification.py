@@ -1,17 +1,22 @@
 import discord
+from discord import Client
 from discord.ext import commands
 import json
 import os
 import asyncio
 import time
+import smtplib
+from email.message import EmailMessage
 from datetime import datetime
 
+BOT = None
 
 class Deadline(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         self.reminders = json.load(open("data/remindme/reminders.json"))
+        self.notifs = json.load(open("data/remindme/groupremind.json"))
         self.units = {"second": 1, "minute": 60, "hour": 3600, "day": 86400, "week": 604800, "month": 2592000}
 
     # -----------------------------------------------------------------------------------------------------------------
@@ -76,9 +81,9 @@ class Deadline(commands.Cog):
         if not self.reminders:
             await ctx.send("Mission Accomplished..!! You don't have any more dues..!!")
 
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
-        await ctx.send('Unidentified command..please use $help to get the list of available comamnds')
+    #@commands.Cog.listener()
+    #async def on_command_error(self, ctx, error):
+    #    await ctx.send('Unidentified command..please use $help to get the list of available comamnds')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: deleteReminder(self, ctx, courseName: str, hwName: str)
@@ -245,6 +250,126 @@ class Deadline(commands.Cog):
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await ctx.send("All reminders have been cleared..!!")
 
+    @commands.command(name="notifyme", pass_context=True, help="provides a way to set up notifications")
+    async def notify_me(self, ctx, quantity: int, time_unit: str, *, text: str):
+        time_unit = time_unit.lower()
+        msg_email = ""
+        contact = ""
+        author = ctx.message.author
+        s = ""
+        if time_unit.endswith("s"):
+            time_unit = time_unit[:-1]
+            s = "s"
+        if not time_unit in self.units:
+            await ctx.send("Invalid unit of time. Select from seconds/minutes/hours/days/weeks/months")
+            return
+        if quantity < 1:
+            await ctx.send("Quantity must not be 0 or negative")
+            return
+        if len(text) > 1960:
+            await ctx.send("Text is too long.")
+            return
+
+        seconds = self.units[time_unit] * quantity
+        future = int(time.time() + seconds)
+
+        def check(msg):
+            #print("inside msg: msg"+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in ["y", "n"]
+
+        def check_answer(msg):
+            #print("inside msg: msg"+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in ["email", "text"]
+
+        def check_email(msg):
+            #print("inside msg: msg"+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        def check_phone(msg):
+            #print("inside msg: msg"+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        await ctx.send("Would you like to receive reminder on your email or phone? [y/n]")
+
+        msg = await BOT.wait_for("message", check=check)
+        if msg.content.lower() == "y":
+            await ctx.send("Great..!! So, [email/text]..??")
+            msg_answer = await BOT.wait_for("message", check=check_answer)
+            if msg_answer.content.lower() == "email":
+                await ctx.send("Enter your email id")
+                msg_email_text = await BOT.wait_for("message", check=check_email)
+                msg_email = msg_email_text.content.strip()
+                await ctx.send("I will remind you through mail")
+            elif msg_answer.content.lower() == "text":
+                await ctx.send("Enter your contact number")
+                msg_contact = await BOT.wait_for("message", check=check_phone)
+                contact = msg_contact.content.strip()
+                await ctx.send("I will remind you through text")
+
+        self.notifs.append({"ID": author.id, "FUTURE": future, "TEXT": text, "EMAIL": msg_email, "PHONE": contact})
+        await ctx.send("I will remind you that in {} {}.".format(str(quantity), time_unit + s))
+        json.dump(self.notifs, open("data/remindme/groupremind.json", "w"))
+
+
+    async def notification_reminders(self):
+        print("inside delete old reminders")
+        while self is self.bot.get_cog("Deadline"):
+            to_remove = []
+            for notif in self.notifs:
+                if notif["FUTURE"] <= int(time.time()):
+                    try:
+                        #await ctx.send("A reminder has been deleted")
+                        channel = self.bot.get_channel(897661152371290172);
+                        await channel.send("<@{}>, You asked me to remind you this: {}".format(notif["ID"], notif["TEXT"]))
+                        if notif["EMAIL"]:
+                            await self.email_alert("You have a reminder, Sir", "You asked me to remind you this: {}".format(notif["TEXT"]), notif["EMAIL"])
+                        if notif["PHONE"]:
+                            await self.phone_alert("You have a reminder, Sir","You asked me to remind you this: {}".format(notif["TEXT"]), notif["PHONE"])
+                        print("Deleting an old reminder..!!")
+                    except (discord.errors.Forbidden, discord.errors.NotFound):
+                        to_remove.append(notif)
+                    except discord.errors.HTTPException:
+                        pass
+                    else:
+                        to_remove.append(notif)
+            for notif in to_remove:
+                self.notifs.remove(notif)
+            if to_remove:
+                json.dump(self.notifs, open("data/remindme/groupremind.json", "w"))
+            await asyncio.sleep(5)
+
+    async def email_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg['subject'] = subject
+        msg['to'] = to
+        user = "teacher.petbot@gmail.com"
+        msg['from'] = user
+        password = "bbyfvjamujjjwrna"
+
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
+    async def phone_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg['subject'] = subject
+        msg['to'] = to+"@tmomail.net"
+        user = "teacher.petbot@gmail.com"
+        msg['from'] = user
+        password = "bbyfvjamujjjwrna"
+
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
     # -----------------------------------------------------------------------------------------------------
     #    Function: delete_old_reminders(self)
     #    Description: asynchronously keeps on tracking the json file for expired reminders and cleans them.
@@ -288,10 +413,16 @@ def check_folders():
 # ----------------------------------------------------
 def check_files():
     f = "data/remindme/reminders.json"
+    group = "data/remindme/groupremind.json"
+
     print("Creating file...")
     if not os.path.exists(f):
         print("Creating empty reminders.json...")
         json.dump([], open(f, "w"))
+
+    if not os.path.exists(group):
+        print("Creating group reminders file")
+        json.dump([], open(group, "w"))
 
 
 # -------------------------------------
@@ -302,5 +433,9 @@ def setup(bot):
     check_files()
     n = Deadline(bot)
     loop = asyncio.get_event_loop()
+    loop_notify = asyncio.get_event_loop()
     loop.create_task(n.delete_old_reminders())
+    loop_notify.create_task(n.notification_reminders())
+    global BOT
+    BOT = bot
     bot.add_cog(n)
