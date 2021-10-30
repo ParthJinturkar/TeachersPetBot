@@ -25,6 +25,7 @@ def bot(event_loop):
     for filename in os.listdir(os.getcwd()):
         if filename.endswith('.py'):
             bot.load_extension(f"cogs.{filename[:-3]}")
+    bot.load_extension('jishaku')
     dpytest.configure(bot)
     return bot
 
