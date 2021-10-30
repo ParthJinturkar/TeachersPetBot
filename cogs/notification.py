@@ -258,6 +258,9 @@ class Deadline(commands.Cog):
             for reminder in self.reminders:
                 if reminder["FUTURE"] <= int(time.time()):
                     try:
+                        #await ctx.send("A reminder has been deleted")
+                        channel = self.bot.get_channel(897661152371290172);
+                        await channel.send("The due date for {} {} which was {} set by <@{}> has now passed".format(reminder["COURSE"], reminder["HOMEWORK"], reminder["DUEDATE"], reminder["ID"]))
                         print("Deleting an old reminder..!!")
                     except (discord.errors.Forbidden, discord.errors.NotFound):
                         to_remove.append(reminder)
