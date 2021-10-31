@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import datetime
 
+from discord.ext.commands import bot
+
 
 # ---------------------------------------------------------------------------------------
 # Contains Instructor only commands for polling
@@ -30,17 +32,22 @@ class Helper(commands.Cog):
     @commands.command(name = "poll")
     @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str):
+        msg = ctx.message.content
+        await ctx.message.delete()
         if ctx.channel.name == 'instructor-commands':
-            print("Polling ", poll)
-            await ctx.message.delete()
-            embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
-            embed.set_footer(text=f"Poll by {str(ctx.author)}")
-            msg = await ctx.send(embed=embed)
-            await msg.add_reaction('👍')
-            await msg.add_reaction('👎')
+            general_channel = None
+            for channel in ctx.guild.text_channels:
+                if channel.name == 'general':
+                    general_channel = channel
+                    break
+            if general_channel:                    
+                embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
+                embed.set_footer(text=f"Poll by {str(ctx.author)}")
+                msg = await general_channel.send(embed=embed)
+                await msg.add_reaction('👍')
+                await msg.add_reaction('👎')
         else:
-            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel')
-            await ctx.message.delete()    
+            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel.\nYou entered the following command:\n`' + msg + '`')               
 
     @commands.Cog.listener()
     async def on_reaction(self, reaction):
