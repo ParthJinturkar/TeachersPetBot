@@ -86,9 +86,9 @@ class Helper(commands.Cog):
                     break
             if general_channel:
                 if len(choices) < 2:
-                    return await ctx.author.send("You have to enter two or more choices to make a poll")
+                    return await ctx.author.send("You have to enter two or more choices to make a multipoll.\nYou entered the following command:\n`" + msg + "`")
                 if len(choices) > 10:
-                    return await ctx.author.send("You can't make a poll with more than 10 choices")
+                    return await ctx.author.send("You can't make a multipoll with more than 10 choices.\nYou entered the following command:\n`" + msg + "`")
                 embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
                     f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
                                     timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
