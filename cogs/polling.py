@@ -31,9 +31,13 @@ class Helper(commands.Cog):
 
     @commands.command(name = "poll")
     @commands.has_role("Instructor")
-    async def poll(self, ctx, *, poll: str):
+    async def poll(self, ctx, *, poll: str = None):
         msg = ctx.message.content
         await ctx.message.delete()
+        if poll == None:
+            embed = discord.Embed(description="!poll command should be used in following way:\n\n`!poll poll_content`")
+            await ctx.author.send(embed=embed)
+            return
         if ctx.channel.name == 'instructor-commands':
             general_channel = None
             for channel in ctx.guild.text_channels:
@@ -75,9 +79,13 @@ class Helper(commands.Cog):
 
     @commands.command(name = "multipoll")
     @commands.has_role("Instructor")
-    async def multi_choice(self, ctx, desc: str, *choices):
+    async def multi_choice(self, ctx, desc: str = None, *choices):
         msg = ctx.message.content
         await ctx.message.delete()
+        if desc == None:
+            embed = discord.Embed(description="!multipoll command should be used in following way:\n\n`!multipoll \"poll_content\" \"poll_choice1\" \"poll_choice2\"...`")
+            await ctx.author.send(embed=embed)
+            return
         if ctx.channel.name == 'instructor-commands':
             general_channel = None
             for channel in ctx.guild.text_channels:
