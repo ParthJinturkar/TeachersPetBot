@@ -85,7 +85,7 @@ class Helper(commands.Cog):
             for i in range(1, len(choices) + 1):
                 await msg.add_reaction(self.reactions[i])
         else:
-            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel \n You entered the following command `' + str(ctx.message) + '`')
+            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel \n You entered the following command\n`' + ctx.message.content + '`')
             await ctx.message.delete()            
 
 
