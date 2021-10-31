@@ -31,7 +31,7 @@ class Deadline(commands.Cog):
     #    Outputs: returns either an error stating a reason for failure or returns a success message
     #          indicating that the reminder has been added
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="addhw",help="add homework and due-date $addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. $addhw CSC510 HW2 SEP 25 2024 17:02")
+    @commands.command(name="addhw",help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. $addhw CSC510 HW2 SEP 25 2024 17:02")
     async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
         author = ctx.message.author
         # print('Author: '+str(author)+' coursename: '+coursename+' homework count: '+hwcount+' date: '+str(date))
@@ -175,6 +175,10 @@ class Deadline(commands.Cog):
     @commands.command(name="duethisweek", pass_context=True,help="check all the homeworks that are due this week $duethisweek")
     async def duethisweek(self, ctx):
         time = ctx.message.created_at
+
+        if len(self.reminders) == 0:
+            await ctx.send("No dues this week")
+
         for reminder in self.reminders:
             timeleft = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S') - time
             print("timeleft: " + str(timeleft) + " days left: " + str(timeleft.days))
@@ -249,6 +253,8 @@ class Deadline(commands.Cog):
         if to_remove:
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await ctx.send("All reminders have been cleared..!!")
+        else:
+            await ctx.send("No reminders to delete..!!")
 
     @commands.command(name="notifyme", pass_context=True, help="provides a way to set up notifications")
     async def notify_me(self, ctx, quantity: int, time_unit: str, *, text: str):
