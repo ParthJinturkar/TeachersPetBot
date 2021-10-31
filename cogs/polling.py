@@ -34,11 +34,11 @@ class Helper(commands.Cog):
     async def poll(self, ctx, *, poll: str = None):
         msg = ctx.message.content
         await ctx.message.delete()
-        if poll == None:
-            embed = discord.Embed(description="!poll command should be used in following way:\n\n`!poll poll_content`")
-            await ctx.author.send(embed=embed)
-            return
         if ctx.channel.name == 'instructor-commands':
+            if poll == None:
+                embed = discord.Embed(description="!poll command should be used in following way:\n\n`!poll poll_content`", color=discord.colour.Color.red())
+                await ctx.author.send(embed=embed)
+                return
             general_channel = None
             for channel in ctx.guild.text_channels:
                 if channel.name == 'general':
@@ -46,7 +46,7 @@ class Helper(commands.Cog):
                     break
             if general_channel:                    
                 embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
-                embed.set_footer(text=f"Poll by {str(ctx.author)}")
+                embed.set_footer(text=f"Poll created by {str(ctx.author)}")
                 msg = await general_channel.send(embed=embed)
                 await msg.add_reaction('👍')
                 await msg.add_reaction('👎')
@@ -83,11 +83,11 @@ class Helper(commands.Cog):
     async def multi_choice(self, ctx, desc: str = None, *choices):
         msg = ctx.message.content
         await ctx.message.delete()
-        if desc == None:
-            embed = discord.Embed(description="!multipoll command should be used in following way:\n\n`!multipoll \"poll_content\" \"poll_choice1\" \"poll_choice2\"...`")
-            await ctx.author.send(embed=embed)
-            return
         if ctx.channel.name == 'instructor-commands':
+            if desc == None:
+                embed = discord.Embed(description="!multipoll command should be used in following way:\n\n`!multipoll \"poll_content\" \"poll_choice1\" \"poll_choice2\"...`", color=discord.colour.Color.red())
+                await ctx.author.send(embed=embed)
+                return
             general_channel = None
             for channel in ctx.guild.text_channels:
                 if channel.name == 'general':
@@ -95,18 +95,21 @@ class Helper(commands.Cog):
                     break
             if general_channel:
                 if len(choices) < 2:
-                    return await ctx.author.send("You have to enter two or more choices to make a multipoll.\nYou entered the following command:\n`" + msg + "`")
+                    embed = discord.Embed(description="You have to enter two or more choices to make a multipoll.\n\nYou entered the following command:\n\n`" + msg + "`", color=discord.colour.Color.red())
+                    return await ctx.author.send(embed=embed)
                 if len(choices) > 10:
-                    return await ctx.author.send("You can't make a multipoll with more than 10 choices.\nYou entered the following command:\n`" + msg + "`")
+                    embed = discord.Embed(description="You can't make a multipoll with more than 10 choices.\n\nYou entered the following command:\n\n`" + msg + "`", color=discord.colour.Color.red())
+                    return await ctx.author.send(embed=embed)
                 embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
                     f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
                                     timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
-                embed.set_footer(text=f"Poll by {str(ctx.author)}")
+                embed.set_footer(text=f"Poll created by {str(ctx.author)}")
                 msg = await general_channel.send(embed=embed)
                 for i in range(1, len(choices) + 1):
                     await msg.add_reaction(self.reactions[i])
         else:
-            await ctx.author.send('`!multipoll` can only be used in the `instructor-commands` channel.\nYou entered the following command:\n`' + msg + '`')            
+            embed=discord.Embed(description="`!multipoll` can only be used in the `instructor-commands` channel.\n\nYou entered the following command:\n\n`" + msg + "`", color=discord.colour.Color.red())
+            await ctx.author.send(embed=embed)            
 
 
 # --------------------------------------
