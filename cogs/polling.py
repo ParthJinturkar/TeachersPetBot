@@ -51,7 +51,8 @@ class Helper(commands.Cog):
                 await msg.add_reaction('👍')
                 await msg.add_reaction('👎')
         else:
-            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel.\nYou entered the following command:\n`' + msg + '`')               
+            embed=discord.Embed(description="`!poll` can only be used in the `instructor-commands` channel.\n\nYou entered the following command:\n\n`" + msg + "`", color=discord.colour.Color.red())
+            await ctx.author.send(embed=embed)               
 
     @commands.Cog.listener()
     async def on_reaction(self, reaction):
