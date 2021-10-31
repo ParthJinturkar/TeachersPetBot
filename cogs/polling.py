@@ -45,7 +45,7 @@ class Helper(commands.Cog):
                     general_channel = channel
                     break
             if general_channel:                    
-                embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
+                embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.blue())
                 embed.set_footer(text=f"Poll created by {str(ctx.author)}")
                 msg = await general_channel.send(embed=embed)
                 await msg.add_reaction('👍')
