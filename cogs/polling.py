@@ -1,9 +1,6 @@
 import discord
 from discord.ext import commands
 import datetime
-import os
-import csv
-import random
 
 
 # ---------------------------------------------------------------------------------------
@@ -29,13 +26,14 @@ class Helper(commands.Cog):
             9: '9️⃣',
             10: '🔟'
         }
-
+    
     @commands.command(name = "poll")
     async def poll(self, ctx, *, poll: str):
         print("Polling ", poll)
         await ctx.message.delete()
-        embed = discord.Embed(description=poll)
-        embed.set_author(name=f"Poll by {ctx.author.display_name}", icon_url=ctx.author.avatar_url)
+        embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
+        # embed.set_author(name=f"Poll by {ctx.author.display_name}", icon_url=ctx.author.avatar_url)
+        embed.set_footer(text=f"Poll by {str(ctx.author)}")
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('👍')
         await msg.add_reaction('👎')
@@ -82,6 +80,7 @@ class Helper(commands.Cog):
             f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
                               timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
         embed.set_footer(text=f"Poll by {str(ctx.author)}")
+        # embed.set_author(icon_url=ctx.author.avatar_url)
         msg = await ctx.send(embed=embed)
         for i in range(1, len(choices) + 1):
             await msg.add_reaction(self.reactions[i])    
