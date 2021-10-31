@@ -69,21 +69,24 @@ class Helper(commands.Cog):
     @commands.command(name = "multipoll")
     @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str, *choices):
-        await ctx.message.delete()
+        if ctx.channel.name == 'instructor-commands':
+            await ctx.message.delete()
+            if len(choices) < 2:
+                return await ctx.send("You have to enter two or more choices to make a poll")
 
-        if len(choices) < 2:
-            return await ctx.send("You have to enter two or more choices to make a poll")
+            if len(choices) > 10:
+                return await ctx.send("You can't make a poll with more than 10 choices")
 
-        if len(choices) > 10:
-            return await ctx.send("You can't make a poll with more than 10 choices")
-
-        embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
-            f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
-                              timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
-        embed.set_footer(text=f"Poll by {str(ctx.author)}")
-        msg = await ctx.send(embed=embed)
-        for i in range(1, len(choices) + 1):
-            await msg.add_reaction(self.reactions[i])    
+            embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
+                f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
+                                timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
+            embed.set_footer(text=f"Poll by {str(ctx.author)}")
+            msg = await ctx.send(embed=embed)
+            for i in range(1, len(choices) + 1):
+                await msg.add_reaction(self.reactions[i])
+        else:
+            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel \n You entered the following command `' + str(ctx.message) + '`')
+            await ctx.message.delete()            
 
 
 # --------------------------------------
