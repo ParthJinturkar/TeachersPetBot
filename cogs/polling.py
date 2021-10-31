@@ -4,7 +4,7 @@ import datetime
 
 
 # ---------------------------------------------------------------------------------------
-# Contains commands for member verification, which is handled with direct DMs to the bot
+# Contains Instructor only commands for polling
 # ---------------------------------------------------------------------------------------
 class Helper(commands.Cog):
     
@@ -28,7 +28,7 @@ class Helper(commands.Cog):
         }
 
     @commands.command(name = "poll")
-    @commands.has_role('Instructor')
+    @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str):
         print("Polling ", poll)
         await ctx.message.delete()
@@ -64,6 +64,7 @@ class Helper(commands.Cog):
                     return
 
     @commands.command(name = "multipoll")
+    @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str, *choices):
         await ctx.message.delete()
 
