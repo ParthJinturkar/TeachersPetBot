@@ -33,18 +33,17 @@ class Helper(commands.Cog):
         print("Polling ", poll)
         await ctx.message.delete()
         embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
-        # embed.set_author(name=f"Poll by {ctx.author.display_name}", icon_url=ctx.author.avatar_url)
         embed.set_footer(text=f"Poll by {str(ctx.author)}")
         msg = await ctx.send(embed=embed)
         await msg.add_reaction('👍')
         await msg.add_reaction('👎')
 
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload):
-        user = payload.member
+    async def on_reaction(self, reaction):
+        user = reaction.member
         if user.bot:return
-        msg = await self.bot.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
-        emoji = payload.emoji
+        msg = await self.bot.get_guild(reaction.guild_id).get_channel(reaction.channel_id).fetch_message(reaction.message_id)
+        emoji = reaction.emoji
         users = []
         if msg.author.bot and("👍"and"👎")in[str(i)for i in msg.reactions]:
             for react in msg.reactions:
@@ -69,20 +68,15 @@ class Helper(commands.Cog):
         await ctx.message.delete()
 
         if len(choices) < 2:
-            ctx.command.reset_cooldown(ctx)
-            if len(choices) == 1:
-                return await ctx.send("Can't make a poll with only one choice")
             return await ctx.send("You have to enter two or more choices to make a poll")
 
         if len(choices) > 10:
-            ctx.command.reset_cooldown(ctx)
             return await ctx.send("You can't make a poll with more than 10 choices")
 
         embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
             f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
                               timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
         embed.set_footer(text=f"Poll by {str(ctx.author)}")
-        # embed.set_author(icon_url=ctx.author.avatar_url)
         msg = await ctx.send(embed=embed)
         for i in range(1, len(choices) + 1):
             await msg.add_reaction(self.reactions[i])    
