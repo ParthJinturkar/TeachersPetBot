@@ -26,8 +26,9 @@ class Helper(commands.Cog):
             9: '9️⃣',
             10: '🔟'
         }
-    
+
     @commands.command(name = "poll")
+    @commands.has_role('Instructor')
     async def poll(self, ctx, *, poll: str):
         print("Polling ", poll)
         await ctx.message.delete()
