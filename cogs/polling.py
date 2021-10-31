@@ -79,20 +79,23 @@ class Helper(commands.Cog):
         msg = ctx.message.content
         await ctx.message.delete()
         if ctx.channel.name == 'instructor-commands':
-            
-            if len(choices) < 2:
-                return await ctx.send("You have to enter two or more choices to make a poll")
-
-            if len(choices) > 10:
-                return await ctx.send("You can't make a poll with more than 10 choices")
-
-            embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
-                f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
-                                timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
-            embed.set_footer(text=f"Poll by {str(ctx.author)}")
-            msg = await ctx.send(embed=embed)
-            for i in range(1, len(choices) + 1):
-                await msg.add_reaction(self.reactions[i])
+            general_channel = None
+            for channel in ctx.guild.text_channels:
+                if channel.name == 'general':
+                    general_channel = channel
+                    break
+            if general_channel:
+                if len(choices) < 2:
+                    return await ctx.author.send("You have to enter two or more choices to make a poll")
+                if len(choices) > 10:
+                    return await ctx.author.send("You can't make a poll with more than 10 choices")
+                embed = discord.Embed(description=f"**{desc}**\n\n" + "\n\n".join(
+                    f"{str(self.reactions[i])}  {choice}" for i, choice in enumerate(choices, 1)),
+                                    timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.gold())
+                embed.set_footer(text=f"Poll by {str(ctx.author)}")
+                msg = await general_channel.send(embed=embed)
+                for i in range(1, len(choices) + 1):
+                    await msg.add_reaction(self.reactions[i])
         else:
             await ctx.author.send('`!multipoll` can only be used in the `instructor-commands` channel.\nYou entered the following command:\n`' + msg + '`')            
 
