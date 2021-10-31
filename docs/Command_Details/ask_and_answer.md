@@ -9,14 +9,14 @@ answers will need to have a number in the command in order to specify which ques
 The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/ask_and_answer.py)
 
 # Code Description
-## ask Function
+## Ask Function
 
 ask_question(self, ctx, question)
 
 This Function takes in the question as the argument and passes the context and the question to the qna.question method found in the src folder. 
 It does check where the command is being used, and will send a error if the !ask command is not asked in the q-and-a channel.
 
-## answer Function
+## Answer Function
 
 answer_question(self, ctx, q_num, answer)
 
@@ -25,14 +25,14 @@ This Function takes in a question number and answer as the arguments and passes 
 Error checking is also done to make sure the question number is valid and depending on the user, it will determine if the answer is from a Insturctor or a Student.
 
 # How to run it? (Small Example)
-## ask Function
+## Ask Function
 Let's say that you are in the q-and-a channel that has the TeachersPet Bot active and online. 
 When you type the following command, the question will be replaced with the same question asked by the bot.
 ```
 !ask "<Must Be in Quotes>"
 ```
 
-## answer Function
+## Answer Function
 
 Let's say that you are in the q-and-a channel that has the TeachersPet Bot active and online. 
 When you type the following command, the answer will be replaced with the same answer as the bot.
@@ -41,5 +41,8 @@ Depending on the user, the answer will be from a Student or an Instructor.
 !answer <NUMBER> "<Must Be in Quotes>"
 ```
 
-
-![$group HW](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+# Example Run
+## Ask Function
+![!ask](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+## Answer Function
+![!answer](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
