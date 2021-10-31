@@ -69,8 +69,10 @@ class Helper(commands.Cog):
     @commands.command(name = "multipoll")
     @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str, *choices):
+        msg = ctx.message.content
+        await ctx.message.delete()
         if ctx.channel.name == 'instructor-commands':
-            await ctx.message.delete()
+            
             if len(choices) < 2:
                 return await ctx.send("You have to enter two or more choices to make a poll")
 
@@ -85,8 +87,7 @@ class Helper(commands.Cog):
             for i in range(1, len(choices) + 1):
                 await msg.add_reaction(self.reactions[i])
         else:
-            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel \n You entered the following command\n`' + ctx.message.content + '`')
-            await ctx.message.delete()            
+            await ctx.author.send('`!multipoll` can only be used in the `instructor-commands` channel.\nYou entered the following command:\n`' + msg + '`')            
 
 
 # --------------------------------------
