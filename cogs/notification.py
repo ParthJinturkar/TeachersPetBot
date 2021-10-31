@@ -31,7 +31,7 @@ class Deadline(commands.Cog):
     #    Outputs: returns either an error stating a reason for failure or returns a success message
     #          indicating that the reminder has been added
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="addhw",help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. $addhw CSC510 HW2 SEP 25 2024 17:02")
+    @commands.command(name="addhw",help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02")
     async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
         author = ctx.message.author
         # print('Author: '+str(author)+' coursename: '+coursename+' homework count: '+hwcount+' date: '+str(date))
@@ -62,7 +62,7 @@ class Deadline(commands.Cog):
     @duedate.error
     async def duedate_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the addhw command, do: $addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )')
+            await ctx.send('To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )')
 
     @commands.command(name="listreminders", pass_context=True, help="lists all reminders")
     async def listreminders(self, ctx):
@@ -81,9 +81,9 @@ class Deadline(commands.Cog):
         if not self.reminders:
             await ctx.send("Mission Accomplished..!! You don't have any more dues..!!")
 
-    #@commands.Cog.listener()
-    #async def on_command_error(self, ctx, error):
-    #    await ctx.send('Unidentified command..please use $help to get the list of available comamnds')
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        await ctx.send('Unidentified command..please use !help to get the list of available comamnds')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: deleteReminder(self, ctx, courseName: str, hwName: str)
@@ -97,7 +97,7 @@ class Deadline(commands.Cog):
     #          returns a success message indicating that the reminder has been deleted
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="deletereminder", pass_context=True,help="delete a specific reminder using course name and homework name using $deletereminder CLASSNAME HW_NAME ex. $deletereminder CSC510 HW2 ")
+    @commands.command(name="deletereminder", pass_context=True,help="delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 ")
     async def deleteReminder(self, ctx, courseName: str, hwName: str):
         author = ctx.message.author
         to_remove = []
@@ -116,7 +116,7 @@ class Deadline(commands.Cog):
     @deleteReminder.error
     async def deleteReminder_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the deletereminder command, do: $deletereminder CLASSNAME HW_NAME \n ( For example: $deletereminder CSC510 HW2 )')
+            await ctx.send('To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
@@ -131,7 +131,7 @@ class Deadline(commands.Cog):
     #          returns a success message indicating that the reminder has been updated
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="changeduedate", pass_context=True,help="update the assignment date. $changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. $changeduedate CSC510 HW2 SEP 25 2024 17:02 ")
+    @commands.command(name="changeduedate", pass_context=True,help="update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 ")
     async def changeduedate(self, ctx, classid: str, hwid: str, *, date: str):
         author = ctx.message.author
         flag = False
@@ -160,7 +160,7 @@ class Deadline(commands.Cog):
     @changeduedate.error
     async def changeduedate_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the changeduedate command, do: $changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: $changeduedate CSC510 HW2 SEP 25 2024 17:02 )')
+            await ctx.send('To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: duethisweek(self, ctx)
@@ -172,7 +172,7 @@ class Deadline(commands.Cog):
     #             or returns a list of all the assignments that are due this week
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="duethisweek", pass_context=True,help="check all the homeworks that are due this week $duethisweek")
+    @commands.command(name="duethisweek", pass_context=True,help="check all the homeworks that are due this week !duethisweek")
     async def duethisweek(self, ctx):
         time = ctx.message.created_at
 
@@ -196,7 +196,7 @@ class Deadline(commands.Cog):
     # Outputs: returns either an error stating a reason for failure or
     #          returns a list of all the assignments that are due on the day the command is run
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="duetoday", pass_context=True, help="check all the homeworks that are due today $duetoday")
+    @commands.command(name="duetoday", pass_context=True, help="check all the homeworks that are due today !duetoday")
     async def duetoday(self, ctx):
         flag = True
         for reminder in self.reminders:
@@ -218,7 +218,7 @@ class Deadline(commands.Cog):
     #    Outputs: returns either an error stating a reason for failure or
     #          a list of assignments that are due for the provided courseid
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="coursedue", pass_context=True,help="check all the homeworks that are due for a specific course $coursedue coursename ex. $coursedue CSC505")
+    @commands.command(name="coursedue", pass_context=True,help="check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505")
     async def coursedue(self, ctx, courseid: str):
         course_due = []
         for reminder in self.reminders:
@@ -231,7 +231,7 @@ class Deadline(commands.Cog):
     @coursedue.error
     async def coursedue_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the coursedue command, do: $coursedue CLASSNAME \n ( For example: $coursedue CSC510 )')
+            await ctx.send('To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )')
 
     # ---------------------------------------------------------------------------------
     #    Function: clearallreminders(self, ctx)
@@ -318,7 +318,7 @@ class Deadline(commands.Cog):
 
 
     async def notification_reminders(self):
-        print("inside delete old reminders")
+        print("inside delete old notifications")
         while self is self.bot.get_cog("Deadline"):
             to_remove = []
             for notif in self.notifs:
@@ -331,7 +331,7 @@ class Deadline(commands.Cog):
                             await self.email_alert("You have a reminder, Sir", "You asked me to remind you this: {}".format(notif["TEXT"]), notif["EMAIL"])
                         if notif["PHONE"]:
                             await self.phone_alert("You have a reminder, Sir","You asked me to remind you this: {}".format(notif["TEXT"]), notif["PHONE"])
-                        print("Deleting an old reminder..!!")
+                        print("Deleting an old notification..!!")
                     except (discord.errors.Forbidden, discord.errors.NotFound):
                         to_remove.append(notif)
                     except discord.errors.HTTPException:
