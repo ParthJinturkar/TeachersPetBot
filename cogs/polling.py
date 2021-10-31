@@ -30,13 +30,17 @@ class Helper(commands.Cog):
     @commands.command(name = "poll")
     @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str):
-        print("Polling ", poll)
-        await ctx.message.delete()
-        embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
-        embed.set_footer(text=f"Poll by {str(ctx.author)}")
-        msg = await ctx.send(embed=embed)
-        await msg.add_reaction('👍')
-        await msg.add_reaction('👎')
+        if ctx.channel.name == 'instructor-commands':
+            print("Polling ", poll)
+            await ctx.message.delete()
+            embed = discord.Embed(description=f"**{poll}**\n\n", timestamp=datetime.datetime.utcnow(), color=discord.colour.Color.red())
+            embed.set_footer(text=f"Poll by {str(ctx.author)}")
+            msg = await ctx.send(embed=embed)
+            await msg.add_reaction('👍')
+            await msg.add_reaction('👎')
+        else:
+            await ctx.author.send('`!poll` can only be used in the `instructor-commands` channel')
+            await ctx.message.delete()    
 
     @commands.Cog.listener()
     async def on_reaction(self, reaction):
