@@ -1,14 +1,13 @@
 ###########################
 # Functionality for creating new events
 ###########################
+import csv
 import datetime
 from discord_components import Button, ButtonStyle, Select, SelectOption
 import validators
-from src.utils import wait_for_msg
-from src import office_hours
-from src import cal
-
-from src import db
+from src import d_b
+from src import utils
+from src import cal, office_hours
 
 BOT = None
 
@@ -75,7 +74,7 @@ async def create_event(ctx, testing_mode):
             ],
         )
 
-        button_clicked = ((await wait_for_msg(BOT, ctx.channel)).content
+        button_clicked = ((await utils.wait_for_msg(BOT, ctx.channel)).content
             if testing_mode else (await BOT.wait_for('button_click')).custom_id)
         if button_clicked == 'assignment':
 
@@ -158,7 +157,7 @@ async def create_event(ctx, testing_mode):
                     await ctx.send('Incorrect input. Aborting.')
                     return
 
-            db.mutation_query(
+            d_b.mutation_query(
                 'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, title, link, description, date, t.hour, t.minute]
             )
@@ -215,7 +214,7 @@ async def create_event(ctx, testing_mode):
 
             ((begin_hour, begin_minute), (end_hour, end_minute)) = times
 
-            db.mutation_query(
+            d_b.mutation_query(
                 'INSERT INTO exams VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, title, description, date,
                  begin_hour, begin_minute, end_hour, end_minute]
@@ -244,7 +243,7 @@ async def create_event(ctx, testing_mode):
                 'Which instructor will this office hour be for?',
                 components=[
                     Select(
-                        placeholder='Select an instructor', #all_instructors[0].name,
+                        placeholder='Select an instructor', # all_instructors[0].name,
                         options=options
                     )
                 ]
@@ -252,7 +251,7 @@ async def create_event(ctx, testing_mode):
 
             # instr_select_interaction = await BOT.wait_for('select_option')
             # instructor = instr_select_interaction.values[0]
-            instructor = ((await wait_for_msg(BOT, ctx.channel)).content
+            instructor = ((await utils.wait_for_msg(BOT, ctx.channel)).content
                 if testing_mode else (await BOT.wait_for('select_option')).values[0])
 
             await ctx.send(
@@ -276,7 +275,7 @@ async def create_event(ctx, testing_mode):
             # day_interaction = await BOT.wait_for('select_option', check=lambda x: x.values[0] in
             # ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))
             day = (
-                (await wait_for_msg(BOT, ctx.channel)).content
+                (await utils.wait_for_msg(BOT, ctx.channel)).content
                 if testing_mode else
                 (await BOT.wait_for('select_option', check=lambda x: x.values[0] in
                     ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))).values[0]
@@ -300,7 +299,7 @@ async def create_event(ctx, testing_mode):
                 )
             )
 
-            db.mutation_query(
+            d_b.mutation_query(
                 'INSERT INTO ta_office_hours VALUES (?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, instructor, day_num, begin_hour, begin_minute, end_hour, end_minute]
             )
@@ -318,6 +317,40 @@ async def create_event(ctx, testing_mode):
 #      - b: discord bot
 # Outputs: None
 ###########################
+
+async def read_exams(ctx):
+    exams = []
+    with open('data/events/'+ str(ctx.message.guild.id) + '/' + 'exams.csv', mode='r') as f:
+        reader = csv.reader(f, delimiter=',')
+        line_count = 0
+        for row in reader:
+            if line_count > 1:
+                print(f'Testing {", ".join(row)}')
+                d_b.mutation_query(
+                    'INSERT INTO exams VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                    [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5], row[6]]
+                )
+            line_count += 1
+    await ctx.send('Exams successfully created!')
+    await cal.init(BOT)
+
+async def read_assignments(ctx):
+    assignments = []
+    with open('data/events/assignments.csv', mode='r') as f:
+        reader = csv.reader(f, delimiter=',')
+        line_count = 0
+        for row in reader:
+            if line_count > 1:
+                print(f'Testing {", ".join(row)}')
+                d_b.mutation_query(
+                    'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                    [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5]]
+                )
+            line_count += 1
+    await ctx.send('Assignments successfully created!')
+    await cal.init(BOT)
+
+
 def init(b):
     ''' initialize event creation '''
     global BOT

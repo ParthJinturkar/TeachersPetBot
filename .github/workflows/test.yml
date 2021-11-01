@@ -27,19 +27,18 @@ jobs:
         pip install -r requirements.txt
     - name: Lint with pylint
       run: |
-        pylint src
+        pylint $(git ls-files '*.py')
     - name: Create env file
       run: |
         cat << EOF > .env
         DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
         TESTING_BOT_TOKEN=${{ secrets.TESTING_BOT_TOKEN }}
         EOF
-#     - name: Test with pytest
-#       run: |
-#         pytest
-    - name: Run tests and collect coverage
-      run: |
-        (sleep 2; python3 test/tests.py) & (coverage run --source=./src -m pytest src/bot.py)
-        coverage xml
-    - name: Upload coverage to Codecov
+    - name: Test with pytest
+      run: pytest
+    - name: Generate coverage
+      run:  pytest --cov=./ --cov-report=xml
+    - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v2
+      with:
+        fail_ci_if_error: true
