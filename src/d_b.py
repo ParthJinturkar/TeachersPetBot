@@ -3,6 +3,8 @@ from sqlite3 import Error
 import os
 
 CON = None
+
+
 def connect():
     ''' connect program to database file db.sqlite '''
     global CON
@@ -19,10 +21,11 @@ def select_query(sql, args=()):
     cur = CON.cursor()
     return cur.execute(sql, args)
 
-def delete_db():
 
+def delete_db():
     os.remove('db.sqlite')
     print("The SQLite database has been deleted")
+
 
 def mutation_query(sql, args=()):
     ''' do a mutation on the database '''
@@ -30,9 +33,11 @@ def mutation_query(sql, args=()):
     cur.execute(sql, args)
     CON.commit()
 
+
 def shutdown():
     CON.close()
     print("The SQLite connection is closed")
+
 
 def add_Tables(db):
     db.mutation_query('''

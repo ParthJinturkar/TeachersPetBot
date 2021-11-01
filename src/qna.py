@@ -22,6 +22,7 @@ QNA = {}
 ###########################
 class QuestionsAnswers:
     ''' Class containing needed question/answer information and identification '''
+
     def __init__(self, qs, number, message, ans):
         self.question = qs
         self.number = number

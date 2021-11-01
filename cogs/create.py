@@ -3,7 +3,6 @@ import os
 import discord
 from discord.ext import commands
 
-
 # ----------------------------------------------------------------------------------------------
 # Returns the ping of the bot, useful for testing bot lag and as a simple functionality command
 # ----------------------------------------------------------------------------------------------
@@ -38,7 +37,8 @@ class Create(commands.Cog):
     async def take_events(self, ctx):
         ''' run event creation interface '''
         TESTING_MODE = False
-        await ctx.message.attachments[0].save('data/events/'+ str(ctx.message.guild.id) + '/' + ctx.message.attachments[0].filename)
+        await ctx.message.attachments[0].save(
+            'data/events/' + str(ctx.message.guild.id) + '/' + ctx.message.attachments[0].filename)
 
         while True:
             if os.path.exists('data/events/' + ctx.message.attachments[0].filename):
@@ -61,6 +61,8 @@ class Create(commands.Cog):
         await ctx.send(file=discord.File(r'data\sample_event_csv_files\exams.csv'))
         await ctx.send(file=discord.File(r'data\sample_event_csv_files\assignments.csv'))
         await ctx.send(file=discord.File(r'data\sample_event_csv_files\ta_office_hours.csv'))
+
+
 # -------------------------------------
 # add the file to the bot's cog system
 # -------------------------------------

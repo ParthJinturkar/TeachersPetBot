@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-
 # ----------------------------------------------------------------------------------------------
 # Returns the ping of the bot, useful for testing bot lag and as a simple functionality command
 # ----------------------------------------------------------------------------------------------
@@ -51,6 +50,7 @@ class qanda(commands.Cog):
         else:
             await ctx.author.send('Please send answers to the #q-and-a channel.')
             await ctx.message.delete()
+
 
 # -------------------------------------
 # add the file to the bot's cog system

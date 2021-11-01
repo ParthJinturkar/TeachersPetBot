@@ -3,6 +3,7 @@ import discord
 from discord.utils import get
 from discord.ext import commands
 
+
 # -----------------------------------------------------------------------
 # A basic "Hello World!" command, used to verify basic bot functionality
 # -----------------------------------------------------------------------
@@ -25,7 +26,7 @@ class setinstructor(commands.Cog):
     async def set_instructor(self, ctx):
         ''' set instructor role command '''
         guild = ctx.guild
-        member = guild.get_member( ctx.message.author.id )  # finding member using member id
+        member = guild.get_member(ctx.message.author.id)  # finding member using member id
         irole = get(guild.roles, name='Instructor')
         await member.add_roles(irole, reason=None, atomic=True)
         await ctx.channel.send(member.name + " has been given Instructor role!")
