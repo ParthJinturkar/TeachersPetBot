@@ -1,18 +1,19 @@
 import os
 import sys
+from os.path import abspath
+from os.path import dirname as d
 
 import discord.ext.test as dpytest
 import pytest
 from discord import Intents
 from discord.ext.commands import Bot
 from setuptools import glob
-from os.path import dirname as d
-from os.path import abspath, join
 
 intents = Intents.all()
 
 root_dir = d(d(abspath("test/test_bot.py")))
 sys.path.append(root_dir)
+
 
 # Default parameters for the simulated dpytest bot. Loads the bot with commands from the /cogs directory
 # Ran everytime pytest is called

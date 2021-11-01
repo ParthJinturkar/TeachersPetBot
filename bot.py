@@ -39,11 +39,10 @@ async def on_ready():
         f"{bot.user} is connected to the following guild:\n"
         f"{guild.name}(id: {guild.id})"
     )
-
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
-
+    bot.load_extension("jishaku")
     # await bot.change_presence(
     #     activity=discord.Activity(type=discord.ActivityType.watching, name="Over This Server")
     # )
