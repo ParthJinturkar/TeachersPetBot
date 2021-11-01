@@ -30,8 +30,8 @@ bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', in
 async def on_ready():
     ''' run on bot start-up '''
     DiscordComponents(bot)
-    # db.connect()
-    # db.add_Tables(db)
+    db.connect()
+    db.add_Tables(db)
     guild = discord.utils.get(bot.guilds, name=GUILD)
     # event_creation.init(bot)
     # office_hours.init(bot)
