@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Lint with pylint
       run: |
-        pylint src
+        pylint $(git ls-files '*.py')
     - name: Create env file
       run: |
         cat << EOF > .env
