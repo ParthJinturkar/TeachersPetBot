@@ -19,6 +19,10 @@ def select_query(sql, args=()):
     cur = CON.cursor()
     return cur.execute(sql, args)
 
+def delete_db():
+
+    os.remove('db.sqlite')
+    print("The SQLite database has been deleted")
 
 def mutation_query(sql, args=()):
     ''' do a mutation on the database '''

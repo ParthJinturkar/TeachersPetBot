@@ -5,7 +5,7 @@ from datetime import datetime, time
 import discord
 from discord.ext import tasks
 
-from src import db
+from src import d_b
 
 
 ###########################
@@ -275,7 +275,7 @@ def init(b):
         ta_office_hours = [
             TaOfficeHour(ta, day, (time(hour=begin_hr, minute=begin_min),
                 time(hour=end_hr, minute=end_min)))
-            for ta, day, begin_hr, begin_min, end_hr, end_min in db.select_query(
+            for ta, day, begin_hr, begin_min, end_hr, end_min in d_b.select_query(
                 'SELECT ta, day, begin_hr, begin_min, end_hr, end_min '
                 'FROM ta_office_hours WHERE guild_id = ?', [guild.id])
         ]

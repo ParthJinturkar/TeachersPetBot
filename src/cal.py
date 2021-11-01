@@ -1,7 +1,6 @@
 from datetime import datetime
 import discord
-
-from src import db
+from src import d_b
 
 BOT = None
 CALENDAR_EMBED = None
@@ -45,7 +44,7 @@ def update_calendar():
     # which is the date, we are comparing as strings but still works for ordering events by date
     # do this for the events we care about in the calendar 'assignments and exams'
     assignments = []
-    for title, link, desc, date, due_hr, due_min in db.select_query(
+    for title, link, desc, date, due_hr, due_min in d_b.select_query(
             'SELECT ' +
                 'title, link, desc, date, due_hr, due_min ' +
             'FROM ' +
@@ -58,7 +57,7 @@ def update_calendar():
             f'{date} {due_hr}:{due_min}\n{title}\n{desc}\n{link}\n\n'])
 
     exams = []
-    for title, desc, date, begin_hr, begin_min, end_hr, end_min in db.select_query(
+    for title, desc, date, begin_hr, begin_min, end_hr, end_min in d_b.select_query(
             'SELECT ' +
                 'title, desc, date, begin_hr, begin_min, end_hr, end_min ' +
             'FROM ' +
@@ -67,26 +66,25 @@ def update_calendar():
                 'date ASC, ' +
                 'begin_hr ASC, '
                 'begin_min ASC'):
-        exams.append([ f'{date} {begin_hr}:{begin_min}',
-            f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
+        exams.append([f'{date} {begin_hr}:{begin_min}', f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
 
     # get current time for comparison and make sure it is of same string format
     current_time = datetime.now().strftime('%m-%d-%Y %H:%M')
-    #Time in EST: 2017-01-19 08:06:14
+    # Time in EST: 2017-01-19 08:06:14
 
     i = 0
     j = 0
 
     # 2 lists for fields in the calendar
     past_events = ''
-    #current_events = ''
+    # current_events = ''
     future_events = ''
 
     # go through the sorted lists and take the earliest date,
     # moving the index of each until all lists are placed
     # into one of the defined areas
-    while (i != len(exams) or j != len(assignments)):
-        if (i == len(exams) or (j != len(assignments) and assignments[j][0] < exams[i][0])):
+    while i != len(exams) or j != len(assignments):
+        if i == len(exams) or (j != len(assignments) and assignments[j][0] < exams[i][0]):
             if assignments[j][0] < current_time:
                 past_events += assignments[j][1]
             else:

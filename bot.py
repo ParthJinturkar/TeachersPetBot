@@ -8,7 +8,7 @@ from discord.utils import get
 from discord_components import DiscordComponents
 from dotenv import load_dotenv
 
-from src import profanity, db
+from src import profanity, d_b, event_creation, office_hours, cal
 
 logging.basicConfig(level=logging.INFO)
 
@@ -30,11 +30,11 @@ bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', in
 async def on_ready():
     ''' run on bot start-up '''
     DiscordComponents(bot)
-    db.connect()
-    db.add_Tables(db)
+    d_b.connect()
+    d_b.add_Tables(d_b)
     guild = discord.utils.get(bot.guilds, name=GUILD)
-    # event_creation.init(bot)
-    # office_hours.init(bot)
+    event_creation.init(bot)
+    office_hours.init(bot)
     print(
         f"{bot.user} is connected to the following guild:\n"
         f"{guild.name}(id: {guild.id})"
@@ -49,9 +49,9 @@ async def on_ready():
     # )
     print("READY!")
 
-    # event_creation.init(bot)
+    event_creation.init(bot)
     # office_hours.init(bot)
-    # await cal.init(bot)
+    await cal.init(bot)
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
@@ -149,10 +149,11 @@ async def on_message_edit(before, after):
 @bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
 @commands.has_permissions(administrator=True)
 async def shutdown(ctx):
-    db.shutdown()
+    d_b.shutdown()
     await ctx.send('Shutting Down bot')
     print("Bot closed successfully")
     ctx.bot.logout()
+    d_b.delete_db()
     exit()
 
 
