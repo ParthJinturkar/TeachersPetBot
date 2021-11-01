@@ -2,9 +2,6 @@ import discord
 from discord.ext import commands
 import datetime
 
-from discord.ext.commands import bot
-
-
 # ---------------------------------------------------------------------------------------
 # Contains Instructor only commands for polling
 # ---------------------------------------------------------------------------------------
@@ -13,7 +10,7 @@ class Helper(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
+    # contains reactions for multipoll
     @property
     def reactions(self):
         return {
@@ -29,6 +26,15 @@ class Helper(commands.Cog):
             10: '🔟'
         }
 
+    # -------------------------------------------------------------------------------------------------------------
+    #    Function: poll(self, ctx, *, poll: str = None)
+    #    Description: Instructor command for creating poll with 2 choices
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    - *:
+    #    - poll: question for poll
+    # --------------------------------------------------------------------------------------------------------------
     @commands.command(name = "poll")
     @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str = None):
@@ -54,6 +60,13 @@ class Helper(commands.Cog):
             embed=discord.Embed(description="`!poll` can only be used in the `instructor-commands` channel.\n\nYou entered the following command:\n\n`" + msg + "`", color=discord.colour.Color.red())
             await ctx.author.send(embed=embed)               
 
+    # -------------------------------------------------------------------------------------------------------------
+    #    Function: on_reaction(self, reaction)
+    #    Description: Listener to avoid members from selecting both choices in 2 choice poll
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - reaction: reaction on the poll
+    # --------------------------------------------------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_reaction(self, reaction):
         user = reaction.member
@@ -78,6 +91,14 @@ class Helper(commands.Cog):
                             return
                     return
 
+    # -------------------------------------------------------------------------------------------------------------
+    #    Function: multi_choice(self, ctx, desc: str = None, *choices)
+    #    Description: Instructor command for creating multi choice multi option poll
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    - *choices: variable arguments for choices for the poll
+    # --------------------------------------------------------------------------------------------------------------
     @commands.command(name = "multipoll")
     @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str = None, *choices):
