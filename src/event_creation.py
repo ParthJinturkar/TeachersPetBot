@@ -11,6 +11,7 @@ from src import cal, office_hours
 
 BOT = None
 
+
 ###########################
 # Function: get_times
 # Description: helper function for acquiring the times an instructor wants event to be held during
@@ -27,6 +28,7 @@ async def get_times(ctx, event_type):
         'Enter in format `<begin_time>-<end_time>`, and times should be in 24-hour format.\n'
         f'For example, setting {event_type} from 9:30am to 1pm can be done as 9:30-13'
     )
+
     def check(m):
         return m.author == ctx.author and m.channel == ctx.channel
 
@@ -53,6 +55,7 @@ async def get_times(ctx, event_type):
 
     return new_times
 
+
 ###########################
 # Function: create_event
 # Description: creates an event by the specifications of the instructor creating the event
@@ -75,11 +78,12 @@ async def create_event(ctx, testing_mode):
         )
 
         button_clicked = ((await utils.wait_for_msg(BOT, ctx.channel)).content
-            if testing_mode else (await BOT.wait_for('button_click')).custom_id)
+                          if testing_mode else (await BOT.wait_for('button_click')).custom_id)
         if button_clicked == 'assignment':
 
             def assignment_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What would you like the assignment to be called')
             # msg = BOT.wait_for_message(author=ctx.message.author, timeout=30)
@@ -91,7 +95,8 @@ async def create_event(ctx, testing_mode):
                 return
 
             def sub_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('Link associated with submission? Type N/A if none')
             # msg = await wait_for_msg(BOT, ctx.channel)
@@ -108,7 +113,8 @@ async def create_event(ctx, testing_mode):
                 return
 
             def dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('Extra description for assignment? Type N/A if none')
             # msg = await wait_for_msg(BOT, ctx.channel)
@@ -119,10 +125,11 @@ async def create_event(ctx, testing_mode):
                 return
 
             def due_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What is the due date of this assignment?\n' +
-                'Enter in format `MM-DD-YYYY`')
+                           'Enter in format `MM-DD-YYYY`')
             # msg = await wait_for_msg(BOT, ctx.channel)
             msg = await BOT.wait_for('message', check=due_dec)
             date = msg.content.strip()
@@ -140,10 +147,11 @@ async def create_event(ctx, testing_mode):
                 return
 
             def time_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What time is this assignment due?\nEnter in 24-hour format' +
-                ' e.g. an assignment due at 11:59pm can be inputted as 23:59')
+                           ' e.g. an assignment due at 11:59pm can be inputted as 23:59')
             # msg = await wait_for_msg(BOT, ctx.channel)
             msg = await BOT.wait_for('message', check=time_dec)
             t = msg.content.strip()
@@ -168,17 +176,19 @@ async def create_event(ctx, testing_mode):
             await cal.display_events(None)
         elif button_clicked == 'exam':
             def exam_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What is the title of this exam?')
-            #msg = await wait_for_msg(BOT, ctx.channel)
+            # msg = await wait_for_msg(BOT, ctx.channel)
             msg = await BOT.wait_for('message', check=exam_dec)
             title = msg.content.strip()
             if title == 'quit' or title == 'exit':
                 return
 
             def cov_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What content is this exam covering?')
             # msg = await wait_for_msg(BOT, ctx.channel)
@@ -188,7 +198,8 @@ async def create_event(ctx, testing_mode):
                 return
 
             def date_dec(m):
-                return (m.content != 'N/A' or m.content != 'quit' or m.content != 'exit' ) and m.channel == ctx.channel and m.author == ctx.author
+                return (
+                                   m.content != 'N/A' or m.content != 'quit' or m.content != 'exit') and m.channel == ctx.channel and m.author == ctx.author
 
             await ctx.send('What is the date of this exam?\nEnter in format `MM-DD-YYYY`')
             # msg = await wait_for_msg(BOT, ctx.channel)
@@ -228,7 +239,7 @@ async def create_event(ctx, testing_mode):
             all_instructors = []
             for mem in ctx.guild.members:
                 is_instructor = next((role.name == 'Instructor'
-                    for role in mem.roles), None) is not None
+                                      for role in mem.roles), None) is not None
                 if is_instructor:
                     all_instructors.append(mem)
 
@@ -237,13 +248,13 @@ async def create_event(ctx, testing_mode):
                 return
 
             options = [SelectOption(label=instr.name, value=instr.name)
-                for instr in all_instructors]
+                       for instr in all_instructors]
 
             await ctx.send(
                 'Which instructor will this office hour be for?',
                 components=[
                     Select(
-                        placeholder='Select an instructor', # all_instructors[0].name,
+                        placeholder='Select an instructor',  # all_instructors[0].name,
                         options=options
                     )
                 ]
@@ -252,7 +263,7 @@ async def create_event(ctx, testing_mode):
             # instr_select_interaction = await BOT.wait_for('select_option')
             # instructor = instr_select_interaction.values[0]
             instructor = ((await utils.wait_for_msg(BOT, ctx.channel)).content
-                if testing_mode else (await BOT.wait_for('select_option')).values[0])
+                          if testing_mode else (await BOT.wait_for('select_option')).values[0])
 
             await ctx.send(
                 'Which day would you like the office hour to be on?',
@@ -278,7 +289,8 @@ async def create_event(ctx, testing_mode):
                 (await utils.wait_for_msg(BOT, ctx.channel)).content
                 if testing_mode else
                 (await BOT.wait_for('select_option', check=lambda x: x.values[0] in
-                    ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))).values[0]
+                                                                     ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+                                                                      'Sun'))).values[0]
             )
             # day = day_interaction.values[0]
             day_num = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun').index(day)
@@ -310,6 +322,7 @@ async def create_event(ctx, testing_mode):
         await ctx.author.send('`!create` can only be used in the `instructor-commands` channel')
         await ctx.message.delete()
 
+
 ###########################
 # Function: init
 # Description: initializes this module, giving it access to discord bot
@@ -320,7 +333,7 @@ async def create_event(ctx, testing_mode):
 
 async def read_exams(ctx):
     exams = []
-    with open('data/events/'+ str(ctx.message.guild.id) + '/' + 'exams.csv', mode='r') as f:
+    with open('data/events/' + str(ctx.message.guild.id) + '/' + 'exams.csv', mode='r') as f:
         reader = csv.reader(f, delimiter=',')
         line_count = 0
         for row in reader:
@@ -333,6 +346,7 @@ async def read_exams(ctx):
             line_count += 1
     await ctx.send('Exams successfully created!')
     await cal.init(BOT)
+
 
 async def read_assignments(ctx):
     assignments = []

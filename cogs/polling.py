@@ -181,7 +181,6 @@ class Helper(commands.Cog):
             await ctx.author.send(embed=embed)
 
 
-# --------------------------------------
 # add the file to the bot's cog system
 # --------------------------------------
 def setup(bot):

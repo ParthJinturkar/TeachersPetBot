@@ -17,6 +17,7 @@ class Group:
         self.group_members = [student]
         self.group_id = group_id
 
+
 ###########################
 # Class: OfficeHourQueue
 # Description: contains information about an office hour queue
@@ -59,11 +60,12 @@ class OfficeHourQueue:
             lines.append(line)
 
         queue_str = (
-            'Office Hour Queue:\n'
-            '------------------\n' +
-            ('\n'.join(lines) if len(lines) != 0 else '(The queue is currently empty)')
+                'Office Hour Queue:\n'
+                '------------------\n' +
+                ('\n'.join(lines) if len(lines) != 0 else '(The queue is currently empty)')
         )
         self.prev_queue_message = await self.text_channel.send(queue_str)
+
 
 ###########################
 # Function: office_hour_command
@@ -93,7 +95,7 @@ async def office_hour_command(ctx, command, *args):
                 elif len(args) == 1:
                     group_id_to_join = args[0]
                     group_to_join = next((group for group in queue if
-                        group_id_to_join == group.group_id), None)
+                                          group_id_to_join == group.group_id), None)
                     if group_to_join:
                         group_to_join.group_members.append(ctx.author)
                         await office_hour_queue.display_queue()
@@ -149,6 +151,7 @@ async def office_hour_command(ctx, command, *args):
 
     await ctx.message.delete()
 
+
 ###########################
 # Function: open_oh
 # Description: opens an office hour for students to get help from
@@ -183,7 +186,8 @@ async def open_oh(guild, ta):
     )
 
     office_hour_queues[ta_name_channelified] = OfficeHourQueue(ta, text_channel, voice_channel,
-        waiting_room)
+                                                               waiting_room)
+
 
 ###########################
 # Function: close_oh
@@ -197,11 +201,11 @@ async def close_oh(guild, ta):
     ta_name_channelified = ta.lower().replace(" ", "-")
     channels_to_delete = [
         next((chan for chan in guild.text_channels if chan.name ==
-            f'office-hour-{ta_name_channelified}'), None),
+              f'office-hour-{ta_name_channelified}'), None),
         next((chan for chan in guild.voice_channels if chan.name ==
-            f'office-hour-{ta_name_channelified}'), None),
+              f'office-hour-{ta_name_channelified}'), None),
         next((chan for chan in guild.voice_channels if chan.name ==
-            f'office-hour-{ta_name_channelified}-waiting-list'), None),
+              f'office-hour-{ta_name_channelified}-waiting-list'), None),
         next((cat for cat in guild.categories if cat.name == f'Office Hour {ta}'), None)
     ]
 
@@ -210,6 +214,7 @@ async def close_oh(guild, ta):
             await channel.delete()
 
     office_hour_queues.pop(ta_name_channelified)
+
 
 ###########################
 # Class: TaOfficeHour
@@ -220,6 +225,7 @@ class TaOfficeHour:
         self.ta = ta
         self.day = day
         self.times = times
+
 
 ###########################
 # Function: check_office_hour_loop
@@ -238,10 +244,11 @@ async def check_office_hour_loop():
                 begin_time, end_time = office_hour.times
                 ta_name_channelified = office_hour.ta.lower().replace(" ", "-")
                 if begin_time <= curr_time <= end_time and \
-                    ta_name_channelified not in office_hour_queues:
+                        ta_name_channelified not in office_hour_queues:
                     await open_oh(guild, office_hour.ta)
                 elif curr_time > end_time and ta_name_channelified in office_hour_queues:
                     await close_oh(guild, office_hour.ta)
+
 
 ###########################
 # Function: add_office_hour
@@ -254,9 +261,12 @@ async def check_office_hour_loop():
 def add_office_hour(guild, ta_office_hour):
     all_guilds_ta_office_hours[guild.id].append(ta_office_hour)
 
+
 bot = None
 all_guilds_ta_office_hours = None
 office_hour_queues = None
+
+
 ###########################
 # Function: init
 # Description: initializes office hours module
@@ -274,7 +284,7 @@ def init(b):
     for guild in bot.guilds:
         ta_office_hours = [
             TaOfficeHour(ta, day, (time(hour=begin_hr, minute=begin_min),
-                time(hour=end_hr, minute=end_min)))
+                                   time(hour=end_hr, minute=end_min)))
             for ta, day, begin_hr, begin_min, end_hr, end_min in d_b.select_query(
                 'SELECT ta, day, begin_hr, begin_min, end_hr, end_min '
                 'FROM ta_office_hours WHERE guild_id = ?', [guild.id])

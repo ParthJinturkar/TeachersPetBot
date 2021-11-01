@@ -1,10 +1,13 @@
 import discord
 from discord.ext import commands
 
+from discord.ext.commands import bot
+
 # ---------------------------------------------------------------------------------------
 # Contains Instructor only commands for getting member information
 # ---------------------------------------------------------------------------------------
 class Helper(commands.Cog):
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -75,8 +78,6 @@ class Helper(commands.Cog):
             )
             await ctx.author.send(embed=embed)
 
-
-# --------------------------------------
 # add the file to the bot's cog system
 # --------------------------------------
 def setup(bot):

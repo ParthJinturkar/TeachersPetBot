@@ -6,6 +6,7 @@ BOT = None
 CALENDAR_EMBED = None
 MSG = None
 
+
 ###########################
 # Function: display_events
 # Description: Sends or updates the embed for the calendar
@@ -37,7 +38,7 @@ def update_calendar():
 
     # create an Embed with a title and description of color 'currently BLUE'
     CALENDAR_EMBED = discord.Embed(title="The Course Calendar, sire",
-        description="All of the class assignments and exams!", color=0x0000FF)
+                                   description="All of the class assignments and exams!", color=0x0000FF)
 
     # make a list that contains the string representing the
     # event that has the comparison item as the first index
@@ -46,27 +47,28 @@ def update_calendar():
     assignments = []
     for title, link, desc, date, due_hr, due_min in d_b.select_query(
             'SELECT ' +
-                'title, link, desc, date, due_hr, due_min ' +
+            'title, link, desc, date, due_hr, due_min ' +
             'FROM ' +
-                'assignments ' +
+            'assignments ' +
             'ORDER BY ' +
-                'date ASC, ' +
-                'due_hr ASC, ' +
-                'due_min ASC'):
-        assignments.append([ f'{date} {due_hr}:{due_min}',
-            f'{date} {due_hr}:{due_min}\n{title}\n{desc}\n{link}\n\n'])
+            'date ASC, ' +
+            'due_hr ASC, ' +
+            'due_min ASC'):
+        assignments.append([f'{date} {due_hr}:{due_min}',
+                            f'{date} {due_hr}:{due_min}\n{title}\n{desc}\n{link}\n\n'])
 
     exams = []
     for title, desc, date, begin_hr, begin_min, end_hr, end_min in d_b.select_query(
             'SELECT ' +
-                'title, desc, date, begin_hr, begin_min, end_hr, end_min ' +
+            'title, desc, date, begin_hr, begin_min, end_hr, end_min ' +
             'FROM ' +
-                'exams ' +
+            'exams ' +
             'ORDER BY ' +
-                'date ASC, ' +
-                'begin_hr ASC, '
-                'begin_min ASC'):
-        exams.append([f'{date} {begin_hr}:{begin_min}', f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
+            'date ASC, ' +
+            'begin_hr ASC, '
+            'begin_min ASC'):
+        exams.append([f'{date} {begin_hr}:{begin_min}',
+                      f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
 
     # get current time for comparison and make sure it is of same string format
     current_time = datetime.now().strftime('%m-%d-%Y %H:%M')

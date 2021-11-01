@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-
 # ----------------------------------------------------------------------------------------------
 # Returns the ping of the bot, useful for testing bot lag and as a simple functionality command
 # ----------------------------------------------------------------------------------------------

@@ -11,6 +11,7 @@ from datetime import datetime
 
 BOT = None
 
+
 class Deadline(commands.Cog):
 
     def __init__(self, bot):
@@ -31,7 +32,8 @@ class Deadline(commands.Cog):
     #    Outputs: returns either an error stating a reason for failure or returns a success message
     #          indicating that the reminder has been added
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="addhw",help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02")
+    @commands.command(name="addhw",
+                      help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02")
     async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
         author = ctx.message.author
         # print('Author: '+str(author)+' coursename: '+coursename+' homework count: '+hwcount+' date: '+str(date))
@@ -53,16 +55,22 @@ class Deadline(commands.Cog):
                     flag = False
                     break
         if (flag):
-            self.reminders.append({"ID": author.id, "COURSE": coursename, "HOMEWORK": hwcount, "DUEDATE": str(duedate),"FUTURE": seconds})
+            self.reminders.append({"ID": author.id, "COURSE": coursename, "HOMEWORK": hwcount, "DUEDATE": str(duedate),
+                                   "FUTURE": seconds})
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
-            await ctx.send("A date has been added for: {} homework named: {} which is due on: {} by {}.".format(coursename,hwcount,str(duedate),author))
+            await ctx.send(
+                "A date has been added for: {} homework named: {} which is due on: {} by {}.".format(coursename,
+                                                                                                     hwcount,
+                                                                                                     str(duedate),
+                                                                                                     author))
         else:
             await ctx.send("This homework has already been added..!!")
 
     @duedate.error
     async def duedate_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )')
+            await ctx.send(
+                'To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )')
 
     @commands.command(name="listreminders", pass_context=True, help="lists all reminders")
     async def listreminders(self, ctx):
@@ -71,13 +79,14 @@ class Deadline(commands.Cog):
             # if reminder["FUTURE"] <= int(time.time()):
             try:
                 # await ctx.send("{} homework named: {} which is due on: {} by {}".format(self.bot.get_user(reminder["ID"]), reminder["TEXT"]))
-                #await ctx.send("{} homework named: {} which is due on: {} by {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"],self.bot.get_user(reminder["ID"])))
-                embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at,title=reminder["COURSE"])
+                # await ctx.send("{} homework named: {} which is due on: {} by {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"],self.bot.get_user(reminder["ID"])))
+                embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at,
+                                      title=reminder["COURSE"])
                 embed.set_footer(text=f"Requested by {ctx.author}")
-                embed.add_field(name="Homework Title", value=reminder["HOMEWORK"], inline = False)
-                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline = False)
-                post_author = "<@"+str(reminder["ID"])+">"
-                embed.add_field(name="Posted By:", value=post_author, inline = False)
+                embed.add_field(name="Homework Title", value=reminder["HOMEWORK"], inline=False)
+                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
+                post_author = "<@" + str(reminder["ID"]) + ">"
+                embed.add_field(name="Posted By:", value=post_author, inline=False)
                 await ctx.send(embed=embed)
             except (discord.errors.Forbidden, discord.errors.NotFound):
                 to_remove.append(reminder)
@@ -104,7 +113,8 @@ class Deadline(commands.Cog):
     #          returns a success message indicating that the reminder has been deleted
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="deletereminder", pass_context=True,help="delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 ")
+    @commands.command(name="deletereminder", pass_context=True,
+                      help="delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 ")
     async def deleteReminder(self, ctx, courseName: str, hwName: str):
         author = ctx.message.author
         to_remove = []
@@ -118,12 +128,14 @@ class Deadline(commands.Cog):
             self.reminders.remove(reminder)
         if to_remove:
             json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
-            await ctx.send("Following reminder has been deleted: Course: {}, Homework Name: {}, Due Date: {}".format(str(reminder["COURSE"]), str(reminder["HOMEWORK"]), str(reminder["DUEDATE"])))
+            await ctx.send("Following reminder has been deleted: Course: {}, Homework Name: {}, Due Date: {}".format(
+                str(reminder["COURSE"]), str(reminder["HOMEWORK"]), str(reminder["DUEDATE"])))
 
     @deleteReminder.error
     async def deleteReminder_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )')
+            await ctx.send(
+                'To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
@@ -138,7 +150,8 @@ class Deadline(commands.Cog):
     #          returns a success message indicating that the reminder has been updated
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="changeduedate", pass_context=True,help="update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 ")
+    @commands.command(name="changeduedate", pass_context=True,
+                      help="update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 ")
     async def changeduedate(self, ctx, classid: str, hwid: str, *, date: str):
         author = ctx.message.author
         flag = False
@@ -161,8 +174,9 @@ class Deadline(commands.Cog):
                 flag = True
                 if (flag):
                     json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
-                    #await ctx.send("{} {} has been updated with following date: {}".format(classid, hwid, reminder["DUEDATE"]))
-                    embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Updated Courses:")
+                    # await ctx.send("{} {} has been updated with following date: {}".format(classid, hwid, reminder["DUEDATE"]))
+                    embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                          title="Updated Courses:")
                     embed.set_footer(text=f"Requested by {ctx.author}")
                     embed.add_field(name="Coursework", value=classid, inline=False)
                     embed.add_field(name="Homework:", value=hwid, inline=False)
@@ -173,7 +187,8 @@ class Deadline(commands.Cog):
     @changeduedate.error
     async def changeduedate_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )')
+            await ctx.send(
+                'To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )')
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: duethisweek(self, ctx)
@@ -185,7 +200,8 @@ class Deadline(commands.Cog):
     #             or returns a list of all the assignments that are due this week
     # -----------------------------------------------------------------------------------------------------------------
 
-    @commands.command(name="duethisweek", pass_context=True,help="check all the homeworks that are due this week !duethisweek")
+    @commands.command(name="duethisweek", pass_context=True,
+                      help="check all the homeworks that are due this week !duethisweek")
     async def duethisweek(self, ctx):
         time = ctx.message.created_at
 
@@ -198,9 +214,10 @@ class Deadline(commands.Cog):
             flag = False
             if timeleft.days <= 7:
                 flag = True
-                #await ctx.send("{} {} is due this week at {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"]))
+                # await ctx.send("{} {} is due this week at {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"]))
                 await ctx.send("Following homeworks are due this week")
-                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due this week")
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title="Due this week")
                 embed.set_footer(text=f"Requested by {ctx.author}")
                 embed.add_field(name="Coursework", value=reminder["COURSE"], inline=False)
                 embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
@@ -226,9 +243,10 @@ class Deadline(commands.Cog):
             timedate = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
             if timedate.date() == ctx.message.created_at.date():
                 flag = False
-                #await ctx.send("{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"], timedate.time()))
+                # await ctx.send("{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"], timedate.time()))
                 await ctx.send("Following homeworks are due today")
-                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due this week")
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title="Due this week")
                 embed.set_footer(text=f"Requested by {ctx.author}")
                 embed.add_field(name="Coursework", value=reminder["COURSE"], inline=False)
                 embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
@@ -247,14 +265,16 @@ class Deadline(commands.Cog):
     #    Outputs: returns either an error stating a reason for failure or
     #          a list of assignments that are due for the provided courseid
     # -----------------------------------------------------------------------------------------------------------------
-    @commands.command(name="coursedue", pass_context=True,help="check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505")
+    @commands.command(name="coursedue", pass_context=True,
+                      help="check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505")
     async def coursedue(self, ctx, courseid: str):
         course_due = []
         for reminder in self.reminders:
             if reminder["COURSE"] == courseid:
                 course_due.append(reminder)
-                #await  ctx.send("{} is due at {}".format(reminder["HOMEWORK"], reminder["DUEDATE"]))
-                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due for this course")
+                # await  ctx.send("{} is due at {}".format(reminder["HOMEWORK"], reminder["DUEDATE"]))
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title="Due for this course")
                 embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
                 embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
                 await ctx.send(embed=embed)
@@ -264,7 +284,8 @@ class Deadline(commands.Cog):
     @coursedue.error
     async def coursedue_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )')
+            await ctx.send(
+                'To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )')
 
     # ---------------------------------------------------------------------------------
     #    Function: clearallreminders(self, ctx)
@@ -313,19 +334,19 @@ class Deadline(commands.Cog):
         future = int(time.time() + seconds)
 
         def check(msg):
-            #print("inside msg: msg"+msg)
+            # print("inside msg: msg"+msg)
             return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in ["y", "n"]
 
         def check_answer(msg):
-            #print("inside msg: msg"+msg)
+            # print("inside msg: msg"+msg)
             return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in ["email", "text"]
 
         def check_email(msg):
-            #print("inside msg: msg"+msg)
+            # print("inside msg: msg"+msg)
             return msg.author == ctx.author and msg.channel == ctx.channel
 
         def check_phone(msg):
-            #print("inside msg: msg"+msg)
+            # print("inside msg: msg"+msg)
             return msg.author == ctx.author and msg.channel == ctx.channel
 
         await ctx.send("Would you like to receive reminder on your email or phone? [y/n]")
@@ -349,7 +370,6 @@ class Deadline(commands.Cog):
         await ctx.send("I will remind you that in {} {}.".format(str(quantity), time_unit + s))
         json.dump(self.notifs, open("data/remindme/groupremind.json", "w"))
 
-
     async def notification_reminders(self):
         print("inside delete old notifications")
         while self is self.bot.get_cog("Deadline"):
@@ -357,13 +377,18 @@ class Deadline(commands.Cog):
             for notif in self.notifs:
                 if notif["FUTURE"] <= int(time.time()):
                     try:
-                        #await ctx.send("A reminder has been deleted")
+                        # await ctx.send("A reminder has been deleted")
                         channel = self.bot.get_channel(897661152371290172);
-                        await channel.send("<@{}>, You asked me to remind you this: {}".format(notif["ID"], notif["TEXT"]))
+                        await channel.send(
+                            "<@{}>, You asked me to remind you this: {}".format(notif["ID"], notif["TEXT"]))
                         if notif["EMAIL"]:
-                            await self.email_alert("You have a reminder, Sir", "You asked me to remind you this: {}".format(notif["TEXT"]), notif["EMAIL"])
+                            await self.email_alert("You have a reminder, Sir",
+                                                   "You asked me to remind you this: {}".format(notif["TEXT"]),
+                                                   notif["EMAIL"])
                         if notif["PHONE"]:
-                            await self.phone_alert("You have a reminder, Sir","You asked me to remind you this: {}".format(notif["TEXT"]), notif["PHONE"])
+                            await self.phone_alert("You have a reminder, Sir",
+                                                   "You asked me to remind you this: {}".format(notif["TEXT"]),
+                                                   notif["PHONE"])
                         print("Deleting an old notification..!!")
                     except (discord.errors.Forbidden, discord.errors.NotFound):
                         to_remove.append(notif)
@@ -397,7 +422,7 @@ class Deadline(commands.Cog):
         msg = EmailMessage()
         msg.set_content(body)
         msg['subject'] = subject
-        msg['to'] = to+"@tmomail.net"
+        msg['to'] = to + "@tmomail.net"
         user = "teacher.petbot@gmail.com"
         msg['from'] = user
         password = "bbyfvjamujjjwrna"
@@ -422,9 +447,15 @@ class Deadline(commands.Cog):
             for reminder in self.reminders:
                 if reminder["FUTURE"] <= int(time.time()):
                     try:
-                        #await ctx.send("A reminder has been deleted")
+                        # await ctx.send("A reminder has been deleted")
                         channel = self.bot.get_channel(897661152371290172);
-                        await channel.send("The due date for {} {} which was {} set by <@{}> has now passed".format(reminder["COURSE"], reminder["HOMEWORK"], reminder["DUEDATE"], reminder["ID"]))
+                        await channel.send(
+                            "The due date for {} {} which was {} set by <@{}> has now passed".format(reminder["COURSE"],
+                                                                                                     reminder[
+                                                                                                         "HOMEWORK"],
+                                                                                                     reminder[
+                                                                                                         "DUEDATE"],
+                                                                                                     reminder["ID"]))
                         print("Deleting an old reminder..!!")
                     except (discord.errors.Forbidden, discord.errors.NotFound):
                         to_remove.append(reminder)
@@ -437,6 +468,7 @@ class Deadline(commands.Cog):
             if to_remove:
                 json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
             await asyncio.sleep(5)
+
 
 # -----------------------------------------------------------------------------
 # checks if the folder that is going to hold json exists else creates a new one

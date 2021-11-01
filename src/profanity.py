@@ -1,5 +1,7 @@
 from better_profanity import profanity
+
 profanity.load_censor_words()
+
 
 ###########################
 # Function: check_profanity
@@ -10,6 +12,7 @@ profanity.load_censor_words()
 def check_profanity(msg):
     ''' check if message contains profanity through profanity module '''
     return profanity.contains_profanity(msg)
+
 
 ###########################
 # Function: censor_profanity
