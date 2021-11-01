@@ -5,7 +5,7 @@ import csv
 import datetime
 from discord_components import Button, ButtonStyle, Select, SelectOption
 import validators
-from src import d_b
+from src import db
 from src import utils
 from src import cal, office_hours
 
@@ -165,7 +165,7 @@ async def create_event(ctx, testing_mode):
                     await ctx.send('Incorrect input. Aborting.')
                     return
 
-            d_b.mutation_query(
+            db.mutation_query(
                 'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, title, link, description, date, t.hour, t.minute]
             )
@@ -225,7 +225,7 @@ async def create_event(ctx, testing_mode):
 
             ((begin_hour, begin_minute), (end_hour, end_minute)) = times
 
-            d_b.mutation_query(
+            db.mutation_query(
                 'INSERT INTO exams VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, title, description, date,
                  begin_hour, begin_minute, end_hour, end_minute]
@@ -311,7 +311,7 @@ async def create_event(ctx, testing_mode):
                 )
             )
 
-            d_b.mutation_query(
+            db.mutation_query(
                 'INSERT INTO ta_office_hours VALUES (?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, instructor, day_num, begin_hour, begin_minute, end_hour, end_minute]
             )
@@ -333,13 +333,14 @@ async def create_event(ctx, testing_mode):
 
 async def read_exams(ctx):
     exams = []
-    with open('data/events/' + str(ctx.message.guild.id) + '/' + 'exams.csv', mode='r') as f:
+    temp = 'data/events/' + str(ctx.message.guild.id) + '/'
+    with open(temp + 'exams.csv', mode='r') as f:
         reader = csv.reader(f, delimiter=',')
         line_count = 0
         for row in reader:
             if line_count > 1:
                 print(f'Testing {", ".join(row)}')
-                d_b.mutation_query(
+                db.mutation_query(
                     'INSERT INTO exams VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                     [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5], row[6]]
                 )
@@ -350,13 +351,14 @@ async def read_exams(ctx):
 
 async def read_assignments(ctx):
     assignments = []
-    with open('data/events/assignments.csv', mode='r') as f:
+    temp = 'data/events/' + str(ctx.message.guild.id) + '/'
+    with open(temp + 'assignments.csv', mode='r') as f:
         reader = csv.reader(f, delimiter=',')
         line_count = 0
         for row in reader:
             if line_count > 1:
                 print(f'Testing {", ".join(row)}')
-                d_b.mutation_query(
+                db.mutation_query(
                     'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                     [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5]]
                 )

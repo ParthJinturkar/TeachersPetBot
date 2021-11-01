@@ -1,6 +1,6 @@
 from datetime import datetime
 import discord
-from src import d_b
+from src import db
 
 BOT = None
 CALENDAR_EMBED = None
@@ -45,7 +45,7 @@ def update_calendar():
     # which is the date, we are comparing as strings but still works for ordering events by date
     # do this for the events we care about in the calendar 'assignments and exams'
     assignments = []
-    for title, link, desc, date, due_hr, due_min in d_b.select_query(
+    for title, link, desc, date, due_hr, due_min in db.select_query(
             'SELECT ' +
             'title, link, desc, date, due_hr, due_min ' +
             'FROM ' +
@@ -58,7 +58,7 @@ def update_calendar():
                             f'{date} {due_hr}:{due_min}\n{title}\n{desc}\n{link}\n\n'])
 
     exams = []
-    for title, desc, date, begin_hr, begin_min, end_hr, end_min in d_b.select_query(
+    for title, desc, date, begin_hr, begin_min, end_hr, end_min in db.select_query(
             'SELECT ' +
             'title, desc, date, begin_hr, begin_min, end_hr, end_min ' +
             'FROM ' +

@@ -4,7 +4,6 @@ import os
 
 CON = None
 
-
 def connect():
     ''' connect program to database file db.sqlite '''
     global CON

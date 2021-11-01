@@ -7,7 +7,7 @@ from discord.ext import commands
 # -----------------------------------------------------------------------
 # A basic "Hello World!" command, used to verify basic bot functionality
 # -----------------------------------------------------------------------
-class setinstructor(commands.Cog):
+class setInstructor(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -36,4 +36,4 @@ class setinstructor(commands.Cog):
 # add the file to the bot's cog system
 # -------------------------------------
 def setup(bot):
-    bot.add_cog(setinstructor(bot))
+    bot.add_cog(setInstructor(bot))

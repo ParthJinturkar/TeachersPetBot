@@ -11,7 +11,7 @@ from src import cal
 from src import office_hours
 from src import profanity
 from src import qna
-from src import d_b
+from src import db
 
 logging.basicConfig(level=logging.INFO)
 
