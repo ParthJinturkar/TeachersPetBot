@@ -71,7 +71,14 @@ class Deadline(commands.Cog):
             # if reminder["FUTURE"] <= int(time.time()):
             try:
                 # await ctx.send("{} homework named: {} which is due on: {} by {}".format(self.bot.get_user(reminder["ID"]), reminder["TEXT"]))
-                await ctx.send("{} homework named: {} which is due on: {} by {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"],self.bot.get_user(reminder["ID"])))
+                #await ctx.send("{} homework named: {} which is due on: {} by {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"],self.bot.get_user(reminder["ID"])))
+                embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at,title=reminder["COURSE"])
+                embed.set_footer(text=f"Requested by {ctx.author}")
+                embed.add_field(name="Homework Title", value=reminder["HOMEWORK"], inline = False)
+                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline = False)
+                post_author = "<@"+str(reminder["ID"])+">"
+                embed.add_field(name="Posted By:", value=post_author, inline = False)
+                await ctx.send(embed=embed)
             except (discord.errors.Forbidden, discord.errors.NotFound):
                 to_remove.append(reminder)
             except discord.errors.HTTPException:
@@ -154,7 +161,13 @@ class Deadline(commands.Cog):
                 flag = True
                 if (flag):
                     json.dump(self.reminders, open("data/remindme/reminders.json", "w"))
-                    await ctx.send("{} {} has been updated with following date: {}".format(classid, hwid, reminder["DUEDATE"]))
+                    #await ctx.send("{} {} has been updated with following date: {}".format(classid, hwid, reminder["DUEDATE"]))
+                    embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Updated Courses:")
+                    embed.set_footer(text=f"Requested by {ctx.author}")
+                    embed.add_field(name="Coursework", value=classid, inline=False)
+                    embed.add_field(name="Homework:", value=hwid, inline=False)
+                    embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
+                    await ctx.send(embed=embed)
                     # await ctx.send("Data updated..!!")
 
     @changeduedate.error
@@ -182,9 +195,19 @@ class Deadline(commands.Cog):
         for reminder in self.reminders:
             timeleft = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S') - time
             print("timeleft: " + str(timeleft) + " days left: " + str(timeleft.days))
+            flag = False
             if timeleft.days <= 7:
-                await ctx.send("{} {} is due this week at {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"]))
-            else:
+                flag = True
+                #await ctx.send("{} {} is due this week at {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"]))
+                await ctx.send("Following homeworks are due this week")
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due this week")
+                embed.set_footer(text=f"Requested by {ctx.author}")
+                embed.add_field(name="Coursework", value=reminder["COURSE"], inline=False)
+                embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
+                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
+                await ctx.send(embed=embed)
+
+            if flag:
                 await ctx.send("No dues this week")
 
     # -----------------------------------------------------------------------------------------------------------------
@@ -203,8 +226,14 @@ class Deadline(commands.Cog):
             timedate = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
             if timedate.date() == ctx.message.created_at.date():
                 flag = False
-                await ctx.send(
-                    "{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"], timedate.time()))
+                #await ctx.send("{} {} is due today at {}".format(reminder["COURSE"], reminder["HOMEWORK"], timedate.time()))
+                await ctx.send("Following homeworks are due today")
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due this week")
+                embed.set_footer(text=f"Requested by {ctx.author}")
+                embed.add_field(name="Coursework", value=reminder["COURSE"], inline=False)
+                embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
+                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
+                await ctx.send(embed=embed)
         if (flag):
             await ctx.send("You have no dues today..!!")
 
@@ -224,7 +253,11 @@ class Deadline(commands.Cog):
         for reminder in self.reminders:
             if reminder["COURSE"] == courseid:
                 course_due.append(reminder)
-                await  ctx.send("{} is due at {}".format(reminder["HOMEWORK"], reminder["DUEDATE"]))
+                #await  ctx.send("{} is due at {}".format(reminder["HOMEWORK"], reminder["DUEDATE"]))
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,title="Due for this course")
+                embed.add_field(name="Homework:", value=reminder["HOMEWORK"], inline=False)
+                embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
+                await ctx.send(embed=embed)
         if not course_due:
             await ctx.send("Rejoice..!! You have no pending homeworks for {}..!!".format(courseid))
 
