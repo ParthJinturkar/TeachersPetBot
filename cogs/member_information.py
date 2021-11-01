@@ -10,6 +10,14 @@ class Helper(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # -------------------------------------------------------------------------------------------------------------
+    #    Function: get_member_information(self, ctx, *, member_name: str = None)
+    #    Description: Instructor command for getting information about member based on member_username
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    - member_name: username of the member
+    # --------------------------------------------------------------------------------------------------------------
     @commands.command(name = "whois")
     @commands.has_role("Instructor")
     async def get_member_information(self, ctx, *, member_name: str = None):
