@@ -10,6 +10,7 @@ import pytest
 # --------------------
 @pytest.mark.asyncio
 async def test_hello(bot):
+    await dpytest.empty_queue()
     await dpytest.message("!hello")
     assert dpytest.verify().message().content("Hello World!")
 
@@ -19,6 +20,7 @@ async def test_hello(bot):
 # -------------------
 @pytest.mark.asyncio
 async def test_ping(bot):
+    await dpytest.empty_queue()
     await dpytest.message("!ping")
     assert dpytest.verify().message().contains().content("Pong!")
 
@@ -28,6 +30,7 @@ async def test_ping(bot):
 # -------------------
 @pytest.mark.asyncio
 async def test_generate_reminders(bot):
+    await dpytest.empty_queue()
     await dpytest.message("!clearreminders")
     assert dpytest.verify().message().contains().content("No reminders to delete..!!")
     # Try generating a normal reminder
@@ -42,6 +45,7 @@ async def test_generate_reminders(bot):
     assert dpytest.verify().message().contains().content(
         "CSC500 HW1 has been updated with following date: 2022-12-22 10:00:00")
     # Try deleting a reminder
+    await dpytest.empty_queue()
     await dpytest.message("!deletereminder CSC500 HW1")
     assert dpytest.verify().message().contains().content(
         "Following reminder has been deleted: Course: CSC500, Homework Name: HW1, Due Date: 2022-12-22 10:00:00")
@@ -51,9 +55,11 @@ async def test_generate_reminders(bot):
     await dpytest.message(f"!addhw CSC600 HW0 {dt_string}")
     assert dpytest.verify().message().contains().content(
         "A date has been added for: CSC600 homework named: HW0")
+    await dpytest.empty_queue()
     # Check to see that the reminder is due this week
     await dpytest.message("!duethisweek")
-    assert dpytest.verify().message().contains().content("CSC600 HW0 is due this week")
+    assert dpytest.verify().message().contains().content("Following homeworks are due this week")
+    await dpytest.empty_queue()
     # Clear reminders at the end of testing since we're using a local JSON file to store them
     await dpytest.message("!clearreminders")
     assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
@@ -61,6 +67,7 @@ async def test_generate_reminders(bot):
 
 @pytest.mark.asyncio
 async def test_empty_reminders(bot):
+    await dpytest.empty_queue()
     # Test duetoday
     await dpytest.message("!duetoday")
     assert dpytest.verify().message().contains().content("You have no dues today..!!")
@@ -77,6 +84,7 @@ async def test_empty_reminders(bot):
 
 @pytest.mark.asyncio
 async def test_reminder_errors(bot):
+    await dpytest.empty_queue()
     # with pytest.raises(Exception):
     await dpytest.message("!addhw CSC500 HW1 DEC asdf")
     assert dpytest.verify().message().contains().content("Due date could not be parsed")
@@ -89,3 +97,77 @@ async def test_reminder_errors(bot):
     with pytest.raises(Exception):
         await dpytest.message("!coursedue")
         assert dpytest.verify().message().contains().content("To use the coursedue command, do:")
+
+
+@pytest.mark.asyncio
+async def test_member_information(bot):
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    command_channel = dpytest.backend.make_text_channel(name='instructor-commands', guild=guild0, position=2, id_num=2)
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+    test_channel = dpytest.get_config().guilds[0].channels[0]
+    await dpytest.message("!setInstructor TestUser0")
+    assert dpytest.verify().message().contains().content("TestUser0 has been given Instructor role!")
+    await dpytest.message(content="!whois TestUser0", channel=command_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+    await dpytest.empty_queue()
+    await dpytest.message(content="!whois", channel=command_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+    await dpytest.empty_queue()
+    await dpytest.message(content="!whois ABSDKFHKSJDHKFJ", channel=command_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+    await dpytest.empty_queue()
+    await dpytest.message(content="!whois TestUser0", channel=test_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+
+
+@pytest.mark.asyncio
+async def test_polling(bot):
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    command_channel = dpytest.backend.make_text_channel(name='instructor-commands', guild=guild0, position=2, id_num=2)
+    general_channel = dpytest.backend.make_text_channel(name='general', guild=guild0, position=3, id_num=3)
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+    test_channel = dpytest.get_config().guilds[0].channels[0]
+    await dpytest.message("!setInstructor TestUser0")
+    assert dpytest.verify().message().contains().content("TestUser0 has been given Instructor role!")
+    message = await dpytest.message(content="!poll", channel=command_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+    await dpytest.add_reaction(user=user0, message=message, emoji='👍')
+    await dpytest.add_reaction(user=user0, message=message, emoji='👎')
+    await dpytest.empty_queue()
+    message = await dpytest.message(content="!poll Does this bot even work?", channel=command_channel, member=user0,
+                                    attachments=None)
+    await dpytest.add_reaction(user=user0, message=message, emoji='👍')
+    await dpytest.add_reaction(user=user0, message=message, emoji='👎')
+    await dpytest.empty_queue()
+    message = await dpytest.message(content="!poll Does this bot even work?", channel=general_channel, member=user0,
+                                    attachments=None)
+    await dpytest.add_reaction(user=user0, message=message, emoji='👍')
+    await dpytest.add_reaction(user=user0, message=message, emoji='👎')
+    await dpytest.empty_queue()
+    await dpytest.message(content="!multipoll", channel=command_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
+    await dpytest.empty_queue()
+    await dpytest.message(content="!multipoll A B", channel=command_channel, member=user0, attachments=None)
+    await dpytest.empty_queue()
+    await dpytest.message(content="!multipoll A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ",
+                          channel=command_channel, member=user0, attachments=None)
+    await dpytest.empty_queue()
+    await dpytest.message(content="!multipoll A B", channel=test_channel, member=user0, attachments=None)
+    embed = dpytest.get_embed()
+    assert embed is not None
