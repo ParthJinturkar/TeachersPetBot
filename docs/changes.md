@@ -10,3 +10,7 @@ We have made the following changes in the previous version:
 - We have updated a lot many source files so that they work correctly and removed the bugs previously present.
 - We implemented a newer method of handling code in this project as the previous one had some problems and did not provide us with the required results.
 - We have corrected the context of the project as it was working on a wrong one previously.
+- We have enhanced the previously present functionalities like "create" or "answer" and have also added new functionalities like "notification reminder" and "polling" feature.
+- We have given individual pages to the description of all the commands (old and new) so that it becomes easier for the user.
+- We have added GIFs of the commands so that user can see hoe to correctly use the commands.
+- 
