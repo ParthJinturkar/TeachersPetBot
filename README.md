@@ -11,7 +11,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/shikhanair/TeachersPetBot)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/shikhanair/TeachersPetBot)
 ![Lines of code](https://img.shields.io/tokei/lines/github/shikhanair/TeachersPetBot)
-[![codecov](https://codecov.io/gh/shikhanair/TeachersPetBot/branch/main/graph/badge.svg?token=ZQUQ8UC2Y6)](https://codecov.io/gh/shikhanair/TeachersPetBot)
+[![codecov](https://codecov.io/gh/War-Keeper/TeachersPetBot/branch/main/graph/badge.svg?token=fOccwr9Nak)](https://codecov.io/gh/War-Keeper/TeachersPetBot)
 
   Click Below to Watch Our Video!
 [![Watch the video](https://github.com/shikhanair/TeachersPetBot/blob/main/images/teacherspetbot.png)](https://youtu.be/tExF88LHqgE)
