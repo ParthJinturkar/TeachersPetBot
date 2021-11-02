@@ -172,7 +172,7 @@ This project is licensed under the [MIT License](https://github.com/shikhanair/T
 
 <h3> Team Members </h3>
 
-#### Pradhan Chetan
+#### Evan Brown
 #### Tanya Chu
 #### Steve Jones
 #### Shikha Nair
