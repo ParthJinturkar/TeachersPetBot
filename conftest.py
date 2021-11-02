@@ -24,9 +24,8 @@ def bot(event_loop):
     os.chdir(dir)
     os.chdir('cogs')
     for filename in os.listdir(os.getcwd()):
-        if filename.endswith('.py'):
+        if filename.endswith('.py') and not filename.startswith('create'):
             bot.load_extension(f"cogs.{filename[:-3]}")
-    bot.load_extension('jishaku')
     dpytest.configure(bot)
     return bot
 

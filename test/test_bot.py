@@ -26,7 +26,7 @@ async def test_ping(bot):
 
 
 # -------------------
-# Tests cogs/ping.py
+# Tests cogs/notification.py
 # -------------------
 @pytest.mark.asyncio
 async def test_generate_reminders(bot):
@@ -41,9 +41,10 @@ async def test_generate_reminders(bot):
     await dpytest.message("!addhw CSC500 HW1 DEC 21 2021 12:00")
     assert dpytest.verify().message().contains().content("This homework has already been added..!!")
     # Try updating the due date
+    await dpytest.empty_queue()
     await dpytest.message("!changeduedate CSC500 HW1 DEC 22 2022 10:00")
-    assert dpytest.verify().message().contains().content(
-        "CSC500 HW1 has been updated with following date: 2022-12-22 10:00:00")
+    embed = dpytest.get_embed()
+    assert embed is not None
     # Try deleting a reminder
     await dpytest.empty_queue()
     await dpytest.message("!deletereminder CSC500 HW1")
