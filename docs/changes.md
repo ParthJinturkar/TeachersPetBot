@@ -8,3 +8,5 @@ We have made the following changes in the previous version:
 - As a result of these changes the different commands need not have any interaction (unless otherwise required) and exist independently.
 - The previous version used another bot to test their main bot. This was more of a reading process rather than testing the bot. We have introduced a complete package of testing commands and have covered majority of the parts. 
 - We have updated a lot many source files so that they work correctly and removed the bugs previously present.
+- We implemented a newer method of handling code in this project as the previous one had some problems and did not provide us with the required results.
+- 
