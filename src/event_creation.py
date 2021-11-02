@@ -8,6 +8,7 @@ import validators
 from src import db
 from src import utils
 from src import cal, office_hours
+from src import cal
 
 BOT = None
 
@@ -332,7 +333,6 @@ async def create_event(ctx, testing_mode):
 ###########################
 
 async def read_exams(ctx):
-    exams = []
     temp = 'data/events/' + str(ctx.message.guild.id) + '/'
     with open(temp + 'exams.csv', mode='r') as f:
         reader = csv.reader(f, delimiter=',')
@@ -345,12 +345,18 @@ async def read_exams(ctx):
                     [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5], row[6]]
                 )
             line_count += 1
-    await ctx.send('Exams successfully created!')
-    await cal.init(BOT)
+    await ctx.send('File Submitted and Exams successfully created!')
 
+    for guild in BOT.guilds:
+        if guild.id == ctx.guild.id:
+            for channel in guild.text_channels:
+                if channel.name == 'course-calendar':
+                    await channel.delete()
+
+            channel = await guild.create_text_channel('course-calendar')
+            await cal.display_events(channel)
 
 async def read_assignments(ctx):
-    assignments = []
     temp = 'data/events/' + str(ctx.message.guild.id) + '/'
     with open(temp + 'assignments.csv', mode='r') as f:
         reader = csv.reader(f, delimiter=',')
@@ -363,8 +369,15 @@ async def read_assignments(ctx):
                     [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5]]
                 )
             line_count += 1
-    await ctx.send('Assignments successfully created!')
-    await cal.init(BOT)
+    await ctx.send('File Submitted and Assignments successfully created!')
+    for guild in BOT.guilds:
+        if guild.id == ctx.guild.id:
+            for channel in guild.text_channels:
+                if channel.name == 'course-calendar':
+                    await channel.delete()
+
+            channel = await guild.create_text_channel('course-calendar')
+            await cal.display_events(channel)
 
 
 def init(b):
