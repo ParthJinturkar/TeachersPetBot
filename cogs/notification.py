@@ -208,10 +208,11 @@ class Deadline(commands.Cog):
         if len(self.reminders) == 0:
             await ctx.send("No dues this week")
 
+        flag = False
+
         for reminder in self.reminders:
             timeleft = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S') - time
             print("timeleft: " + str(timeleft) + " days left: " + str(timeleft.days))
-            flag = False
             if timeleft.days <= 7:
                 flag = True
                 # await ctx.send("{} {} is due this week at {}".format(reminder["COURSE"], reminder["HOMEWORK"],reminder["DUEDATE"]))
@@ -224,8 +225,8 @@ class Deadline(commands.Cog):
                 embed.add_field(name="Due Date:", value=reminder["DUEDATE"], inline=False)
                 await ctx.send(embed=embed)
 
-            if flag:
-                await ctx.send("No dues this week")
+        if not flag:
+            await ctx.send("No dues this week")
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: duetoday(self, ctx)
@@ -310,7 +311,7 @@ class Deadline(commands.Cog):
         else:
             await ctx.send("No reminders to delete..!!")
 
-    @commands.command(name="notifyme", pass_context=True, help="provides a way to set up notifications")
+    @commands.command(name="notifyme", pass_context=True, help="provides a way to set up notifications ex. !notifyme 1 minutes Complete CSC510 Project2")
     async def notify_me(self, ctx, quantity: int, time_unit: str, *, text: str):
         time_unit = time_unit.lower()
         msg_email = ""
