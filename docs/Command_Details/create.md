@@ -32,4 +32,4 @@ and you can exit out of the event creation process by typing "exit" or "quit".
 
 # Example Run
 ## Create Function
-![!create](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![!create](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/create.gif)
