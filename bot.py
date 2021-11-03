@@ -158,12 +158,8 @@ async def shutdown(ctx):
 
     
 ###########################
-# Function: on_voice_status_update
+# Function: create_voice_channels()
 # Description: run when the bot starts
-# Inputs:
-#      - member: the member running the bot
-#      - before: the old message
-#      - after: the new message
 ###########################
 
 async def create_voice_channels():
@@ -183,7 +179,7 @@ async def create_voice_channels():
 
         category2 = await guild.create_category("Groups")
         for i in range(1, 41):
-            await guild.create_voice_channel("group " + str(i), user_limit=6, category=category2)
+            await guild.create_voice_channel("Group " + str(i), user_limit=6, category=category2)
 
 ''' run bot command '''
 bot.run(TOKEN)
