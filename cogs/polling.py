@@ -34,13 +34,13 @@ class Helper(commands.Cog):
     #    - *:
     #    - poll: question for poll
     # ----------------------------------------------------------------------------------------------
-    @commands.command(name="poll")
+    @commands.command(name="poll", help = "This command is used for poll with 2 choices")
     @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str = None):
         msg = ctx.message.content
         await ctx.message.delete()
         if ctx.channel.name == "instructor-commands":
-            if poll is None:
+            if poll is None: # Error handling for empty poll
                 embed = discord.Embed(
                     description="!poll command should be used in following way:"
                     + "\n\n`!poll poll_content`",
@@ -49,7 +49,7 @@ class Helper(commands.Cog):
                 await ctx.author.send(embed=embed)
                 return
             general_channel = None
-            for channel in ctx.guild.text_channels:
+            for channel in ctx.guild.text_channels: # finding general channel
                 if channel.name == "general":
                     general_channel = channel
                     break
@@ -99,6 +99,7 @@ class Helper(commands.Cog):
                         if reactor.bot:
                             continue
                         if reactor in users:
+                            # remove one reaction if member has reacted both
                             await msg.remove_reaction(emoji, user)
                             return
                         users.append(reactor)
@@ -119,13 +120,14 @@ class Helper(commands.Cog):
     #    - ctx: used to access the values passed through the current context
     #    - *choices: variable arguments for choices for the poll
     # ----------------------------------------------------------------------------------------------
-    @commands.command(name="multipoll")
+    @commands.command(name="multipoll", help = "This command is used for poll with multiple choice")
     @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str = None, *choices):
         msg = ctx.message.content
         await ctx.message.delete()
-        if ctx.channel.name == "instructor-commands":
-            if desc is None:
+        if ctx.channel.name == "instructor-commands": # check if command is used in 
+                                                      # Instructor commands channel
+            if desc is None: # Error handling for multipoll without desc
                 embed = discord.Embed(
                     description='!multipoll command should be used in following way:'
                     + '\n\n`!multipoll "poll_content" "poll_choice1" "poll_choice2"...`',
@@ -139,7 +141,7 @@ class Helper(commands.Cog):
                     general_channel = channel
                     break
             if general_channel:
-                if len(choices) < 2:
+                if len(choices) < 2: # Error handling for multipoll with < 2 choices
                     embed = discord.Embed(
                         description="You have to enter two or more choices to make a multipoll."
                         + "\n\nYou entered the following command:\n\n`"
@@ -148,7 +150,7 @@ class Helper(commands.Cog):
                         color=discord.colour.Color.red(),
                     )
                     return await ctx.author.send(embed=embed)
-                if len(choices) > 10:
+                if len(choices) > 10: # Error handling for multipoll with > 10 choices
                     embed = discord.Embed(
                         description="You can't make a multipoll with more than 10 choices."
                         + "\n\nYou entered the following command:\n\n`"

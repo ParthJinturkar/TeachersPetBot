@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
 
-from discord.ext.commands import bot
-
 # ---------------------------------------------------------------------------------------
 # Contains Instructor only commands for getting member information
 # ---------------------------------------------------------------------------------------
@@ -20,13 +18,13 @@ class Helper(commands.Cog):
     #    - ctx: used to access the values passed through the current context
     #    - member_name: username of the member
     # ----------------------------------------------------------------------------------------------
-    @commands.command(name="whois")
+    @commands.command(name="whois", help="This command is used to get information about the member")
     @commands.has_role("Instructor")
     async def get_member_information(self, ctx, *, member_name: str = None):
         msg = ctx.message.content
         await ctx.message.delete()
-        if ctx.channel.name == "instructor-commands":
-            if member_name is None:
+        if ctx.channel.name == "instructor-commands": # check for channel
+            if member_name is None: # Error handling for None member_name
                 embed = discord.Embed(
                     description="!whois command should be used in following way:"
                     + "\n\n`!whois member_username`",
@@ -42,6 +40,7 @@ class Helper(commands.Cog):
                     timestamp=ctx.message.created_at,
                     title=str(member),
                 )
+                # embed information about member
                 embed.set_thumbnail(url=member.avatar_url)
                 embed.set_footer(text=f"Requested by {ctx.author}")
                 embed.add_field(name="Display Name:", value=member.display_name)
