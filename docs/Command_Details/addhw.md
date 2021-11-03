@@ -14,8 +14,8 @@ Let's say that you are in the server that has the Classmate Bot active and onlin
 enter the command 'addhw' pass in all the parameters as a space seperated inputs in the following order:
 coursename, homeworkname, duedate (in MMM DD YYYY optional(HH:MM) format)
 ```
-$addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM)
-$addhw CSC610 HW24 SEP 20 2024 15:04
+!addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM)
+!addhw CSC610 HW24 SEP 20 2024 15:04
 ```
 Successful execution of this command will add the reminder for the specified coursework and homework on the specified time.
 
