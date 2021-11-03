@@ -155,6 +155,15 @@ async def shutdown(ctx):
     db.delete_db()
     exit()
 
+    
+###########################
+# Function: on_voice_status_update
+# Description: run when the bot starts
+# Inputs:
+#      - member: the member running the bot
+#      - before: the old message
+#      - after: the new message
+###########################
 @bot.event
 async def on_voice_state_update(member, before, after):
     if after.channel != None:
