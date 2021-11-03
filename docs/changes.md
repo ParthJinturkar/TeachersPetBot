@@ -2,12 +2,12 @@
 
 We have made the following changes in the previous version:
 
-- We enabled pylint on all files, which was previously only running on an empty src directory, leading to a 10/10 rating.
-- We have seperated all the commands and have given them a seperate file so that the project looks more modular, cleand and robust.
-- We have introduced the usage of cogs in the project which makes it easier to read and understand the different commands.
-- As a result of these changes the different commands need not have any interaction (unless otherwise required) and exist independently.
-- The previous version used another bot to test their main bot. This was more of a reading process rather than testing the bot. We have introduced a complete package of testing commands and have covered majority of the parts. 
-- We have updated a lot many source files so that they work correctly and removed the bugs previously present.
+- Automatic style checking through pylint has been enabled on files. Pylint was previously only running on an empty src directory, leading to no actual style coverage.
+- Commands have been separated into individual files, making the project more organized and easier to read. 
+- Commands have been reformated to use the cogs system, which increases modularity and ease of development. Cogs are simpler, more organized, easier to develop versions of regular discord commands that also allow us to use the dpytest testing library for automated testing.
+- As a result of the above changes individual commands no longer have any interaction or dependencies on each other, making debugging significantly easier and significantly speeding up development.
+- The previous version of this project implemented testing via a separate testing bot, which requires both bots be active and a command to be manually run to initiate testing. This made automatic on-push testing impossible, as the bot and its tester needed to be physically present on a server when testing commenced. The test suite has been completely revamped to use dpytest, an automatic testing suite which uses fake HTTP requests to simulate the bot and users on a virtual server. This allows us to automatically test on-push, and also generate and upload coverage reports to codecov.
+- Multiple source files have been updated to remove bugs and clean up formatting.
 - We implemented a newer method of handling code in this project as the previous one had some problems and did not provide us with the required results.
 - We have corrected the context of the project as it was working on a wrong one previously.
 - We have enhanced the previously present functionalities like "create" or "answer" and have also added new functionalities like "notification reminder" and "polling" feature.
