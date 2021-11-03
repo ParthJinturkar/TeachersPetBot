@@ -30,5 +30,5 @@ When you type the following command, the command will be deleted and a poll will
 ```
 
 # Example Run
-## Ask Function
+## Poll Function
 ![!poll](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/poll.gif)
