@@ -3,7 +3,7 @@ This command lets the Instructors create a poll with specified number of choices
 the bot will delete the command and create the specified poll in the 'general' channel. The command can only be used by the Instructor in the 'instructor-commands' channel.
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py)
+The code that implements the above-mentioned gifs functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py)
 
 # Code Description
 ## MultiPoll Function

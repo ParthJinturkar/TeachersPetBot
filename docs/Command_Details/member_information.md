@@ -3,7 +3,7 @@ This command lets the Instructors get information about the member using his/her
 the bot will delete the command and display the member information. The command can only be used by the Instructor in the 'instructor-commands' channel.
 
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py)
+The code that implements the above-mentioned gifs functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/member_information.py)
 
 # Code Description
 ## MultiPoll Function

@@ -3,7 +3,7 @@ This command lets the Instructors create a poll with 2 choices. When Instructor 
 the bot will delete the command and create the specified poll in the 'general' channel. The command can only be used by the Instructor in the 'instructor-commands' channel.
 A listener is also implemented to avoid getting multiple reactions from same member. If the same member does react thumps up and thumps down then the last reaction is discarded.
 # Location of Code
-The code that implements the above-mentioned gits functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py)
+The code that implements the above-mentioned gifs functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py)
 
 # Code Description
 ## Poll Function
