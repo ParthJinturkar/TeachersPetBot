@@ -169,11 +169,11 @@ async def shutdown(ctx):
 async def create_voice_channels():
     for guild in bot.guilds:
 
-        for cat in guild.categories:
-            await guild.delete(cat)
-
         for channel in guild.voice_channels:
             await channel.delete()
+
+        for cat in guild.categories:
+            await cat.delete()
 
         category = await guild.create_category("TA Office Hours")
         await guild.create_voice_channel("TA-1 Office Hours", user_limit=2, category=category)
