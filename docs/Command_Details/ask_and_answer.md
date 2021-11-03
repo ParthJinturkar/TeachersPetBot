@@ -43,6 +43,6 @@ Depending on the user, the answer will be from a Student or an Instructor.
 
 # Example Run
 ## Ask Function
-![!ask](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![!ask](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/qna.gif)
 ## Answer Function
-![!answer](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![!answer](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/qna.gif)
