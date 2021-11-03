@@ -23,4 +23,4 @@ When you type the following command, the command will be deleted and member info
 
 # Example Run
 ## Whois Function
-![!whois](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/whois.gif)
+![!whois](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
