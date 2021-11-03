@@ -65,7 +65,9 @@ async def test_generate_reminders(bot):
     await dpytest.message("!clearreminders")
     assert dpytest.verify().message().contains().content("All reminders have been cleared..!!")
 
-
+# -------------------
+# Tests cogs/notification.py
+# -------------------
 @pytest.mark.asyncio
 async def test_empty_reminders(bot):
     await dpytest.empty_queue()
@@ -100,7 +102,9 @@ async def test_reminder_errors(bot):
         await dpytest.message("!coursedue")
         assert dpytest.verify().message().contains().content("To use the coursedue command, do:")
 
-
+# -------------------
+# Tests cogs/member_information.py
+# -------------------
 @pytest.mark.asyncio
 async def test_member_information(bot):
     await dpytest.empty_queue()
@@ -130,7 +134,9 @@ async def test_member_information(bot):
     embed = dpytest.get_embed()
     assert embed is not None
 
-
+# -------------------
+# Tests cogs/polling.py
+# -------------------
 @pytest.mark.asyncio
 async def test_polling(bot):
     await dpytest.empty_queue()
