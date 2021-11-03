@@ -31,4 +31,4 @@ When you type the following command, the command will be deleted and a poll will
 
 # Example Run
 ## Ask Function
-![!poll](https://github.com/War-Keeper/TeachersPetBot/tree/main/images/gifs/polling/poll.gif)
+![!poll](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/poll.gif)
