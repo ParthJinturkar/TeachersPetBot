@@ -11,7 +11,7 @@ This function takes as arguments the values provided by the constructor through 
 
 # How to run it? (Small Example)
 Let's say that you are in the server that has the Classmate Bot active and online. All you have to do is 
-enter the command 'addhw' pass in all the parameters as a space seperated inputs in the following order:
+enter the command '!addhw' pass in all the parameters as a space seperated inputs in the following order:
 coursename, homeworkname, duedate (in MMM DD YYYY optional(HH:MM) format)
 ```
 !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM)

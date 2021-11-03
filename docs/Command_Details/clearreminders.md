@@ -11,7 +11,7 @@ This function takes as arguments the values provided by the constructor through 
 
 # How to run it? (Small Example)
 Let's say that you are in the server that has the Classmate Bot active and online. All you have to do is 
-enter the command '$clearreminders' with no other parameters:
+enter the command '!clearreminders' with no other parameters:
 
 ```
 !clearreminders
