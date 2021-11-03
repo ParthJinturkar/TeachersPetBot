@@ -14,8 +14,8 @@ Let's say that you are in the server that has the Classmate Bot active and onlin
 enter the command '$changeduedate' and pass in all the parameters as a space seperated inputs in the following order:
 coursename, homeworkname, updated duedate (in MMM DD YYYY optional(HH:MM) format)
 ```
-$changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM)
-$changeduedate CSC610 HW24 DEC 01 2021 15:10
+!changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM)
+!changeduedate CSC610 HW24 DEC 01 2021 15:10
 ```
 Successful execution of this command will update the reminder for the specified coursework and homework on the specified time.
 
