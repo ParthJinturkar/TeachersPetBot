@@ -22,5 +22,5 @@ When you type the following command, the command will be deleted and a multipoll
 ```
 
 # Example Run
-## Poll Function
+## MultiPoll Function
 ![!multipoll](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/multipoll.gif)
