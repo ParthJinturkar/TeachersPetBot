@@ -33,6 +33,7 @@ async def on_ready():
     db.connect()
     db.add_Tables(db)
     guild = discord.utils.get(bot.guilds, name=GUILD)
+    await create_voice_channels()
     event_creation.init(bot)
     office_hours.init(bot)
     print(
@@ -164,22 +165,25 @@ async def shutdown(ctx):
 #      - before: the old message
 #      - after: the new message
 ###########################
-@bot.event
-async def on_voice_state_update(member, before, after):
-    if after.channel != None:
-        if after.channel.id == 897659220365836368:
-            for guild in bot.guilds:
-                maincategory = discord.utils.get(
-                    guild.categories, id=897659220365836366)
-                channel2 = guild.create_voice_channel(name=f'канал {member.display_name}', category=maincategory)
-                await channel2.set_permissions(member, connect=True, mute_members=True, manage_channels=True)
-                await member.move_to(channel2)
 
-                def check(x, y, z):
-                    return len(channel2.members) == 0
-                await bot.wait_for('voice_state_update', check=check)
-                await channel2.delete()
+async def create_voice_channels():
+    for guild in bot.guilds:
 
+        for cat in guild.categories:
+            await guild.delete(cat)
+
+        for channel in guild.voice_channels:
+            await channel.delete()
+
+        category = await guild.create_category("TA Office Hours")
+        await guild.create_voice_channel("TA-1 Office Hours", user_limit=2, category=category)
+        await guild.create_voice_channel("TA-2 Office Hours", user_limit=2, category=category)
+        await guild.create_voice_channel("TA-3 Office Hours", user_limit=2, category=category)
+        await guild.create_voice_channel("TA-4 Office Hours", user_limit=2, category=category)
+
+        category2 = await guild.create_category("Groups")
+        for i in range(1, 41):
+            await guild.create_voice_channel("group " + str(i), user_limit=6, category=category2)
 
 ''' run bot command '''
 bot.run(TOKEN)
