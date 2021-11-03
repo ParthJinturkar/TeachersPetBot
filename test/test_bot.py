@@ -76,6 +76,7 @@ async def test_empty_reminders(bot):
     await dpytest.message("!duethisweek")
     assert dpytest.verify().message().contains().content("No dues this week")
     # Test coursedue
+    await dpytest.empty_queue()
     await dpytest.message("!coursedue CSC505")
     assert dpytest.verify().message().contains().content("Rejoice..!! You have no pending homeworks for CSC505..!!")
     # Test listreminders

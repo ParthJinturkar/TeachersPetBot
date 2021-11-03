@@ -7,10 +7,10 @@
 
 [![DOI](https://zenodo.org/badge/416493891.svg)](https://zenodo.org/badge/latestdoi/416493891)
 ![Python](https://img.shields.io/badge/python-v3.7+-brightgreen.svg)
-![GitHub](https://img.shields.io/github/license/shikhanair/TeachersPetBot)
-![GitHub issues](https://img.shields.io/github/issues/shikhanair/TeachersPetBot)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/shikhanair/TeachersPetBot)
-![Lines of code](https://img.shields.io/tokei/lines/github/shikhanair/TeachersPetBot)
+![GitHub](https://img.shields.io/github/license/War-Keeper/TeachersPetBot)
+![GitHub issues](https://img.shields.io/github/issues/War-Keeper/TeachersPetBot)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/War-Keeper/TeachersPetBot)
+![Lines of code](https://img.shields.io/tokei/lines/github/War-Keeper/TeachersPetBot)
 [![codecov](https://codecov.io/gh/War-Keeper/TeachersPetBot/branch/main/graph/badge.svg?token=fOccwr9Nak)](https://codecov.io/gh/War-Keeper/TeachersPetBot)
 
   Click Below to Watch Our Video!
@@ -178,4 +178,7 @@ This project is licensed under the [MIT License](https://github.com/shikhanair/T
 #### Shikha Nair
 #### Alex Snezhko
 #### Evan Brown
-
+#### Chaitanya Patel
+#### Sumedh Salvi
+#### Kunwar Vidhan
+#### Sunil Upare

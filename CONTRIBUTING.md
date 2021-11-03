@@ -21,6 +21,14 @@ The following is a set of guidelines for contributing to TeachersPetBot. These a
 
 This project and everyone participating in it is governed by the [TeachersPetBot Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to any of the original team members.
 
+Prerequisites required before starting this project during the Fall of 2021.
+
+1. Must be a graduate student at NC State University
+2. Must be a student in Software Engineering Course in Fall 2021
+3. Have proficiency in Python
+
+Starting 2022, anyone will be allowed to contribute, provided you have experience with python, discord.py and experience with GitHub
+
 ## I don't want to read this whole thing I just have a question!!!
 
 Reach out to one of the main contributors on Discord using their IDs:
@@ -35,6 +43,27 @@ Reach out to one of the main contributors on Discord using their IDs:
 We do not have an official message board at this time, however, we plan to have one if it will help future contributors!
 
 ## How Can I Contribute?
+### Adding Commands
+ Commands can be added in the form of Cogs. View hello.py as a simple example of how a Cog can be added.
+
+The basic structure is as follows:
+
+```
+class <NAME>(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+        
+    <COMMANDS RELATED TO THIS FILE>
+    
+def setup(bot):
+    bot.add_cog(<NAME>(bot))
+```
+For more information on how to use cogs, refer to the [Cogs Page](https://discordpy.readthedocs.io/en/stable/ext/commands/cogs.html)
+
+For more information on the API of discord.py you can use the [API Reference Page](https://discordpy.readthedocs.io/en/stable/api.html)
+
+For general Knowledge of discord.py use the [Documentation Page](https://discordpy.readthedocs.io/en/latest/index.html)
 
 ### Reporting Bugs
 
