@@ -13,4 +13,3 @@ We have made the following changes in the previous version:
 - We have enhanced the previously present functionalities like "create" or "answer" and have also added new functionalities like "notification reminder" and "polling" feature.
 - We have given individual pages to the description of all the commands (old and new) so that it becomes easier for the user.
 - We have added GIFs of the commands so that user can see hoe to correctly use the commands.
-- 
