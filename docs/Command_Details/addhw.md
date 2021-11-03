@@ -1,8 +1,8 @@
-# About $addhw
+# About !addhw
 This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel 
 
 # Location of Code
-The code that implements the above mentioned gits functionality is located [here](https://github.com/War-Keeper/ClassMateBot/blob/main/cogs/deadline.py).
+The code that implements the above mentioned gits functionality is located [here](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py).
 
 # Code Description
 ## Functions
