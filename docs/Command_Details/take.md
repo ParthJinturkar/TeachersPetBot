@@ -40,6 +40,6 @@ When you have finished editing the csv, all you have to do is drag it to the dis
 
 # Example Run
 ## Ask Function
-![!eventcsv](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![!eventcsv](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
 ## Answer Function
-![!take](https://github.com/War-Keeper/ClassMateBot/blob/main/data/media/group.gif)
+![!take](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)
