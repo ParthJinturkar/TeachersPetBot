@@ -2,12 +2,13 @@
 ### Create a Discord Bot
 To create a Discord Bot, you must:
 * have a [Discord Account](https://discord.com/login)
-* have a Discord server for the bot
+* have a Discord Guild (server) for the bot
 * create a Discord bot in the [Developer Portal](https://discord.com/developers/applications), but DO NOT ADD to your server yet ([Follow instructions here](https://realpython.com/how-to-make-a-discord-bot-python/))
-* create a `.env` file with your Bot Token and add this to your .gitignore (Discord will automatically regenerate your token if you accidentally upload it to Github)
+* create a `.env` file with your Bot Token and your Guild token and add this to your .gitignore (Discord will automatically regenerate your token if you accidentally upload it to Github)
     ```
     # .env
     DISCORD_TOKEN={your-bot-token}
+    GUILD={your-guild-token}
     ```
 
 NOTE: Run the bot before inviting it to your server in order for auto-initiate commands to run
@@ -29,17 +30,8 @@ To run the Teacher's Pet Bot:
     * NOTE:  When using the OAuth2 URL Generator, make sure you check the box which gives your bot Administrative permissions
 
 ### Run Tests
+Testing is done using the dpytest library, which fakes HTTP requests to simulate user and bot activities. Bot setup is done throught a fixture in conftest.py, which is run automatically when pytest is called. No external bots or other files are needed.
 To run tests on the Teacher's Pet Bot:
-1. Create a second bot for testing
-2. Add the Test Bot's token to the `.env` file
-    ```
-    # .env
-    DISCORD_TOKEN={your-bot-token}
-    TESTING_BOT_TOKEN={your-testing-bot-token}
-    ```
- 3. In `test/tests.py`, update the `TEST_GUILD_ID` to be the id of the server/guild you are testing in.
- 4. Start Teacher's Pet Bot by running one of the following commands in the root directory of the project:
-    * Without Coverage: `pytest src/bot.py`
-    * With Coverage: `coverage run --source=./src -m pytest src/bot.py`
- 5. Run the tests with `python test/tests.py` in the root directory of the project
- 6. If you collected coverage, run `coverage report` to see coverage details.
+ 1. Tests can be run by running pytest test/test_bot.py through the terminal
+ 2. If you want to collect coverage, instead run 'coverage run -m pytest test/test_bot.py', then 'coverage report -m' afterwards
+For help with testing, read the dpytest API at https://dpytest.readthedocs.io/en/latest/index.html, and/or contact Evan Brown at wevanbrown@gmail.com
