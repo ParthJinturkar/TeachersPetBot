@@ -35,10 +35,10 @@ class Create(commands.Cog):
 
             if ctx.message.attachments[0].filename.endswith('.csv'):
                 if ctx.message.attachments[0].filename.startswith('exams'):
-                    await self.read_exams(self, ctx)
+                    await self.read_exams(ctx)
 
                 if ctx.message.attachments[0].filename.startswith('assignments'):
-                    await self.read_assignments(self, ctx)
+                    await self.read_assignments(ctx)
         except Exception as e:
             print(e)
             # if ctx.message.attachments[0].filename.startswith('ta_office_hours'):

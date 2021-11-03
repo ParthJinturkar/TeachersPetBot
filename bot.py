@@ -33,7 +33,8 @@ async def on_ready():
     db.connect()
     db.add_Tables(db)
     guild = discord.utils.get(bot.guilds, name=GUILD)
-    await create_voice_channels()
+    for guild in bot.guilds:
+        await create_voice_channels(guild)
     event_creation.init(bot)
     office_hours.init(bot)
     print(
@@ -95,6 +96,8 @@ async def on_guild_join(guild):
                 await channel.send("course-calendar channel has been added!")
 
         break
+
+    await create_voice_channels(guild)
 
 
 ###########################
@@ -162,24 +165,24 @@ async def shutdown(ctx):
 # Description: run when the bot starts
 ###########################
 
-async def create_voice_channels():
-    for guild in bot.guilds:
+async def create_voice_channels(guild):
+    ''' run on bot startup '''
+    for channel in guild.voice_channels:
+        await channel.delete()
 
-        for channel in guild.voice_channels:
-            await channel.delete()
-
-        for cat in guild.categories:
+    for cat in guild.categories:
+        if cat.name == 'TA Office Hours' or cat.name == 'Groups':
             await cat.delete()
 
-        category = await guild.create_category("TA Office Hours")
-        await guild.create_voice_channel("TA-1 Office Hours", user_limit=2, category=category)
-        await guild.create_voice_channel("TA-2 Office Hours", user_limit=2, category=category)
-        await guild.create_voice_channel("TA-3 Office Hours", user_limit=2, category=category)
-        await guild.create_voice_channel("TA-4 Office Hours", user_limit=2, category=category)
+    category = await guild.create_category("TA Office Hours")
+    await guild.create_voice_channel("TA-1 Office Hours", user_limit=2, category=category)
+    await guild.create_voice_channel("TA-2 Office Hours", user_limit=2, category=category)
+    await guild.create_voice_channel("TA-3 Office Hours", user_limit=2, category=category)
+    await guild.create_voice_channel("TA-4 Office Hours", user_limit=2, category=category)
 
-        category2 = await guild.create_category("Groups")
-        for i in range(1, 41):
-            await guild.create_voice_channel("Group " + str(i), user_limit=6, category=category2)
+    category2 = await guild.create_category("Groups")
+    for i in range(1, 41):
+        await guild.create_voice_channel("Group " + str(i), user_limit=6, category=category2)
 
 ''' run bot command '''
 bot.run(TOKEN)
