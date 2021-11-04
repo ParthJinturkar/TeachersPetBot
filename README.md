@@ -124,6 +124,13 @@ The bot contains functionality for handling TA office hours. After a TA office h
 
 ![image](https://github.com/shikhanair/TeachersPetBot/blob/main/images/oh_channels.png)
 
+### Polling
+The bot contains functionality for polling with 2 choices (choose one) and multi-choice polling with specified number of choices (2 to 10). The polls can only be created by the Instructor and commands to create them can only be used in instructor-commands channel.
+
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/poll.gif)
+
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/multipoll.gif)
+
 ### Profanity Censoring 
 
 Using the Python package better-profanity, Teacher's Pet will catch profane words sent by members of the guild, delete the message, and re-send the exact message with the bad word(s) censored out. It will also catch profane words in messages which have been edited to incude bad words. This package supports censoring based off any non-alphabetical word dividers and swears with custom characters. NOTE: Currently the Bot does not censor swears which have had extra alphabetical characters added.
