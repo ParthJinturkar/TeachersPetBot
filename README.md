@@ -12,6 +12,7 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/War-Keeper/TeachersPetBot)
 ![Lines of code](https://img.shields.io/tokei/lines/github/War-Keeper/TeachersPetBot)
 [![codecov](https://codecov.io/gh/War-Keeper/TeachersPetBot/branch/main/graph/badge.svg?token=fOccwr9Nak)](https://codecov.io/gh/War-Keeper/TeachersPetBot)
+![Build Status](https://github.com/War-Keeper/TeachersPetBot/actions/workflows/test.yml/badge.svg)
 
   Click Below to Watch Our Video!
 [![Watch the video](https://github.com/shikhanair/TeachersPetBot/blob/main/images/teacherspetbot.png)](https://youtu.be/tExF88LHqgE)
@@ -134,7 +135,7 @@ The bot contains functionality for polling with 2 choices (choose one) and multi
 ### Member Information
 The bot conatins functionality for getting information about a member using the username of the member. The command can only be used by the Instructor in instructor-commands channel. It retrieves the Display Name, ID, Account Creation Date and Time, Date and Time of joining the Server, Roles and the Highest Role of the member.
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/member_information.md)
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
 
 ### Profanity Censoring 
 
