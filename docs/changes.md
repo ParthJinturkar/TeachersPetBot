@@ -1,5 +1,5 @@
 
-We have made the following changes in the previous version
+We have iterated on the previous version in the following way
 ==========================================================
 - Automatic style checking through **Pylint** has been enabled on files. **Pylint** was previously only running on an empty src directory, leading to no actual style coverage.
 - Commands have been separated into individual files, making the project more organized and easier to read. 
