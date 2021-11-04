@@ -136,7 +136,7 @@ This bot has endless possibilities for functionality. Features which we are inte
 * Cloud Hosting
 * Detailed Error Handling
 
-For a full list of future features, upgrades, and bug fixes, please visit our [Project 1 Board](https://github.com/shikhanair/TeachersPetBot/projects/1).
+For a full list of future features, upgrades, and bug fixes, please visit our [Project 1 Board](https://github.com/War-Keeper/TeachersPetBot/projects/1).
 
 <h2 align="center"> How to Contribute? </h2>
 
