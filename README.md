@@ -18,7 +18,7 @@
   
   
 
-Software Engineering Project 1 for CSC 510
+Software Engineering Project 2 for CSC 510
 
 Teacher's Pet is a Discord Bot for class instructors to streamline their Discord servers. Discord is a great tool for communication and its functionalities can be enhanced by bots and integrations. There are many tools for organizing classes, but they are often hard to manage. They rarely have good communication mechanisms or ability to connect with other tools. This bot allows instructors to host their classes on Discord, combining communication tools with functionality for assignments, scheduling, and office hours. Instructors and students no longer have to go between platforms to view course details, forums, events, calls, and more.
 
@@ -39,6 +39,28 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 `!oh next` Go to next student in queue as an instructor (Instructor command)  
 
 `!create` Start creating an event (Instructor command)  
+
+`!addhw` This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
+
+`!changeduedate` This command lets the user up
+
+`!clearreminders` This command lets the user delete all the reminders irrespective of courses or homeworks.
+
+`!coursedue` This command lets the user display all the homeworks that are due for a specific course.
+
+`!deletereminder` This command lets the user delete a reminder for a specified coursename and homework.
+
+`!duethisweek` This command lets the user display all the homeworks that are due this week for all the courses.
+
+`!duetoday` This command lets the user display all the homeworks that are due today for all the courses.
+
+`!listreminders` This command lets the user display all the homeworks that are due for all the courses.
+
+`!whois` This command lets the Instructors get information about the member using his/her username. 
+
+`!multipoll` This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
+
+`!poll` This command lets the Instructors create a poll with 2 choices.
 
 
 <h2 align="center"> Installation and Running </h2>
