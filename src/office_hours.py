@@ -161,7 +161,23 @@ async def office_hour_command(ctx, command, *args):
 # Outputs: creation of channels relevant to office hour
 ###########################
 async def open_oh(guild, ta):
-    category = await guild.create_category_channel(f'Office Hour {ta}')
+    category = None
+    check = False
+
+    if guild.categories[0].name == 'TA Office Hours':
+        check = True
+        category = guild.categories[0]
+
+    if guild.categories[1].name == 'TA Office Hours':
+        check = True
+        category = guild.categories[1]
+
+    if guild.categories[2].name == 'TA Office Hours':
+        check = True
+        category = guild.categories[0]
+
+    if not check:
+        category = await guild.create_category_channel(f'TA Office Hours')
 
     instructor_role = next((role for role in guild.roles if role.name == 'Instructor'), None)
     overwrites = {

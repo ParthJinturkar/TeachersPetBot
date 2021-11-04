@@ -152,6 +152,7 @@ async def on_message_edit(before, after):
 @bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
 @commands.has_permissions(administrator=True)
 async def shutdown(ctx):
+    ''' Command for shutting down the bot '''
     db.shutdown()
     await ctx.send('Shutting Down bot')
     print("Bot closed successfully")
@@ -167,20 +168,25 @@ async def shutdown(ctx):
 
 async def create_voice_channels(guild):
     ''' run on bot startup '''
+    for cat in guild.categories:
+        if cat.name == 'General Office Hours' or cat.name == 'Teams':
+            return
+
     for channel in guild.voice_channels:
-        await channel.delete()
+        if channel.category.name != 'General Office Hours' or channel.category.name != 'Teams':
+            await channel.delete()
 
     for cat in guild.categories:
-        if cat.name == 'TA Office Hours' or cat.name == 'Groups':
+        if cat.name == 'General Office Hours' or cat.name == 'Groups' or cat.name == 'Teams' or cat.name == 'TA Office Hours':
+
             await cat.delete()
 
-    category = await guild.create_category("TA Office Hours")
-    await guild.create_voice_channel("TA-1 Office Hours", user_limit=2, category=category)
-    await guild.create_voice_channel("TA-2 Office Hours", user_limit=2, category=category)
-    await guild.create_voice_channel("TA-3 Office Hours", user_limit=2, category=category)
-    await guild.create_voice_channel("TA-4 Office Hours", user_limit=2, category=category)
+    await guild.create_category_channel("TA Office Hours")
 
-    category2 = await guild.create_category("Groups")
+    category = await guild.create_category("General Office Hours")
+    await guild.create_voice_channel("General Office Hours", user_limit=2, category=category)
+
+    category2 = await guild.create_category("Teams")
     for i in range(1, 41):
         await guild.create_voice_channel("Group " + str(i), user_limit=6, category=category2)
 
