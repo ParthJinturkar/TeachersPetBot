@@ -135,6 +135,26 @@ async def test_member_information(bot):
     assert embed is not None
 
 # -------------------
+# Tests cogs/setInstructor.py
+# -------------------
+@pytest.mark.asyncio
+async def test_set_instructor(bot):
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+    await dpytest.message("!setInstructor TestUser0")
+    assert dpytest.verify().message().contains().content("TestUser0 has been given Instructor role!")
+    await dpytest.message("!setInstructor")
+    assert dpytest.verify().message().contains().content("To use the setInstructor command, do:")
+    await dpytest.empty_queue()
+    await dpytest.message("!setInstructor asdf")
+    assert dpytest.verify().message().contains().content("Could not find a member with that name")
+
+# -------------------
 # Tests cogs/polling.py
 # -------------------
 @pytest.mark.asyncio
