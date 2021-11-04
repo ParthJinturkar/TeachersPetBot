@@ -70,15 +70,15 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 <h2 align="center"> Installation and Running </h2>
 
 #### Tools and Libraries Used
-In addition to the packages from [requirements.txt](https://github.com/shikhanair/TeachersPetBot/blob/main/requirements.txt) which need to be installed, please have the following installed on your machine:
+In addition to the packages from [requirements.txt](https://github.com/War-Keeper/TeachersPetBot/blob/main/requirements.txt) which need to be installed, please have the following installed on your machine:
 * [Python 3.9.7](https://www.python.org/downloads/)
 * [Sqlite](https://www.sqlite.org/download.html)
 
-To install and run Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/shikhanair/TeachersPetBot/blob/main/Installation.md).
+To install and run Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/War-Keeper/TeachersPetBot/blob/main/Installation.md).
 
 <h2 align="center"> Testing </h2>
 
-To run tests on the Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/shikhanair/TeachersPetBot/blob/main/Installation.md#Run-Tests).
+To run tests on the Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/War-Keeper/TeachersPetBot/blob/main/Installation.md).
 
 <h2 align="center"> TeachersPetBot Features </h2>
 
@@ -89,7 +89,7 @@ When Teacher's Pet has been added to a new server as a bot, it will do the follo
 * Create a new role called Instructor with Administrative permissions if one does not already exist
 * Add the owner of the guild to the Instructor role
 * Create a #q-and-a channel if one doesn't already exist
-* Create a #calendar channel if one doesn't already exist
+* Create a #course-calendar channel if one doesn't already exist
 * Create 4 voice channels for one to one interaction with TAs 
 * Create 40 voice channels (one for each group) with a limit of maximum 6 participants
 
