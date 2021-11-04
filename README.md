@@ -105,10 +105,8 @@ The Q&A functionality allow students to ask and answer questions anonymously. Th
 To ask a question, type `!ask "Question"` in the #q-and-a channel. Example: `!ask "When is the midterm?"`.  
 ![image](https://user-images.githubusercontent.com/32313919/135383816-430792aa-b8c3-4d6b-8176-1621293d089e.png)  
 To answer a question type `!answer <question_number> "Answer"` in the #q-and-a channel. Example: `!answer 1 "Oct 12"`.  
-Student answer:  
-![image](https://user-images.githubusercontent.com/32313919/135383913-4a7431c3-9e14-466b-9a07-683df39bc1bc.png)  
-Instructor answer:  
-![image](https://user-images.githubusercontent.com/32313919/135383932-551850ef-6f6c-4349-b3a4-d36ce583de14.png)
+
+![!qna](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/qna.gif)
 
 
 ### Events/Calendar
@@ -142,7 +140,16 @@ The bot contains functionality that lets Instructor get an example CSV from bot 
 
 ![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)4
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)
+
+### Notification Module
+This command lets the user display all the homeworks that are due this week for all the courses. Whenever a user wants to be reminded about an upcoming project/assignment he/she can just use a notification command to get the bot to remind the user about the same. Notification can also be sent to email or text.
+
+![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.gif)
+![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.PNG)
+![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme2.PNG)
+![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/nm3.jpeg)
+![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/nm4.jpeg)
 
 ### Profanity Censoring 
 Using the Python package better-profanity, Teacher's Pet will catch profane words sent by members of the guild, delete the message, and re-send the exact message with the bad word(s) censored out. It will also catch profane words in messages which have been edited to incude bad words. This package supports censoring based off any non-alphabetical word dividers and swears with custom characters. NOTE: Currently the Bot does not censor swears which have had extra alphabetical characters added.
