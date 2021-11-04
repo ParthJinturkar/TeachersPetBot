@@ -17,3 +17,4 @@ The following changes have been made to TeachersPetBot
 - Voice channels are now automatically created on-run for each project group in the class, which should provide hangout spots for groups to discuss development.
 - Errors in event creation through !create has been fixed, it now properly waits for user input before moving to the next phase of event creation, allowing Exams, Assignments, and Office hours to be correctly scheduled.
 - Multiple source files have been updated to remove minor bugs, syntax errors, and clean up formatting.
+- Doubled the lines of code from 2.3 to 4.6k
