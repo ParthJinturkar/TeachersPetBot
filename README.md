@@ -90,6 +90,8 @@ When Teacher's Pet has been added to a new server as a bot, it will do the follo
 * Add the owner of the guild to the Instructor role
 * Create a #q-and-a channel if one doesn't already exist
 * Create a #calendar channel if one doesn't already exist
+* Create 4 voice channels for one to one interaction with TAs 
+* Create 40 voice channels (one for each group) with a limit of maximum 6 participants
 
 In addition to this auto-set up, there is also a command which allows a user with the Instructor role to give the same role to another user. This command will only work for users with the Instructor role already (for example, the guild owner).
 
