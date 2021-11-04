@@ -133,12 +133,18 @@ The bot contains functionality for polling with 2 choices (choose one) and multi
 ![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/multipoll.gif)
 
 ### Member Information
-The bot conatins functionality for getting information about a member using the username of the member. The command can only be used by the Instructor in instructor-commands channel. It retrieves the Display Name, ID, Account Creation Date and Time, Date and Time of joining the Server, Roles and the Highest Role of the member.
+The bot contains functionality for getting information about a member using the username of the member. The command can only be used by the Instructor in instructor-commands channel. It retrieves the Display Name, ID, Account Creation Date and Time, Date and Time of joining the Server, Roles and the Highest Role of the member.
 
 ![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
 
-### Profanity Censoring 
+### Take Event CSV
+The bot contains functionality that lets Instructor get an example CSV from bot using eventcsv command and upload it back to the bot using take command. This lets Instructor add all the events in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
+
+![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)4
+
+### Profanity Censoring 
 Using the Python package better-profanity, Teacher's Pet will catch profane words sent by members of the guild, delete the message, and re-send the exact message with the bad word(s) censored out. It will also catch profane words in messages which have been edited to incude bad words. This package supports censoring based off any non-alphabetical word dividers and swears with custom characters. NOTE: Currently the Bot does not censor swears which have had extra alphabetical characters added.
 
 ![alt text](https://github.com/shikhanair/TeachersPetBot/blob/main/images/profanity_example.PNG)
