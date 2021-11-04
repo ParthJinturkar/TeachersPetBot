@@ -40,6 +40,8 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 
 :open_file_folder: [!create command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/create.py) Start creating an event (Instructor command)  
 
+-----
+
 :open_file_folder: [!addhw command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
 
 :open_file_folder: [!changeduedate command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user update the due date.
