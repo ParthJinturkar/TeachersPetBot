@@ -148,7 +148,7 @@ This command lets the user display all the homeworks that are due this week for 
 ![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.gif)
 ![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.PNG)
 ![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme2.PNG)
-![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/nm3.jpeg)
+
 
 ### Profanity Censoring 
 Using the Python package better-profanity, Teacher's Pet will catch profane words sent by members of the guild, delete the message, and re-send the exact message with the bad word(s) censored out. It will also catch profane words in messages which have been edited to incude bad words. This package supports censoring based off any non-alphabetical word dividers and swears with custom characters. NOTE: Currently the Bot does not censor swears which have had extra alphabetical characters added.
