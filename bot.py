@@ -166,6 +166,10 @@ async def shutdown(ctx):
 # Description: run when the bot starts
 ###########################
 
+async def start_bot(guild):
+    await bot.wait_until_ready()
+    print("Bot is now online")
+
 async def create_voice_channels(guild):
     ''' run on bot startup '''
     for cat in guild.categories:
