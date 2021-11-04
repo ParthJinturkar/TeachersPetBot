@@ -26,47 +26,47 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 
 :open_file_folder: [!setInstructor command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/setInstructor.py) Set a server member to be an instructor (Instructor command)
 
-:open_file_folder: [!ask command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/ask_and_answer.py)  Ask a question  
+:open_file_folder: [!ask command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md)  Ask a question  
 
-:open_file_folder: [!answer command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/ask_and_answer.py) Answer a question  
+:open_file_folder: [!answer command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md) Answer a question  
 
-:open_file_folder: [!oh_enter_ command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/oh.py) Enter an office hour queue as an individual student 
+:open_file_folder: [!oh_enter_ command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue as an individual student 
 
-:open_file_folder: [!oh_enter_group_id command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/oh.py) Enter an office hour queue with a group of students  
+:open_file_folder: [!oh_enter_group_id command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue with a group of students  
 
-:open_file_folder: [!oh_exit command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/oh.py) Exit the office hour queue  
+:open_file_folder: [!oh_exit command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Exit the office hour queue  
 
-:open_file_folder: [!oh_next command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/oh.py) Go to next student in queue as an instructor (Instructor command)  
+:open_file_folder: [!oh_next command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Go to next student in queue as an instructor (Instructor command)  
 
-:open_file_folder: [!create command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/create.py) Start creating an event (Instructor command)  
+:open_file_folder: [!create command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/create.md) Start creating an event (Instructor command)  
 
 -----
 
-:open_file_folder: [!addhw command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
+:open_file_folder: [!addhw command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/addhw.md) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
 
-:open_file_folder: [!changeduedate command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user update the due date.
+:open_file_folder: [!changeduedate command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/changeduedate.md) This command lets the user update the due date.
 
-:open_file_folder: [!clearreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user delete all the reminders irrespective of courses or homeworks.
+:open_file_folder: [!clearreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/clearreminders.md) This command lets the user delete all the reminders irrespective of courses or homeworks.
 
-:open_file_folder: [!coursedue command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user display all the homeworks that are due for a specific course.
+:open_file_folder: [!coursedue command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/coursedue.md) This command lets the user display all the homeworks that are due for a specific course.
 
-:open_file_folder: [!deletereminder command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user delete a reminder for a specified coursename and homework.
+:open_file_folder: [!deletereminder command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/deletereminder.md) This command lets the user delete a reminder for a specified coursename and homework.
 
-:open_file_folder: [!duethisweek command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!duethisweek command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/duethisweek.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!duetoday command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user display all the homeworks that are due today for all the courses.
+:open_file_folder: [!duetoday command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/duetoday.md) This command lets the user display all the homeworks that are due today for all the courses.
 
-:open_file_folder: [!listreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user display all the homeworks that are due for all the courses.
+:open_file_folder: [!listreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/listreminders.md) This command lets the user display all the homeworks that are due for all the courses.
 
-:open_file_folder: [!notify command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/notification.py) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!notify command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/notifyme.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!whois command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/member_information.py) This command lets the Instructors get information about the member using his/her username. 
+:open_file_folder: [!whois command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/member_information.md) This command lets the Instructors get information about the member using his/her username. 
 
-:open_file_folder: [!multipoll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
+:open_file_folder: [!multipoll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/multipoll.md) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
 
-:open_file_folder: [!poll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/polling.py) This command lets the Instructors create a poll with 2 choices.
+:open_file_folder: [!poll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/poll.md) This command lets the Instructors create a poll with 2 choices.
 
-:open_file_folder: [!take command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/take.py) and :open_file_folder: [!eventcsv command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/take.py) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
+:open_file_folder: [!take command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
 
 <h2 align="center"> Installation and Running </h2>
