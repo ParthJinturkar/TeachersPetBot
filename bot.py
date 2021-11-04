@@ -34,6 +34,7 @@ async def on_ready():
     db.add_Tables(db)
     guild = discord.utils.get(bot.guilds, name=GUILD)
     for guild in bot.guilds:
+        await start_bot(guild)
         await create_voice_channels(guild)
     event_creation.init(bot)
     office_hours.init(bot)
@@ -45,9 +46,9 @@ async def on_ready():
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
     bot.load_extension("jishaku")
-    # await bot.change_presence(
-    #     activity=discord.Activity(type=discord.ActivityType.watching, name="Over This Server")
-    # )
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name="Over This Server")
+    )
     print("READY!")
 
     event_creation.init(bot)
@@ -96,7 +97,7 @@ async def on_guild_join(guild):
                 await channel.send("course-calendar channel has been added!")
 
         break
-
+    await start_bot(guild)
     await create_voice_channels(guild)
 
 
@@ -160,21 +161,62 @@ async def shutdown(ctx):
     db.delete_db()
     exit()
 
-    
-###########################
-# Function: create_voice_channels()
-# Description: run when the bot starts
-###########################
-
+############################
+#    Function: start_bot(guild)
+#    Description: run when the bot starts or when a new guild is added
+#    Inputs:
+#    - guild : the guild the bot is added to
+#    Outputs:
+#     -
+# ###########################
 async def start_bot(guild):
-    await bot.wait_until_ready()
+    ''' run when the bot starts or when a new guild is added '''
     print("Bot is now online")
+    check = False
 
+    for role in guild.roles:
+        if role.name == "Instructor":
+            check = True
+
+            check2 = False
+
+            for role2 in guild.owner.roles:
+                if role2.name == "Instructor":
+                    check2 = True
+                    break
+
+            if not check2:
+                await guild.owner.add_roles(role, reason=None, atomic=True)
+            break
+
+    if not check:
+        role = await guild.create_role(name="Instructor", colour=discord.Colour(0x0062ff),
+                                       permissions=discord.Permissions.all())
+        await guild.owner.add_roles(role, reason=None, atomic=True)
+
+    check = False
+
+    for channel in guild.text_channels:
+        if channel.name == "q-and-a":
+            check = True
+            break
+    if not check:
+        await guild.create_text_channel('q-and-a')
+
+
+###########################
+#    Function: create_voice_channels()
+#    Description: run when the bot starts or when a new guild is added
+#    Inputs:
+#    - guild to create voice channels in
+#    Outputs:
+#     -
+###########################
 async def create_voice_channels(guild):
     ''' run on bot startup '''
-    for cat in guild.categories:
-        if cat.name == 'General Office Hours' or cat.name == 'Teams':
-            return
+    # for cat in guild.categories:
+    #     if cat.name == 'General Office Hours' or cat.name == 'Teams':
+    #         return
 
     for channel in guild.voice_channels:
         if channel.category.name != 'General Office Hours' or channel.category.name != 'Teams':
