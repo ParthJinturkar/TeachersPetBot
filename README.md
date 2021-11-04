@@ -56,11 +56,15 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 
 `!listreminders` This command lets the user display all the homeworks that are due for all the courses.
 
+`!notifyme` This command lets the user display all the homeworks that are due this week for all the courses.
+
 `!whois` This command lets the Instructors get information about the member using his/her username. 
 
 `!multipoll` This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
 
 `!poll` This command lets the Instructors create a poll with 2 choices.
+
+`!take` and `!eventcsv` The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
 
 <h2 align="center"> Installation and Running </h2>
