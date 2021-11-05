@@ -159,12 +159,14 @@ Using the Python package better-profanity, Teacher's Pet will catch profane word
 
 This bot has endless possibilities for functionality. Features which we are interested in adding but did not have time for include but are not limited to:
 * Command specific voice channel creation
-* Track Participation of Students
+* Track Participation of Students and their Ranking
 * Sentiiment Analysis of messages being sent on the server
 * Attendance Tracker
 * Conversion of bot to JavaScript
-* Multi-Guild Handling
+* Data Visualization 
+* Link Collection
 * Cloud Hosting
+
 
 
 For a full list of future features, upgrades, and bug fixes, please visit our [Project 2 Board](https://github.com/War-Keeper/TeachersPetBot/projects/1).
