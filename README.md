@@ -5,11 +5,11 @@
 <h2 align="center"> Streamline Your Class Discord</h1>
 
 
-[![DOI](https://zenodo.org/badge/416493891.svg)](https://zenodo.org/badge/latestdoi/416493891)
+[![DOI](https://zenodo.org/badge/427178638.svg)](https://zenodo.org/badge/latestdoi/427178638)
 ![Python](https://img.shields.io/badge/python-v3.7+-brightgreen.svg)
-![GitHub](https://img.shields.io/github/license/War-Keeper/TeachersPetBot)
-![GitHub issues](https://img.shields.io/github/issues/War-Keeper/TeachersPetBot)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/War-Keeper/TeachersPetBot)
+![GitHub](https://img.shields.io/github/license/qchen59/TeachersPetBot)
+![GitHub issues](https://img.shields.io/github/issues/qchen59/TeachersPetBot)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/qchen59/TeachersPetBot)
 ![Lines of code](https://img.shields.io/tokei/lines/github/War-Keeper/TeachersPetBot)
 [![codecov](https://codecov.io/gh/War-Keeper/TeachersPetBot/branch/main/graph/badge.svg?token=fOccwr9Nak)](https://codecov.io/gh/War-Keeper/TeachersPetBot)
 ![Build Status](https://github.com/War-Keeper/TeachersPetBot/actions/workflows/test.yml/badge.svg)
