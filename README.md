@@ -4,15 +4,19 @@
   
 <h2 align="center"> Streamline Your Class Discord</h1>
 
-
+[![Build Status](https://app.travis-ci.com/qchen59/TeachersPetBot.svg?branch=main)](https://app.travis-ci.com/github/qchen59/TeachersPetBot)
+[![Coverage Status](https://coveralls.io/repos/github/qchen59/TeachersPetBot/badge.svg?branch=main)](https://coveralls.io/github/qchen59/TeachersPetBot?branch=main)
 [![DOI](https://zenodo.org/badge/427178638.svg)](https://zenodo.org/badge/latestdoi/427178638)
 ![Python](https://img.shields.io/badge/python-v3.7+-brightgreen.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![GitHub](https://img.shields.io/github/license/qchen59/TeachersPetBot)
-![GitHub issues](https://img.shields.io/github/issues/qchen59/TeachersPetBot)
+[![GitHub issues](https://img.shields.io/github/issues/qchen59/TeachersPetBot)](https://github.com/qchen59/TeachersPetBot/issues)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/qchen59/TeachersPetBot)
-![Lines of code](https://img.shields.io/tokei/lines/github/War-Keeper/TeachersPetBot)
-[![codecov](https://codecov.io/gh/War-Keeper/TeachersPetBot/branch/main/graph/badge.svg?token=fOccwr9Nak)](https://codecov.io/gh/War-Keeper/TeachersPetBot)
-![Build Status](https://github.com/War-Keeper/TeachersPetBot/actions/workflows/test.yml/badge.svg)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/qchen59/TeachersPetBot?include_prereleases)](https://github.com/qchen59/TeachersPetBot/releases)
+[![GitHub all releases](https://img.shields.io/github/downloads/qchen59/TeachersPetBot/total)](https://github.com/qchen59/TeachersPetBot/releases)
+[![Platform](https://img.shields.io/badge/platform-discord-blue)](https://discord.com/)
+![Lines of code](https://img.shields.io/tokei/lines/github/qchen59/TeachersPetBot)
+
 
   Click Below to Watch Our Video!
 [![Watch the video](https://github.com/shikhanair/TeachersPetBot/blob/main/images/teacherspetbot.png)](https://youtu.be/tExF88LHqgE)
