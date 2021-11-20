@@ -23,69 +23,69 @@
   
   
 
-Software Engineering Project 2 for CSC 510
+Software Engineering Project 3 for CSC 510
 
 Teacher's Pet is a Discord Bot for class instructors to streamline their Discord servers. Discord is a great tool for communication and its functionalities can be enhanced by bots and integrations. There are many tools for organizing classes, but they are often hard to manage. They rarely have good communication mechanisms or ability to connect with other tools. This bot allows instructors to host their classes on Discord, combining communication tools with functionality for assignments, scheduling, and office hours. Instructors and students no longer have to go between platforms to view course details, forums, events, calls, and more.
 
 <h2 align="center"> Bot Commands </h2>
 
-:open_file_folder: [!setInstructor command](https://github.com/War-Keeper/TeachersPetBot/blob/main/cogs/setInstructor.py) Set a server member to be an instructor (Instructor command)
+:open_file_folder: [!setInstructor command](https://github.com/qchen59/TeachersPetBot/blob/main/cogs/setInstructor.py) Set a server member to be an instructor (Instructor command)
 
-:open_file_folder: [!ask command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md)  Ask a question  
+:open_file_folder: [!ask command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md)  Ask a question  
 
-:open_file_folder: [!answer command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md) Answer a question  
+:open_file_folder: [!answer command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md) Answer a question  
 
-:open_file_folder: [!oh_enter_ command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue as an individual student 
+:open_file_folder: [!oh_enter_ command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue as an individual student 
 
-:open_file_folder: [!oh_enter_group_id command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue with a group of students  
+:open_file_folder: [!oh_enter_group_id command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue with a group of students  
 
-:open_file_folder: [!oh_exit command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Exit the office hour queue  
+:open_file_folder: [!oh_exit command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Exit the office hour queue  
 
-:open_file_folder: [!oh_next command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Go to next student in queue as an instructor (Instructor command)  
+:open_file_folder: [!oh_next command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Go to next student in queue as an instructor (Instructor command)  
 
-:open_file_folder: [!create command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/create.md) Start creating an event (Instructor command)  
+:open_file_folder: [!create command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/create.md) Start creating an event (Instructor command)  
 
 -----
 
-:open_file_folder: [!addhw command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/addhw.md) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
+:open_file_folder: [!addhw command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/addhw.md) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
 
-:open_file_folder: [!changeduedate command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/changeduedate.md) This command lets the user update the due date.
+:open_file_folder: [!changeduedate command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/changeduedate.md) This command lets the user update the due date.
 
-:open_file_folder: [!clearreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/clearreminders.md) This command lets the user delete all the reminders irrespective of courses or homeworks.
+:open_file_folder: [!clearreminders command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/clearreminders.md) This command lets the user delete all the reminders irrespective of courses or homeworks.
 
-:open_file_folder: [!coursedue command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/coursedue.md) This command lets the user display all the homeworks that are due for a specific course.
+:open_file_folder: [!coursedue command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/coursedue.md) This command lets the user display all the homeworks that are due for a specific course.
 
-:open_file_folder: [!deletereminder command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/deletereminder.md) This command lets the user delete a reminder for a specified coursename and homework.
+:open_file_folder: [!deletereminder command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/deletereminder.md) This command lets the user delete a reminder for a specified coursename and homework.
 
-:open_file_folder: [!duethisweek command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/duethisweek.md) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!duethisweek command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duethisweek.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!duetoday command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/duetoday.md) This command lets the user display all the homeworks that are due today for all the courses.
+:open_file_folder: [!duetoday command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duetoday.md) This command lets the user display all the homeworks that are due today for all the courses.
 
-:open_file_folder: [!listreminders command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/listreminders.md) This command lets the user display all the homeworks that are due for all the courses.
+:open_file_folder: [!listreminders command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/listreminders.md) This command lets the user display all the homeworks that are due for all the courses.
 
-:open_file_folder: [!notify command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/notifyme.md) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!notify command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/notifyme.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!whois command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/member_information.md) This command lets the Instructors get information about the member using his/her username. 
+:open_file_folder: [!whois command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/member_information.md) This command lets the Instructors get information about the member using his/her username. 
 
-:open_file_folder: [!multipoll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/multipoll.md) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
+:open_file_folder: [!multipoll command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/multipoll.md) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
 
-:open_file_folder: [!poll command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/poll.md) This command lets the Instructors create a poll with 2 choices.
+:open_file_folder: [!poll command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/poll.md) This command lets the Instructors create a poll with 2 choices.
 
-:open_file_folder: [!take command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv command](https://github.com/War-Keeper/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
+:open_file_folder: [!take command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
 
 <h2 align="center"> Installation and Running </h2>
 
 #### Tools and Libraries Used
-In addition to the packages from [requirements.txt](https://github.com/War-Keeper/TeachersPetBot/blob/main/requirements.txt) which need to be installed, please have the following installed on your machine:
+In addition to the packages from [requirements.txt](https://github.com/qchen59/TeachersPetBot/blob/main/requirements.txt) which need to be installed, please have the following installed on your machine:
 * [Python 3.9.7](https://www.python.org/downloads/)
 * [Sqlite](https://www.sqlite.org/download.html)
 
-To install and run Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/War-Keeper/TeachersPetBot/blob/main/Installation.md).
+To install and run Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/qchen59/TeachersPetBot/blob/main/Installation.md).
 
 <h2 align="center"> Testing </h2>
 
-To run tests on the Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/War-Keeper/TeachersPetBot/blob/main/Installation.md).
+To run tests on the Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/qchen59/TeachersPetBot/blob/main/Installation.md).
 
 <h2 align="center"> TeachersPetBot Features </h2>
 
@@ -110,7 +110,7 @@ To ask a question, type `!ask "Question"` in the #q-and-a channel. Example: `!as
 ![image](https://user-images.githubusercontent.com/32313919/135383816-430792aa-b8c3-4d6b-8176-1621293d089e.png)  
 To answer a question type `!answer <question_number> "Answer"` in the #q-and-a channel. Example: `!answer 1 "Oct 12"`.  
 
-![!qna](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/qna.gif)
+![!qna](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/createqna/qna.gif)
 
 
 ### Events/Calendar
@@ -130,28 +130,28 @@ The bot contains functionality for handling TA office hours. After a TA office h
 ### Polling
 The bot contains functionality for polling with 2 choices (choose one) and multi-choice polling with specified number of choices (2 to 10). The polls can only be created by the Instructor and commands to create them can only be used in instructor-commands channel.
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/poll.gif)
+![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/polling/poll.gif)
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/polling/multipoll.gif)
+![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/polling/multipoll.gif)
 
 ### Member Information
 The bot contains functionality for getting information about a member using the username of the member. The command can only be used by the Instructor in instructor-commands channel. It retrieves the Display Name, ID, Account Creation Date and Time, Date and Time of joining the Server, Roles and the Highest Role of the member.
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
+![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
 
 ### Take Event CSV
 The bot contains functionality that lets Instructor get an example CSV from bot using eventcsv command and upload it back to the bot using take command. This lets Instructor add all the events in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
+![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
 
-![image](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)
+![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)
 
 ### Notification Module
 This command lets the user display all the homeworks that are due this week for all the courses. Whenever a user wants to be reminded about an upcoming project/assignment he/she can just use a notification command to get the bot to remind the user about the same. Notification can also be sent to email or text.
 
-![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.gif)
-![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.PNG)
-![!notifyme](https://github.com/War-Keeper/TeachersPetBot/blob/main/images/gifs/notifications/notifyme2.PNG)
+![!notifyme](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.gif)
+![!notifyme](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/notifications/notifyme.PNG)
+![!notifyme](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/notifications/notifyme2.PNG)
 
 
 ### Profanity Censoring 
@@ -173,7 +173,7 @@ This bot has endless possibilities for functionality. Features which we are inte
 
 
 
-For a full list of future features, upgrades, and bug fixes, please visit our [Project 2 Board](https://github.com/War-Keeper/TeachersPetBot/projects/1).
+For a full list of future features, upgrades, and bug fixes, please visit our [Project 2 Board](https://github.com/qchen59/TeachersPetBot/projects/1).
 
 <h2 align="center"> How to Contribute? </h2>
 
@@ -187,13 +187,14 @@ This project is licensed under the [MIT License](https://github.com/shikhanair/T
 
 <h3> Team Members </h3>
 
-#### Pradhan Chetan
-#### Tanya Chu
-#### Steve Jones
-#### Shikha Nair
-#### Alex Snezhko
-#### Evan Brown
-#### Chaitanya Patel
-#### Sumedh Salvi
-#### Kunwar Vidhan
-#### Sunil Upare
+[Qiuyu Chen](https://github.com/qchen59)
+
+[Parth Jinturkar](https://github.com/ParthJinturkar)
+
+[Yasitha Nisansala Rajapaksha](https://github.com/Arcane94)
+
+[Hugh Wright](https://github.com/hughman98)
+
+[Jiacheng Yang](https://github.com/Fishish)
+
+
