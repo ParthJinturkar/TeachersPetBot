@@ -6,7 +6,6 @@ BOT = None
 CALENDAR_EMBED = None
 MSG = None
 
-
 ###########################
 # Function: display_events
 # Description: Sends or updates the embed for the calendar
@@ -21,11 +20,14 @@ async def display_events(ctx):
     update_calendar()
 
     # if it was never created, send the first message
-    if not MSG:
+    if MSG is None:
         MSG = await ctx.send(embed=CALENDAR_EMBED)
     else:
-        # otherwise, edit the saved message from earlier
-        await ctx.edit(embed=CALENDAR_EMBED)
+        # otherwise, delete the existing calender
+        async for msg in MSG.channel.history(limit=2):
+            await msg.delete()
+        # Adding the updated calender
+        await MSG.channel.send(embed=CALENDAR_EMBED)
 
 
 ###########################
