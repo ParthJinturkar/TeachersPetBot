@@ -23,37 +23,39 @@ async def get_times(ctx, bot, event_type):
     """
     Helper function for acquiring the times an instructor wants event to be held during
     """
-    await ctx.send(
-        f'Which times would you like the {event_type} to be on?\n'
-        'Enter in format `<begin_time>-<end_time>`, and times should be in 24-hour format.\n'
-        f'For example, setting {event_type} from 9:30am to 1pm can be done as 9:30-13'
-    )
 
-    def check(m):
-        return m.content is not None and m.channel == ctx.channel and m.author == ctx.author
+    # Looping until a valid time is entered.
+    while True:
+        await ctx.send(
+            f'Which times would you like the {event_type} to be on?\n'
+            'Enter in format `<begin_time>-<end_time>`, and times should be in 24-hour format.\n'
+            f'For example, setting {event_type} from 9:30am to 1pm can be done as 9:30-13'
+        )
 
-    msg = await bot.wait_for('message', check=check)
-    times = msg.content.strip().split('-')
+        def check(m):
+            return m.content is not None and m.channel == ctx.channel and m.author == ctx.author
 
-    if len(times) != 2:
-        await ctx.send('Incorrect input. Aborting')
-        return
+        msg = await bot.wait_for('message', check=check)
+        times = msg.content.strip().split('-')
 
-    new_times = []
-    new_time = None
-    for t in times:
-        parts = t.split(':')
-        if len(parts) == 1:
-            new_time = (int(parts[0]), 0)
-        elif len(parts) == 2:
-            new_time = (int(parts[0]), int(parts[1]))
-        new_times.append(new_time)
+        if len(times) != 2:
+            await ctx.send("Incorrect input. Please enter the time in the expected format.\n")
+            continue
 
-    if len(new_times) != 2:
-        await ctx.send("Incorrect input. Aborting event creation. Type '!create' to restart.")
-        return
+        new_times = []
+        new_time = None
+        for t in times:
+            parts = t.split(':')
+            if len(parts) == 1:
+                new_time = (int(parts[0]), 0)
+            elif len(parts) == 2:
+                new_time = (int(parts[0]), int(parts[1]))
+            new_times.append(new_time)
 
-    return new_times
+        if len(new_times) != 2:
+            await ctx.send("Incorrect input. Please enter the time in the expected format.\n")
+            continue
+        return new_times
 
 
 ###########################
@@ -153,6 +155,7 @@ async def create_event(ctx, bot, testing_mode):
                     await ctx.send("Aborting event creation. Type '!create' to restart.")
                     return
 
+                # Checking whether the format is valid. If invalid, continue the loop.
                 try:
                     time = datetime.datetime.strptime(time, '%H:%M')
                 except ValueError:
@@ -173,6 +176,7 @@ async def create_event(ctx, bot, testing_mode):
             await ctx.send('Assignment successfully created!')
             await cal.display_events(None)
 
+        # If 'exam' is clicked, this will run
         elif button_clicked == 'exam':
             def check(m):
                 return m.content is not None and m.channel == ctx.channel and m.author == ctx.author
@@ -193,23 +197,23 @@ async def create_event(ctx, bot, testing_mode):
                 await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
-            await ctx.send("What is the date of this exam?\nEnter in format `MM-DD-YYYY` (Type 'quit' to abort)")
-            msg = await bot.wait_for('message', check=check)
-            date = msg.content.strip()
+            # Looping until a valid date is entered.
+            while True:
+                await ctx.send("What is the date of this exam?\nEnter in format `MM-DD-YYYY` (Type 'quit' to abort)")
+                msg = await bot.wait_for('message', check=check)
+                date = msg.content.strip()
 
-            if date == 'quit':
-                await ctx.send("Aborting event creation. Type '!create' to restart.")
-                return
+                if date == 'quit':
+                    await ctx.send("Aborting event creation. Type '!create' to restart.")
+                    return
 
-            is_valid = len(date) == 10
-            try:
-                datetime.datetime.strptime(date, '%m-%d-%Y')
-            except ValueError:
-                is_valid = False
-
-            if not is_valid:
-                await ctx.send("Invalid date. Aborting event creation. Type '!create' to restart.")
-                return
+                # Checking whether the format is valid. If invalid, continue the loop.
+                try:
+                    datetime.datetime.strptime(date, '%m-%d-%Y')
+                except ValueError:
+                    await ctx.send("Invalid date. Please enter the date in the expected format.\n")
+                    continue
+                break
 
             times = await get_times(ctx, bot, 'exam')
             if not times:
