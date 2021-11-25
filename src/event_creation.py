@@ -73,7 +73,8 @@ async def create_event(ctx, testing_mode):
             components=[
                 Button(style=ButtonStyle.blue, label='Assignment', custom_id='assignment'),
                 Button(style=ButtonStyle.green, label='Exam', custom_id='exam'),
-                Button(style=ButtonStyle.red, label='Office Hour', custom_id='office-hour')
+                Button(style=ButtonStyle.red, label='Office Hour', custom_id='office-hour'),
+                Button(style=ButtonStyle.gray, label='Custom Event', custom_id='custom-event')
             ],
         )
 
