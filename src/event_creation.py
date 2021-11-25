@@ -216,9 +216,6 @@ async def create_event(ctx, bot, testing_mode):
                 break
 
             times = await get_times(ctx, bot, 'exam')
-            if not times:
-                return
-
             ((begin_hour, begin_minute), (end_hour, end_minute)) = times
 
             db.mutation_query(
@@ -232,7 +229,9 @@ async def create_event(ctx, bot, testing_mode):
             await ctx.send('Exam successfully created!')
             await cal.display_events(ctx)
 
+        # If 'Office Hour' is clicked, this will run
         elif button_clicked == 'office-hour':
+            # Adding instructors in the server to a list
             all_instructors = []
             for mem in ctx.guild.members:
                 is_instructor = next((role.name == 'Instructor'
@@ -241,7 +240,7 @@ async def create_event(ctx, bot, testing_mode):
                     all_instructors.append(mem)
 
             if len(all_instructors) < 1:
-                await ctx.send('There are no instructors in the server. Aborting')
+                await ctx.send('There are no instructors in the server. Aborting event creation.')
                 return
 
             options = [SelectOption(label=instr.name, value=instr.name)
@@ -288,9 +287,6 @@ async def create_event(ctx, bot, testing_mode):
             day_num = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun').index(day)
 
             times = await get_times(ctx, bot, 'office hour')
-            if not times:
-                return
-
             ((begin_hour, begin_minute), (end_hour, end_minute)) = times
 
             office_hours.add_office_hour(
