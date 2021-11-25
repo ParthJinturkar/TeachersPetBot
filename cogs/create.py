@@ -31,7 +31,7 @@ class Create(commands.Cog):
         ''' run event creation interface '''
         TESTING_MODE = False
 
-        await event_creation.create_event(ctx, False)
+        await event_creation.create_event(ctx, self.bot, False)
 
 # -------------------------------------
 # add the file to the bot's cog system
