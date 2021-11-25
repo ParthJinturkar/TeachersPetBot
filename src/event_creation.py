@@ -68,7 +68,7 @@ async def create_event(ctx, bot, testing_mode):
     """
     Event creation subroutine
     """
-
+    # creating buttons for event types
     if ctx.channel.name == 'instructor-commands':
         await ctx.send(
             'Which type of event would you like to create?',
@@ -79,10 +79,11 @@ async def create_event(ctx, bot, testing_mode):
                 Button(style=ButtonStyle.gray, label='Custom Event', custom_id='custom-event')
             ],
         )
-
+        # Getting the ID of the clicked button
         button_clicked = ((await utils.wait_for_msg(bot, ctx.channel)).content
                           if testing_mode else (await bot.wait_for('button_click')).custom_id)
 
+        # If 'assignment' is clicked, this will run
         if button_clicked == 'assignment':
             def check(m):
                 return m.content is not None and m.channel == ctx.channel and m.author == ctx.author
@@ -96,20 +97,22 @@ async def create_event(ctx, bot, testing_mode):
                 await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
-            await ctx.send("Link associated with submission? Type NA if none. "
-                           "Type 'quit' to abort.")
-            msg = await bot.wait_for("message", check=check)
-            link = msg.content.strip()
+            # Looping until a valid URL is entered (or 'quit' is entered).
+            while True:
+                await ctx.send("Link associated with submission? Type NA if none. Type 'quit' to abort.")
+                msg = await bot.wait_for("message", check=check)
+                link = msg.content.strip()
 
-            if link == 'quit':
-                await ctx.send("Aborting event creation. Type '!create' to restart.")
-                return
-            elif link == 'NA':
-                link = False
+                if link == 'quit':
+                    await ctx.send("Aborting event creation. Type '!create' to restart.")
+                    return
+                elif link == 'NA':
+                    link = False
 
-            if link and not validators.url(link):
-                await ctx.send("Invalid URL. Aborting event creation. Type '!create' to restart.")
-                return
+                if link and not validators.url(link):
+                    await ctx.send("Invalid URL. Please enter a valid URL.\n")
+                else:
+                    break
 
             await ctx.send("Extra description for assignment? Type NA if none. "
                            "Type 'quit' to abort")
@@ -120,42 +123,49 @@ async def create_event(ctx, bot, testing_mode):
                 await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
-            await ctx.send("What is the due date of this assignment?\n" +
-                           "Enter in format `MM-DD-YYYY`. Type 'quit' to abort")
-            msg = await bot.wait_for("message", check=check)
-            date = msg.content.strip()
+            # Looping until a valid date is entered.
+            while True:
+                await ctx.send("What is the due date of this assignment?\n "
+                               "Enter in format `MM-DD-YYYY`. Type 'quit' to abort")
+                msg = await bot.wait_for("message", check=check)
+                date = msg.content.strip()
 
-            if date == 'quit':
-                await ctx.send("Aborting event creation. Type '!create' to restart.")
-                return
-
-            is_valid = len(date) == 10
-            try:
-                datetime.datetime.strptime(date, '%m-%d-%Y')
-            except ValueError:
-                is_valid = False
-
-            if not is_valid:
-                await ctx.send("Invalid date. Aborting event creation. Type '!create' to restart.")
-                return
-
-            await ctx.send('What time is this assignment due?\nEnter in 24-hour format' +
-                           ' e.g. an assignment due at 11:59pm can be inputted as 23:59')
-            msg = await bot.wait_for("message", check=check)
-            t = msg.content.strip()
-
-            try:
-                t = datetime.datetime.strptime(t, '%H:%M')
-            except ValueError:
-                try:
-                    t = datetime.datetime.strptime(t, '%H')
-                except ValueError:
-                    await ctx.send("Incorrect input. Aborting event creation. Type '!create' to restart.")
+                if date == 'quit':
+                    await ctx.send("Aborting event creation. Type '!create' to restart.")
                     return
+
+                # Checking whether the format is valid. If invalid, continue the loop.
+                try:
+                    datetime.datetime.strptime(date, '%m-%d-%Y')
+                except ValueError:
+                    await ctx.send("Invalid date. Please enter the date in the expected format.\n")
+                    continue
+                break
+
+            # Looping until a valid time is entered.
+            while True:
+                await ctx.send("What time is this assignment due?\nEnter in 24-hour format. "
+                               "e.g. an assignment due at 11:59pm can be inputted as 23:59. Type 'quit to abort.")
+                msg = await bot.wait_for("message", check=check)
+                time = msg.content.strip()
+
+                if time == 'quit':
+                    await ctx.send("Aborting event creation. Type '!create' to restart.")
+                    return
+
+                try:
+                    time = datetime.datetime.strptime(time, '%H:%M')
+                except ValueError:
+                    try:
+                        time = datetime.datetime.strptime(time, '%H')
+                    except ValueError:
+                        await ctx.send("Incorrect input. Please enter the time in the expected format.\n")
+                        continue
+                break
 
             db.mutation_query(
                 'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?)',
-                [ctx.guild.id, title, link, description, date, t.hour, t.minute]
+                [ctx.guild.id, title, link, description, date, time.hour, time.minute]
             )
 
             # TODO add assignment to events list
