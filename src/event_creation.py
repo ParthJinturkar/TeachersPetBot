@@ -167,25 +167,28 @@ async def create_event(ctx, bot, testing_mode):
             def check(m):
                 return m.content is not None and m.channel == ctx.channel and m.author == ctx.author
 
-            await ctx.send('What is the title of this exam?')
+            await ctx.send("What is the title of this exam? (Type 'quit' to abort)")
             msg = await bot.wait_for("message", check=check)
             title = msg.content.strip()
 
             if title == 'quit':
+                await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
-            await ctx.send('What content is this exam covering?')
+            await ctx.send("What content is this exam covering? (Type 'quit' to abort)")
             msg = await bot.wait_for('message', check=check)
             description = msg.content.strip()
 
-            if description == 'quit' or description == 'exit':
+            if description == 'quit':
+                await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
-            await ctx.send('What is the date of this exam?\nEnter in format `MM-DD-YYYY`')
+            await ctx.send("What is the date of this exam?\nEnter in format `MM-DD-YYYY` (Type 'quit' to abort)")
             msg = await bot.wait_for('message', check=check)
             date = msg.content.strip()
 
             if date == 'quit':
+                await ctx.send("Aborting event creation. Type '!create' to restart.")
                 return
 
             is_valid = len(date) == 10
@@ -195,7 +198,7 @@ async def create_event(ctx, bot, testing_mode):
                 is_valid = False
 
             if not is_valid:
-                await ctx.send('Invalid date. Aborting.')
+                await ctx.send("Invalid date. Aborting event creation. Type '!create' to restart.")
                 return
 
             times = await get_times(ctx, bot, 'exam')
@@ -224,7 +227,7 @@ async def create_event(ctx, bot, testing_mode):
                     all_instructors.append(mem)
 
             if len(all_instructors) < 1:
-                await ctx.send('There are no instructors in the guild. Aborting')
+                await ctx.send('There are no instructors in the server. Aborting')
                 return
 
             options = [SelectOption(label=instr.name, value=instr.name)
