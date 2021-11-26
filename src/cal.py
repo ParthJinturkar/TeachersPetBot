@@ -6,6 +6,7 @@ BOT = None
 CALENDAR_EMBED = None
 MSG = None
 
+
 ###########################
 # Function: display_events
 # Description: Sends or updates the embed for the calendar
@@ -13,7 +14,9 @@ MSG = None
 #      - ctx: context of function activation
 ###########################
 async def display_events(ctx):
-    ''' sends the embed to the channel and edits it to update it as well '''
+    """
+    sends the embed to the channel and edits it to update it as well
+    """
     global MSG
 
     # recreate the embed from the database
@@ -35,7 +38,9 @@ async def display_events(ctx):
 # Description: Builds the calendar embed
 ###########################
 def update_calendar():
-    ''' create the calendar embed, it is a global so also updates it '''
+    """
+    create the calendar embed, it is a global so also updates it
+    """
     global CALENDAR_EMBED
 
     # create an Embed with a title and description of color 'currently BLUE'
@@ -112,8 +117,8 @@ def update_calendar():
 
     # mark the time that this was done for both creation and editing
     # NOTE - we put in EST because we are EST
-    timeNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' EST'
-    CALENDAR_EMBED.set_footer(text=f"{timeNow}")
+    time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' EST'
+    CALENDAR_EMBED.set_footer(text=f"{time_now}")
 
 
 ###########################
@@ -123,7 +128,9 @@ def update_calendar():
 #      - b: bot
 ###########################
 async def init(b):
-    ''' initialize the calendar '''
+    """
+    Initializes the calendar
+    """
     global BOT
 
     BOT = b
