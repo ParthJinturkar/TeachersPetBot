@@ -14,18 +14,23 @@ MSG = None
 #      - ctx: context of function activation
 ###########################
 async def display_events(ctx):
-    ''' sends the embed to the channel and edits it to update it as well '''
+    """
+    sends the embed to the channel and edits it to update it as well
+    """
     global MSG
 
     # recreate the embed from the database
     update_calendar()
 
     # if it was never created, send the first message
-    if not MSG:
+    if MSG is None:
         MSG = await ctx.send(embed=CALENDAR_EMBED)
     else:
-        # otherwise, edit the saved message from earlier
-        await ctx.edit(embed=CALENDAR_EMBED)
+        # otherwise, delete the existing calender
+        async for msg in MSG.channel.history(limit=2):
+            await msg.delete()
+        # Adding the updated calender
+        await MSG.channel.send(embed=CALENDAR_EMBED)
 
 
 ###########################
@@ -33,7 +38,9 @@ async def display_events(ctx):
 # Description: Builds the calendar embed
 ###########################
 def update_calendar():
-    ''' create the calendar embed, it is a global so also updates it '''
+    """
+    create the calendar embed, it is a global so also updates it
+    """
     global CALENDAR_EMBED
 
     # create an Embed with a title and description of color 'currently BLUE'
@@ -43,7 +50,7 @@ def update_calendar():
     # make a list that contains the string representing the
     # event that has the comparison item as the first index
     # which is the date, we are comparing as strings but still works for ordering events by date
-    # do this for the events we care about in the calendar 'assignments and exams'
+    # do this for the events we care about in the calendar 'assignments, exams, and custom events'
     assignments = []
     for title, link, desc, date, due_hr, due_min in db.select_query(
             'SELECT ' +
@@ -70,9 +77,33 @@ def update_calendar():
         exams.append([f'{date} {begin_hr}:{begin_min}',
                       f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
 
+    custom_events = []
+    for title, link, desc, date, due_hr, due_min, begin_hr, begin_min, end_hr, end_min in db.select_query(
+            'SELECT ' +
+            'title, link, desc, date, due_hr, due_min, begin_hr, begin_min, end_hr, end_min ' +
+            'FROM ' +
+            'custom_events ' +
+            'ORDER BY ' +
+            'date ASC, ' +
+            'due_hr ASC, '
+            'due_min ASC, '
+            'begin_hr ASC, '
+            'begin_min ASC'):
+        custom_events.append([f'{date} {due_hr}:{due_min}\n'
+                              f'{begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
+
     # get current time for comparison and make sure it is of same string format
     current_time = datetime.now().strftime('%m-%d-%Y %H:%M')
     # Time in EST: 2017-01-19 08:06:14
+
+    special_events = ''
+    if len(custom_events) == 0:
+        special_events = "No special events"
+    else:
+        for each in custom_events:
+            special_events += each[0]
+
+    CALENDAR_EMBED.add_field(name="Special Events", value=special_events, inline=True)
 
     i = 0
     j = 0
@@ -110,8 +141,8 @@ def update_calendar():
 
     # mark the time that this was done for both creation and editing
     # NOTE - we put in EST because we are EST
-    timeNow = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' EST'
-    CALENDAR_EMBED.set_footer(text=f"{timeNow}")
+    time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' EST'
+    CALENDAR_EMBED.set_footer(text=f"{time_now}")
 
 
 ###########################
@@ -121,7 +152,9 @@ def update_calendar():
 #      - b: bot
 ###########################
 async def init(b):
-    ''' initialize the calendar '''
+    """
+    Initializes the calendar
+    """
     global BOT
 
     BOT = b

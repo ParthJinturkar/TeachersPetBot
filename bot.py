@@ -36,7 +36,6 @@ async def on_ready():
     for guild in bot.guilds:
         await start_bot(guild)
         await create_voice_channels(guild)
-    event_creation.init(bot)
     office_hours.init(bot)
     print(
         f"{bot.user} is connected to the following guild:\n"
@@ -50,9 +49,6 @@ async def on_ready():
         activity=discord.Activity(type=discord.ActivityType.watching, name="Over This Server")
     )
     print("READY!")
-
-    event_creation.init(bot)
-    # office_hours.init(bot)
     await cal.init(bot)
     print('Logged in as')
     print(bot.user.name)
