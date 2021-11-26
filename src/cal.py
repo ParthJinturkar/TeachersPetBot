@@ -50,7 +50,7 @@ def update_calendar():
     # make a list that contains the string representing the
     # event that has the comparison item as the first index
     # which is the date, we are comparing as strings but still works for ordering events by date
-    # do this for the events we care about in the calendar 'assignments and exams'
+    # do this for the events we care about in the calendar 'assignments, exams, and custom events'
     assignments = []
     for title, link, desc, date, due_hr, due_min in db.select_query(
             'SELECT ' +
@@ -77,9 +77,33 @@ def update_calendar():
         exams.append([f'{date} {begin_hr}:{begin_min}',
                       f'{date} {begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
 
+    custom_events = []
+    for title, link, desc, date, due_hr, due_min, begin_hr, begin_min, end_hr, end_min in db.select_query(
+            'SELECT ' +
+            'title, link, desc, date, due_hr, due_min, begin_hr, begin_min, end_hr, end_min ' +
+            'FROM ' +
+            'custom_events ' +
+            'ORDER BY ' +
+            'date ASC, ' +
+            'due_hr ASC, '
+            'due_min ASC, '
+            'begin_hr ASC, '
+            'begin_min ASC'):
+        custom_events.append([f'{date} {due_hr}:{due_min}\n'
+                              f'{begin_hr}:{begin_min} - {end_hr}:{end_min}\n{title}\n{desc}\n\n'])
+
     # get current time for comparison and make sure it is of same string format
     current_time = datetime.now().strftime('%m-%d-%Y %H:%M')
     # Time in EST: 2017-01-19 08:06:14
+
+    special_events = ''
+    if len(custom_events) == 0:
+        special_events = "No special events"
+    else:
+        for each in custom_events:
+            special_events += each[0]
+
+    CALENDAR_EMBED.add_field(name="Special Events", value=special_events, inline=True)
 
     i = 0
     j = 0
