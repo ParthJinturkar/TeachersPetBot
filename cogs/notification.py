@@ -9,7 +9,7 @@ import smtplib
 from email.message import EmailMessage
 from datetime import datetime
 
-from src import logmsg
+from src import logmsg, vc
 
 BOT = None
 
@@ -21,6 +21,22 @@ class Deadline(commands.Cog):
         self.reminders = json.load(open("data/remindme/reminders.json"))
         self.notifs = json.load(open("data/remindme/groupremind.json"))
         self.units = {"second": 1, "minute": 60, "hour": 3600, "day": 86400, "week": 604800, "month": 2592000}
+
+        ###########################
+    # Function: create voice channel
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @commands.command(name='voice_channel', help='Create voice channel. Please input category, channel name, limit '
+                                                 'and number of channels. ex. !voice_channel teams meeting 10 3')
+    async def create_voice_channel(self, ctx, channelname: str, catename: str, limit: str, num: str):
+        ''' Create voice channel command '''
+        TESTING_MODE = False
+        await vc.create_voice_channel(ctx, self.bot, False, channelname, catename, limit, num)
 
     # -----------------------------------------------------------------------------------------------------------------
     #    Function: duedate(self, ctx, coursename: str, hwcount: str, *, date: str)
@@ -67,6 +83,7 @@ class Deadline(commands.Cog):
                                                                                                      author))
         else:
             await ctx.send("This homework has already been added..!!")
+
 
     @duedate.error
     async def duedate_error(self, ctx, error):
