@@ -9,6 +9,8 @@ import smtplib
 from email.message import EmailMessage
 from datetime import datetime
 
+from src import logmsg
+
 BOT = None
 
 
@@ -351,7 +353,8 @@ class Deadline(commands.Cog):
             return msg.author == ctx.author and msg.channel == ctx.channel
 
         await ctx.send("Would you like to receive reminder on your email or phone? [y/n]")
-
+        #logmsg.logerror(ctx.channel.id)
+        # print("The id is here" + ctx.channel.id)
         msg = await BOT.wait_for("message", check=check)
         if msg.content.lower() == "y":
             await ctx.send("Great..!! So, [email/text]..??")
@@ -367,7 +370,8 @@ class Deadline(commands.Cog):
                 contact = msg_contact.content.strip()
                 await ctx.send("I will remind you through text")
 
-        self.notifs.append({"ID": author.id, "FUTURE": future, "TEXT": text, "EMAIL": msg_email, "PHONE": contact})
+        self.notifs.append({"ID": author.id, "FUTURE": future, "TEXT": text, "EMAIL": msg_email, "PHONE": contact, "GUILD": ctx.channel.id})
+
         await ctx.send("I will remind you that in {} {}.".format(str(quantity), time_unit + s))
         json.dump(self.notifs, open("data/remindme/groupremind.json", "w"))
 
@@ -379,7 +383,8 @@ class Deadline(commands.Cog):
                 if notif["FUTURE"] <= int(time.time()):
                     try:
                         # await ctx.send("A reminder has been deleted")
-                        channel = self.bot.get_channel(897661152371290172);
+                        await self.bot.wait_until_ready()
+                        channel = self.bot.get_channel(notif["GUILD"]);
                         await channel.send(
                             "<@{}>, You asked me to remind you this: {}".format(notif["ID"], notif["TEXT"]))
                         if notif["EMAIL"]:
@@ -395,6 +400,8 @@ class Deadline(commands.Cog):
                         to_remove.append(notif)
                     except discord.errors.HTTPException:
                         pass
+                    # except AttributeError as e:
+                    #     logerror.logerror(str(e), logerror.get_today())
                     else:
                         to_remove.append(notif)
             for notif in to_remove:
