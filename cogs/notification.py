@@ -67,6 +67,50 @@ class Deadline(commands.Cog):
                                                                                                      author))
         else:
             await ctx.send("This homework has already been added..!!")
+        ###########################
+    # Function: create voice channel
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @commands.command(name='voice_channel', help='Create voice channel. Please input category, channel name, limit '
+                                                 'and number of channels. ex. !voice_channel teams meeting 10 3')
+    async def voice_channel(self, ctx, channelname: str, catename: str, limit: str, num: str):
+        ''' Create voice channel command '''
+        TESTING_MODE = False
+        ''' create voice channel input flow '''
+        GUILD = os.getenv("GUILD")
+        discord.utils.get(BOT.guilds, name=GUILD)
+        # if ctx.channel.name == 'instructor-commands':
+        cat_exist = False
+        for guild in BOT.guilds:
+            # Category
+            for cat in guild.categories:
+                if cat.name == catename:
+                    cat_exist = True
+                    print('exist')
+                    if int(num) == 1:
+                        await guild.create_voice_channel(channelname, user_limit=int(limit), category=cat)
+                    else:
+                        for i in range(int(num)):
+                            temp = channelname + str(i + 1)
+                            await guild.create_voice_channel(temp, user_limit=int(limit), category=cat)
+
+
+        if not cat_exist:
+            category = await guild.create_category(catename)
+            print('exist')
+            if int(num) == 1:
+                await guild.create_voice_channel(channelname, user_limit=int(limit), category=category)
+            else:
+                for i in range(int(num)):
+                    temp = channelname + str(i + 1)
+                    await guild.create_voice_channel(temp, user_limit=int(limit), category=category)
+
+        await ctx.send("Voice channel has been created!!")
 
     @duedate.error
     async def duedate_error(self, ctx, error):
