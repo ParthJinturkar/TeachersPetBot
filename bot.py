@@ -215,7 +215,7 @@ async def create_voice_channels(guild):
     #         return
 
     for channel in guild.voice_channels:
-        if channel.category.name != 'General Office Hours' or channel.category.name != 'Teams':
+        if channel.category is not None and (channel.category.name != 'General Office Hours' or channel.category.name != 'Teams'):
             await channel.delete()
 
     for cat in guild.categories:
