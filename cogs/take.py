@@ -15,10 +15,10 @@ class Create(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='take', help='Create a create events from csv file.')
+    @commands.command(name='ImportEvents', help='Create a create events from csv file.')
     # @commands.dm_only()
     @commands.has_role('Instructor')
-    async def take(self, ctx):
+    async def ImportEvents(self, ctx):
         try:
             ''' run event creation interface '''
             temp = 'data/events/' + str(ctx.message.guild.id)
@@ -44,7 +44,7 @@ class Create(commands.Cog):
             # if ctx.message.attachments[0].filename.startswith('ta_office_hours'):
             #     await event_creation.read_assignments(ctx)
 
-    @commands.command(name='eventcsv', help='Create a create events from csv file.')
+    @commands.command(name='templates', help='Get file templates for creating events from csv file.')
     @commands.has_role('Instructor')
     async def get_event_sample_csv(self, ctx):
         ''' run event creation interface '''
