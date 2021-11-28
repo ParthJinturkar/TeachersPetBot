@@ -225,3 +225,9 @@
 #
 #     # remove instructor role from bot
 #     await member.remove_roles(role)
+import discord.ext.test as dpytest
+import pytest
+
+@pytest.mark.asyncio
+async def test_take(bot):
+    await dpytest.message('!take')
