@@ -43,6 +43,7 @@ class Create(commands.Cog):
                             "No file detected. Please upload your file below.\nYou can do this by dropping "
                             "the file directly into Discord. Do not write out the file contents in a message.")
                     else:
+                        ctx.message.attachments = event_msg.attachments
                         break
 
             await ctx.message.attachments[0].save(
