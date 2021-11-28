@@ -15,10 +15,10 @@ class Create(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='ImportEvents', help='Create a create events from csv file.')
+    @commands.command(name='importevents', help='Create a create events from csv file.')
     # @commands.dm_only()
     @commands.has_role('Instructor')
-    async def ImportEvents(self, ctx):
+    async def import_events(self, ctx):
         try:
             ''' run event creation interface '''
             temp = 'data/events/' + str(ctx.message.guild.id)
