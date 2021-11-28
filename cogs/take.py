@@ -33,7 +33,7 @@ class Create(commands.Cog):
                 # Loops until we receive a file.
                 while True:
 
-                    event_msg = await ctx.wait_for("message")
+                    event_msg = await self.bot.wait_for("message")
 
                     if len(event_msg.attachments) != 1:
                         await ctx.send(
