@@ -1,8 +1,10 @@
 # ###########################
 # # Tests Event creation functionality
 # ###########################
-# import discord
-# from utils import wait_for_msg
+
+import discord.ext.test as dpytest
+import pytest
+
 #
 # async def test_create_assignment_valid(testing_bot, commands_channel):
 #     async def wait(content):
@@ -225,8 +227,6 @@
 #
 #     # remove instructor role from bot
 #     await member.remove_roles(role)
-import discord.ext.test as dpytest
-import pytest
 
 @pytest.mark.asyncio
 async def test_take(bot):
