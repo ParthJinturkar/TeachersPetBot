@@ -1,8 +1,10 @@
 # ###########################
 # # Tests Event creation functionality
 # ###########################
-# import discord
-# from utils import wait_for_msg
+
+import discord.ext.test as dpytest
+import pytest
+
 #
 # async def test_create_assignment_valid(testing_bot, commands_channel):
 #     async def wait(content):
@@ -225,3 +227,15 @@
 #
 #     # remove instructor role from bot
 #     await member.remove_roles(role)
+
+@pytest.mark.asyncio
+async def test_take(bot):
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+
+    await dpytest.message('!importevents', attachments='files/test.csv')
