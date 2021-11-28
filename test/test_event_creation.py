@@ -230,4 +230,12 @@ import pytest
 
 @pytest.mark.asyncio
 async def test_take(bot):
-    await dpytest.message('!take')
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+
+    await dpytest.message('!importevents', attachments='files/test.csv')
