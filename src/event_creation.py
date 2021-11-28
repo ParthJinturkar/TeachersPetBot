@@ -65,13 +65,12 @@ async def get_times(ctx, bot, event_type):
 async def get_due_time(ctx, bot):
     """
     Function:
-        get_time
+        get_due_time
     Description:
         Helper function for acquiring the due time of an event
     Input:
         ctx - context of the message
         bot - discord bot object
-        event_type - type of the event
     Output:
         The begin & end times of the event
     """
@@ -107,12 +106,11 @@ async def get_due_time(ctx, bot):
 async def check_quit(ctx, value):
     """
     Function:
-        get_url
+        check_quit
     Description:
         Helper function for checking whether user entered 'quit'.
     Input:
         ctx - context of the message
-        bot - discord bot object
         value - parameter that holds user input
     Output:
         True if user input is 'quit', False otherwise.
