@@ -26,6 +26,10 @@ class Create(commands.Cog):
             if not os.path.exists(temp):
                 os.makedirs(temp)
 
+            # Ask for a file if there are no attachments in the initital message
+            if len(ctx.message.attachments) == 0:
+                pass
+
             await ctx.message.attachments[0].save(
                 temp + '/' + ctx.message.attachments[0].filename)
 
