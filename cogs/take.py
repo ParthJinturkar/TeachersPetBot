@@ -49,10 +49,6 @@ class Create(commands.Cog):
             await ctx.message.attachments[0].save(
                 temp + '/' + ctx.message.attachments[0].filename)
 
-            while True:
-                if os.path.exists(temp + '/' + ctx.message.attachments[0].filename):
-                    break
-
             if ctx.message.attachments[0].filename.endswith('.csv'):
                 if ctx.message.attachments[0].filename.startswith('exams'):
                     await self.read_exams(ctx)
