@@ -28,7 +28,19 @@ class Create(commands.Cog):
 
             # Ask for a file if there are no attachments in the initital message
             if len(ctx.message.attachments) == 0:
-                pass
+                await ctx.send("Please upload your file below.")
+
+                # Loops until we receive a file.
+                while True:
+
+                    event_msg = await ctx.wait_for("message")
+
+                    if len(event_msg.attachments) != 1:
+                        await ctx.send(
+                            "No file detected. Please upload your file below.\nYou can do this by dropping "
+                            "the file directly into Discord. Do not write out the file contents in a message.")
+                    else:
+                        break
 
             await ctx.message.attachments[0].save(
                 temp + '/' + ctx.message.attachments[0].filename)
