@@ -238,4 +238,7 @@ async def test_take(bot):
                                                mentionable=False)
     dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
 
-    await dpytest.message('!importevents', attachments='files/test.csv')
+    await dpytest.message('!importevents', attachments='files/assignments.csv')
+    bool = dpytest.verify().message().contains().content("Please Submit") == True #Convert verify() to bool
+    assert not bool
+
