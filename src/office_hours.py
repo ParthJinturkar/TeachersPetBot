@@ -33,22 +33,33 @@ class OfficeHourQueue:
         self.waiting_room = waiting_room
         self.next_grp_id = 0
 
-    ###########################
-    # Method: enqueue
-    # Description: adds a student to the office hour queue
-    # Inputs:student: student to add to the office hour queue
-    # Outputs: None
-    ###########################
+
     def enqueue(self, student):
+        """
+        Method:
+            enqueue
+        Description:
+            adds a student to the office hour queue
+        Inputs:
+            student: student to add to the office hour queue
+        Outputs:
+            None
+        """
         self.queue.append(Group(student, f'{self.next_grp_id:03d}'))
         self.next_grp_id = (self.next_grp_id + 1) % 1000
 
-    ###########################
-    # Method: display_queue
-    # Description: displays the office hour queue in the office hour channel
-    # Outputs: office hour queue as a message in the office hour channel
-    ###########################
+
     async def display_queue(self):
+        """
+        Method:
+            display_queue
+        Description:
+            displays the office hour queue in the office hour channel
+        Inputs:
+            self
+        Outputs:
+            office hour queue as a message in the office hour channel
+        """
         if self.prev_queue_message:
             await self.prev_queue_message.delete()
 
@@ -66,16 +77,20 @@ class OfficeHourQueue:
         self.prev_queue_message = await self.text_channel.send(queue_str)
 
 
-###########################
-# Function: office_hour_command
-# Description: handles a command given in an office hour channel
-# Inputs:
-#      - ctx: context of this discord message
-#      - command: office hour command given
-#      - args: extra arguments given to command
-#Outputs: add to office hours
-###########################
 async def office_hour_command(ctx, command, *args):
+    """
+    Function:
+            office_hour_command
+    Description:
+        handles a command given in an office hour channel
+    Inputs:
+        - ctx: context of this discord message
+        - command: office hour command given
+        - args: extra arguments given to command
+    Outputs:
+        add to office hours
+    """
+
     if ctx.channel.name[:len('office-hour-')] == 'office-hour-':
         ta = ctx.channel.name[len('office-hour-'):]
 
