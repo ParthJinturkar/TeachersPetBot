@@ -4,44 +4,29 @@
 import discord
 from utils import wait_for_msg
 
-async def test_create_assignment_valid(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+import discord.ext.test as dpytest
+import pytest
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+async def test_create_assignment_valid(bot):
 
-    await commands_channel.send('assignment')
-    await wait('What would you like the assignment to be called')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('test')
-    await wait('Link associated with submission? Type N/A if none')
+    await dpytest.message('assignment')
+    assert dpytest.verify().message().content('What would you like the assignment to be called')
 
-    await commands_channel.send('N/A')
-    await wait('Extra description for assignment? Type N/A if none')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('Link associated with submission? Type N/A if none')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the due date')
+    await dpytest.message('N/A')
+    assert dpytest.verify().message().content('Extra description for assignment? Type N/A if none')
 
-    await commands_channel.send('01-01-1999')
-    await wait('What time is this assignment due')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the due date')
 
-    await commands_channel.send('13:37')
-    await wait('Assignment successfully created')
+    await dpytest.message('01-01-1999')
+    assert dpytest.verify().message().content('What time is this assignment due')
 
-async def test(testing_bot, guild_id):
-    print('testing calendar')
-
-    guild = testing_bot.get_guild(guild_id)
-
-    flag = False
-    for channel in guild.text_channels:
-        if(channel.name == 'course-calendar'):
-            flag = True
-
-    assert flag
-
-    print('testing calendar embed')
-
-    course_calendar = discord.utils.get(testing_bot.get_all_channels(), name='course-calendar')
+    await dpytest.message('13:37')
+    assert dpytest.verify().message().content('Assignment successfully created')
 

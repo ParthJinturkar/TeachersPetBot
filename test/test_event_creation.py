@@ -6,227 +6,184 @@ import discord.ext.test as dpytest
 import pytest
 
 
-async def test_create_assignment_valid(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_assignment_valid(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('assignment')
-    await wait('What would you like the assignment to be called')
+    await dpytest.message('assignment')
+    assert dpytest.verify().message().content('What would you like the assignment to be called')
 
-    await commands_channel.send('test')
-    await wait('Link associated with submission? Type N/A if none')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('Link associated with submission? Type N/A if none')
 
-    await commands_channel.send('N/A')
-    await wait('Extra description for assignment? Type N/A if none')
+    await dpytest.message('N/A')
+    assert dpytest.verify().message().content('Extra description for assignment? Type N/A if none')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the due date')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the due date')
 
-    await commands_channel.send('01-01-1999')
-    await wait('What time is this assignment due')
+    await dpytest.message('01-01-1999')
+    assert dpytest.verify().message().content('What time is this assignment due')
 
-    await commands_channel.send('13:37')
-    await wait('Assignment successfully created')
+    await dpytest.message('13:37')
+    assert dpytest.verify().message().content('Assignment successfully created')
 
 
-async def test_create_assignment_invalid_url(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_assignment_invalid_url(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('assignment')
-    await wait('What would you like the assignment to be called')
+    await dpytest.message('assignment')
+    assert dpytest.verify().message().content('What would you like the assignment to be called')
 
-    await commands_channel.send('test')
-    await wait('Link associated with submission? Type N/A if none')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('Link associated with submission? Type N/A if none')
 
-    await commands_channel.send('Oops')
-    await wait('Invalid URL. Aborting')
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Invalid URL. Aborting')
 
 
-async def test_create_assignment_invalid_date(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_assignment_invalid_date(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('assignment')
-    await wait('What would you like the assignment to be called')
+    await dpytest.message('assignment')
+    assert dpytest.verify().message().content('What would you like the assignment to be called')
 
-    await commands_channel.send('test')
-    await wait('Link associated with submission? Type N/A if none')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('Link associated with submission? Type N/A if none')
 
-    await commands_channel.send('N/A')
-    await wait('Extra description for assignment? Type N/A if none')
+    await dpytest.message('N/A')
+    assert dpytest.verify().message().content('Extra description for assignment? Type N/A if none')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the due date')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the due date')
 
-    await commands_channel.send('Oops')
-    await wait('Invalid date')
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Invalid date')
 
 
-async def test_create_assignment_invalid_time(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_assignment_invalid_time(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('assignment')
-    await wait('What would you like the assignment to be called')
+    await dpytest.message('assignment')
+    assert dpytest.verify().message().content('What would you like the assignment to be called')
 
-    await commands_channel.send('test')
-    await wait('Link associated with submission? Type N/A if none')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('Link associated with submission? Type N/A if none')
 
-    await commands_channel.send('N/A')
-    await wait('Extra description for assignment? Type N/A if none')
+    await dpytest.message('N/A')
+    assert dpytest.verify().message().content('Extra description for assignment? Type N/A if none')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the due date')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the due date')
 
-    await commands_channel.send('01-01-1999')
-    await wait('What time is this assignment due')
+    await dpytest.message('01-01-1999')
+    assert dpytest.verify().message().content('What time is this assignment due')
 
-    await commands_channel.send('Oops')
-    await wait('Incorrect input')
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Incorrect input')
 
 
-async def test_create_exam_valid(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_exam_valid(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('exam')
-    await wait('What is the title of this exam')
+    await dpytest.message('exam')
+    assert dpytest.verify().message().content('What is the title of this exam')
 
-    await commands_channel.send('test')
-    await wait('What content is this exam covering?')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('What content is this exam covering?')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the date of this exam?')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the date of this exam?')
 
-    await commands_channel.send('01-01-1999')
-    await wait('Which times would you like the exam to be on')
+    await dpytest.message('01-01-1999')
+    assert dpytest.verify().message().content('Which times would you like the exam to be on')
 
-    await commands_channel.send('12-12:01')
-    await wait('Exam successfully created')
+    await dpytest.message('12-12:01')
+    assert dpytest.verify().message().content('Exam successfully created')
 
 
-async def test_create_exam_invalid_date(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_exam_invalid_date(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('exam')
-    await wait('What is the title of this exam')
+    await dpytest.message('exam')
+    assert dpytest.verify().message().content('What is the title of this exam')
 
-    await commands_channel.send('test')
-    await wait('What content is this exam covering?')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('What content is this exam covering?')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the date of this exam?')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the date of this exam?')
 
-    await commands_channel.send('Oops')
-    await wait('Invalid date')
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Invalid date')
 
 
-async def test_create_exam_invalid_time(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_exam_invalid_time(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('exam')
-    await wait('What is the title of this exam')
+    await dpytest.message('exam')
+    assert dpytest.verify().message().content('What is the title of this exam')
 
-    await commands_channel.send('test')
-    await wait('What content is this exam covering?')
+    await dpytest.message('test')
+    assert dpytest.verify().message().content('What content is this exam covering?')
 
-    await commands_channel.send('Some stuff')
-    await wait('What is the date of this exam?')
+    await dpytest.message('Some stuff')
+    assert dpytest.verify().message().content('What is the date of this exam?')
 
-    await commands_channel.send('01-01-1999')
-    await wait('Which times would you like the exam to be on')
+    await dpytest.message('01-01-1999')
+    assert dpytest.verify().message().content('Which times would you like the exam to be on')
 
-    await commands_channel.send('Oops')
-    await wait('Incorrect input')
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Incorrect input')
 
 
-async def test_create_oh_valid(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_oh_valid(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('office-hour')
-    await wait('Which instructor will this office hour be for?')
+    await dpytest.message('office-hour')
+    assert dpytest.verify().message().content('Which instructor will this office hour be for?')
 
-    await commands_channel.send('Apollo')
-    await wait('Which day would you like the office hour to be on')
+    await dpytest.message('Apollo')
+    assert dpytest.verify().message().content('Which day would you like the office hour to be on')
 
-    await commands_channel.send('Mon')
-    await wait('Which times would you like the office hour to be on')
+    await dpytest.message('Mon')
+    assert dpytest.verify().message().content('Which times would you like the office hour to be on')
 
-    await commands_channel.send('12-12:01')
-    await wait('Office hour successfully created')
+    await dpytest.message('12-12:01')
+    assert dpytest.verify().message().content('Office hour successfully created')
 
 
-async def test_create_oh_invalid_times(testing_bot, commands_channel):
-    async def wait(content):
-        await wait_for_msg(testing_bot, commands_channel, content)
+async def test_create_oh_invalid_times(bot):
 
-    await commands_channel.send('!create')
-    await wait('Which type of event')
+    await dpytest.message('!create')
+    assert dpytest.verify().message().content('Which type of event')
 
-    await commands_channel.send('office-hour')
-    await wait('Which instructor will this office hour be for?')
+    await dpytest.message('office-hour')
+    assert dpytest.verify().message().content('Which instructor will this office hour be for?')
 
-    await commands_channel.send('Apollo')
-    await wait('Which day would you like the office hour to be on')
+    await dpytest.message('Apollo')
+    assert dpytest.verify().message().content('Which day would you like the office hour to be on')
 
-    await commands_channel.send('Mon')
-    await wait('Which times would you like the office hour to be on')
+    await dpytest.message('Mon')
+    assert dpytest.verify().message().content('Which times would you like the office hour to be on')
 
-    await commands_channel.send('Oops')
-    await wait('Incorrect input')
-
-
-async def test(testing_bot, guild_id):
-    commands_channel = next(ch for ch in testing_bot.get_guild(guild_id).text_channels if ch.name == 'instructor-commands')
-
-    # Add instructor role to bot
-    guild = testing_bot.get_guild(guild_id)
-    role = discord.utils.get(guild.roles, name="Instructor")
-    member = guild.get_member(testing_bot.user.id)
-    await member.add_roles(role)
-
-    await test_create_assignment_valid(testing_bot, commands_channel)
-    await test_create_assignment_invalid_url(testing_bot, commands_channel)
-    await test_create_assignment_invalid_date(testing_bot, commands_channel)
-    await test_create_assignment_invalid_time(testing_bot, commands_channel)
-
-    await test_create_exam_valid(testing_bot, commands_channel)
-    await test_create_exam_invalid_date(testing_bot, commands_channel)
-    await test_create_exam_invalid_time(testing_bot, commands_channel)
-
-    await test_create_oh_valid(testing_bot, commands_channel)
-    await test_create_oh_invalid_times(testing_bot, commands_channel)
-
-    # remove instructor role from bot
-    await member.remove_roles(role)
+    await dpytest.message('Oops')
+    assert dpytest.verify().message().content('Incorrect input')
 
 @pytest.mark.asyncio
 async def test_take(bot):
