@@ -139,12 +139,11 @@ async def on_message_edit(before, after):
 
 
 ############################
-#    Function: on_member_join(member)
+#    Function: shutdown(ctx)
 #    Description: Command for shutting down the bot
-#    Inputs:
-#    - ctx: used to access the values passed through the current context
+#    Inputs: used to access the values passed through the current context
 #    Outputs:
-#     -
+#           sends a message after closing the bot
 # ###########################
 @bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
 @commands.has_permissions(administrator=True)
@@ -206,7 +205,7 @@ async def start_bot(guild):
 #    Inputs:
 #    - guild to create voice channels in
 #    Outputs:
-#     -
+#     - create voice channels with limits for the number of users in that channel
 ###########################
 async def create_voice_channels(guild):
     ''' run on bot startup '''
