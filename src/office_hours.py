@@ -36,8 +36,7 @@ class OfficeHourQueue:
     ###########################
     # Method: enqueue
     # Description: adds a student to the office hour queue
-    # Inputs:
-    #      - student: student to add to the office hour queue
+    # Inputs:student: student to add to the office hour queue
     # Outputs: None
     ###########################
     def enqueue(self, student):
@@ -74,6 +73,7 @@ class OfficeHourQueue:
 #      - ctx: context of this discord message
 #      - command: office hour command given
 #      - args: extra arguments given to command
+#Outputs: add to office hours
 ###########################
 async def office_hour_command(ctx, command, *args):
     if ctx.channel.name[:len('office-hour-')] == 'office-hour-':
