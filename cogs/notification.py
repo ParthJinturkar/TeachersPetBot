@@ -234,8 +234,8 @@ class Deadline(commands.Cog):
     #    Inputs:
     #    - self: used to access parameters passed to the class through the constructor
     #    - ctx: used to access the values passed through the current context
-    # Outputs: returns either an error stating a reason for failure or
-    #          returns a list of all the assignments that are due on the day the command is run
+    #    Outputs: returns either an error stating a reason for failure or
+    #           returns a list of all the assignments that are due on the day the command is run
     # -----------------------------------------------------------------------------------------------------------------
     @commands.command(name="duetoday", pass_context=True, help="check all the homeworks that are due today !duetoday")
     async def duetoday(self, ctx):
@@ -440,6 +440,7 @@ class Deadline(commands.Cog):
     #    Description: asynchronously keeps on tracking the json file for expired reminders and cleans them.
     #    Inputs:
     #    - self: used to access parameters passed to the class through the constructor
+    #    Outputs: deletes the expired reminders and sends a message
     # -----------------------------------------------------------------------------------------------------
     async def delete_old_reminders(self):
         print("inside delete old reminders")
