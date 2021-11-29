@@ -24,8 +24,8 @@ To run the Teacher's Pet Bot:
     * [Python 3](https://www.python.org/downloads/) 
     * [pip](https://pip.pypa.io/en/stable/installation/)
 2. Clone this repo onto your local machine
-3. In the repository directory, run `pip install -r src/requirements.txt`
-4. Run `python src/bot.py` to start the bot
+3. In the repository directory, run `pip install -r requirements.txt`
+4. Run `python bot.py` to start the bot
 5. Invite the bot to your server ([Follow instructions here](https://realpython.com/how-to-make-a-discord-bot-python/))
     * NOTE:  When using the OAuth2 URL Generator, make sure you check the box which gives your bot Administrative permissions
 
