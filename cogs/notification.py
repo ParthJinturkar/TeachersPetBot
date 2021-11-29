@@ -438,9 +438,8 @@ class Deadline(commands.Cog):
     # -----------------------------------------------------------------------------------------------------
     #    Function: delete_old_reminders(self)
     #    Description: asynchronously keeps on tracking the json file for expired reminders and cleans them.
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    Outputs: deletes the expired reminders and sends a message
+    #    Inputs: self: used to access parameters passed to the class through the constructor
+    #    Outputs:deletes the expired reminders and sends a message
     # -----------------------------------------------------------------------------------------------------
     async def delete_old_reminders(self):
         print("inside delete old reminders")
