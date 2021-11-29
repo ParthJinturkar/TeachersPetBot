@@ -1,2 +1,2 @@
 [run]
-omit = *test*
+omit = *test*, bot.py, setup.py, BotBackup.py, initialize_db_script.py
