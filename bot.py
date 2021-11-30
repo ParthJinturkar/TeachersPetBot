@@ -1,34 +1,35 @@
 import logging
 import os
-
 import discord
 from discord import Intents
 from discord.ext import commands
 from discord.utils import get
 from discord_components import DiscordComponents
 from dotenv import load_dotenv
-
-from src import profanity, db, event_creation, office_hours, cal
+from src import profanity, db, office_hours, cal
 
 logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-
 GUILD = os.getenv("GUILD")
-# GUILD = 'TeachersPet-Dev'
 
 intents = Intents.all()
 bot = commands.Bot(command_prefix='!', description='This is TeachersPetBot!', intents=intents)
 
 
-###########################
-# Function: on_ready
-# Description: run on bot start-up
-###########################
 @bot.event
 async def on_ready():
-    ''' run on bot start-up '''
+    """
+    Function:
+        on_ready
+    Description:
+        Runs when the bot starts up
+    Input:
+        None
+    Output:
+        Initialization of database and cog system
+    """
     DiscordComponents(bot)
     db.connect()
     db.add_Tables(db)
@@ -56,15 +57,18 @@ async def on_ready():
     print('------')
 
 
-###########################
-# Function: on_guild_join
-# Description: run when a user joins a guild with the bot present
-# Inputs:
-#      - guild: the guild the user joined from
-###########################
 @bot.event
 async def on_guild_join(guild):
-    ''' run on member joining guild '''
+    """
+    Function:
+        on_guild_join
+    Description:
+        Runs when the bot joins a guild (server)
+    Input:
+        - guild: the server that the bot is added into
+    Output:
+        Sends welcome message, create roles and channels
+    """
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             await channel.send('Hi there, I\'m TeachersPetBot, and I\'m here' +
@@ -97,15 +101,18 @@ async def on_guild_join(guild):
     await create_voice_channels(guild)
 
 
-###########################
-# Function: on_message
-# Description: run when a message is sent to a discord the bot occupies
-# Inputs:
-#      - message: the message the user sent to a channel
-###########################
 @bot.event
 async def on_message(message):
-    ''' run on message sent to a channel '''
+    """
+     Function:
+         on_message
+     Description:
+         Runs when a message is sent to the server. Checks for profanity.
+     Input:
+         - message: the message a user sent to a channel of the server
+     Output:
+         Deletes inappropriate messages
+     """
 
     if message.author == bot.user:
         return
@@ -128,10 +135,12 @@ async def on_message_edit(before, after):
     Function:
         on_message_edit
     Description:
-        run when a user edits a message
+        Run when a user edits a message. Checks for profanity.
     Inputs:
         - before: the old message
         - after: the new message
+    Output:
+        Deletes inappropriate messages
     """
     if profanity.check_profanity(after.content):
         await after.channel.send(after.author.name + ' says: ' +
@@ -139,24 +148,18 @@ async def on_message_edit(before, after):
         await after.delete()
 
 
-############################
-#    Function:
-#    Description: Command for shutting down the bot
-#    Inputs:
-#
-# ###########################
 @bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
 @commands.has_permissions(administrator=True)
 async def shutdown(ctx):
     """
     Function:
-        shutdown(ctx)
+        shutdown
     Description:
-        Command for shutting down the bot
-    Inputs:
-        used to access the values passed through the current context
-    Outputs:
-        sends a message after closing the bot
+        Shuts down the bot. Can only be used by server owner.
+    Input:
+        - ctx: current context
+    Output:
+        Deletes the database and sends a message indicating successful shutdown
     """
     db.shutdown()
     await ctx.send('Shutting Down bot')
@@ -165,14 +168,17 @@ async def shutdown(ctx):
     db.delete_db()
     exit()
 
+
 async def start_bot(guild):
     """
     Function:
-        start_bot(guild)
+        start_bot
     Description:
-        run when the bot starts or when a new guild is added
-    Inputs:
-        - guild : the guild the bot is added to
+        Run when the bot starts or when a new guild (server) is added
+    Input:
+        - guild: the server the bot is added to
+    Output:
+        Creates roles and create text channels
     """
     print("Bot is now online")
     check = False
@@ -210,18 +216,14 @@ async def start_bot(guild):
 async def create_voice_channels(guild):
     """
     Function:
-        create_voice_channels()
+        create_voice_channels
     Description:
-        run when the bot starts or when a new guild is added
-    Inputs:
-        - guild to create voice channels in
-    Outputs:
-        - create voice channels with limits for the number of users in that channel
+        Creates voice channels
+    Input:
+        - guild: server in which voice channels are created
+    Output:
+        Create voice channels with limits for the number of users in that channel
     """
-
-    # for cat in guild.categories:
-    #     if cat.name == 'General Office Hours' or cat.name == 'Teams':
-    #         return
 
     for channel in guild.voice_channels:
         if channel.category is not None and (channel.category.name != 'General Office Hours' or channel.category.name != 'Teams'):

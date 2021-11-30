@@ -13,10 +13,10 @@ async def get_times(ctx, bot, event_type):
         get_times
     Description:
         Helper function for acquiring the times an instructor wants an event to be held during
-    Input:
-        ctx - context of the message
-        bot - discord bot object
-        event_type - type of the event
+    Inputs:
+        - ctx: context of the message
+        - bot: discord bot object
+        - event_type: type of the event
     Output:
         The begin & end times of the event
     """
@@ -68,9 +68,9 @@ async def get_due_time(ctx, bot):
         get_due_time
     Description:
         Helper function for acquiring the due time of an event
-    Input:
-        ctx - context of the message
-        bot - discord bot object
+    Inputs:
+        - ctx: context of the message
+        - bot: discord bot object
     Output:
         The begin & end times of the event
     """
@@ -110,8 +110,8 @@ async def check_quit(ctx, value):
     Description:
         Helper function for checking whether user entered 'quit'.
     Input:
-        ctx - context of the message
-        value - parameter that holds user input
+        - ctx: context of the message
+        - value: parameter that holds user input
     Output:
         True if user input is 'quit', False otherwise.
     """
@@ -128,8 +128,8 @@ async def get_date(ctx, bot):
     Description:
         Helper function for acquiring the date or due date of an event
     Input:
-        ctx - context of the message
-        bot - discord bot object
+        - ctx: context of the message
+        - bot: discord bot object
     Output:
         The date or the due date of the event.
     """
@@ -164,8 +164,8 @@ async def get_url(ctx, bot):
     Description:
         Helper function for acquiring the associated url of an event
     Input:
-        ctx - context of the message
-        bot - discord bot object
+        - ctx: context of the message
+        - bot: discord bot object
     Output:
         The url associated with the event, or False if user enters 'NA'.
     """
@@ -196,9 +196,9 @@ async def create_event(ctx, bot, testing_mode):
     Description:
         Event creation subroutine
     Input:
-        ctx - context of the message
-        bot - discord bot object
-        testing_mode: flag indicating whether this event is being created during a system test
+        - ctx: context of the message
+        - bot: discord bot object
+        - testing_mode: flag indicating whether this event is being created during a system test
     Output:
         A new event is created in the database and calendar is updated with the new event.
     """
@@ -273,8 +273,6 @@ async def create_event(ctx, bot, testing_mode):
                 [ctx.guild.id, title, link, description, date, time.hour, time.minute]
             )
 
-            # TODO add assignment to events list
-
             await ctx.send('Assignment successfully created!')
             await cal.display_events(None)
             return
@@ -328,8 +326,6 @@ async def create_event(ctx, bot, testing_mode):
                 [ctx.guild.id, title, description, date,
                  begin_hour, begin_minute, end_hour, end_minute]
             )
-
-            # TODO add exam to events list
 
             await ctx.send('Exam successfully created!')
             await cal.display_events(ctx)
@@ -489,8 +485,6 @@ async def create_event(ctx, bot, testing_mode):
                 'INSERT INTO custom_events VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                 [ctx.guild.id, title, link, description, date, 0, 0, begin_hour, begin_minute, end_hour, end_minute]
             )
-
-            # TODO add assignment to events list
 
             await ctx.send('Assignment successfully created!')
             await cal.display_events(None)

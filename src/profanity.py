@@ -10,6 +10,16 @@ profanity.load_censor_words()
 #      - msg: message from user
 ###########################
 def check_profanity(msg):
+    """
+    Function:
+        check_profanity
+    Description:
+        Uses 'contains_profanity' to check profanity of a message
+    Input:
+        - msg: message from user
+    Output:
+        None
+    """
     ''' check if message contains profanity through profanity module '''
     return profanity.contains_profanity(msg)
 
@@ -21,5 +31,14 @@ def check_profanity(msg):
 #      - msg: message from user
 ###########################
 def censor_profanity(msg):
-    ''' take action on the profanity by censoring it '''
+    """
+    Function:
+        censor_profanity
+    Description:
+        censors a message based on profanity
+    Input:
+        - msg: message from user
+    Output:
+        None
+    """
     return profanity.censor(msg)

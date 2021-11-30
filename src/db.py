@@ -4,7 +4,18 @@ import os
 
 CON = None
 
+
 def connect():
+    """
+    Function:
+        connect
+    Description:
+        connects the program to db.sqlite database file
+    Input:
+         None
+    Output:
+        database connection
+    """
     ''' connect program to database file db.sqlite '''
     global CON
     db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'db.sqlite')
@@ -16,24 +27,63 @@ def connect():
 
 
 def select_query(sql, args=()):
-    ''' select query to return items from database '''
+    """
+    Function:
+        select_query
+    Description:
+        Select query to return items from database
+    Input:
+         - args: selection criteria
+    Output:
+        Selects entries from database
+    """
+
     cur = CON.cursor()
     return cur.execute(sql, args)
 
 
 def delete_db():
+    """
+    Function:
+        delete_db
+    Description:
+        Deletes the database
+    Input:
+         None
+    Output:
+        Database file is deleted
+    """
     os.remove('db.sqlite')
     print("The SQLite database has been deleted")
 
 
 def mutation_query(sql, args=()):
-    ''' do a mutation on the database '''
+    """
+    Function:
+        mutation_query
+    Description:
+        Does a mutation on the database
+    Input:
+         - args: mutation criteria
+    Output:
+        Entries of the database is edited
+    """
     cur = CON.cursor()
     cur.execute(sql, args)
     CON.commit()
 
 
 def shutdown():
+    """
+    Function:
+        shutdown
+    Description:
+        Disconnect the database connection
+    Input:
+         NOne
+    Output:
+        Bot disconnects from database
+    """
     CON.close()
     print("The SQLite connection is closed")
 

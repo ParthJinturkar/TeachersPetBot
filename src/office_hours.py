@@ -4,26 +4,49 @@
 from datetime import datetime, time
 import discord
 from discord.ext import tasks
-
 from src import db
 
 
-###########################
-# Class: Group
-# Description: contains information about an office hour group
-###########################
 class Group:
+    """
+    Class: Group
+    Description: Contains information about an office hour group
+    """
     def __init__(self, student, group_id):
+        """
+        Function:
+            __init__
+        Description:
+            Initializes group members and group ID
+        Inputs:
+            - student: students of the group
+            - group_id: ID of the group
+        Output:
+            Class variables are set
+        """
         self.group_members = [student]
         self.group_id = group_id
 
 
-###########################
-# Class: OfficeHourQueue
-# Description: contains information about an office hour queue
-###########################
 class OfficeHourQueue:
+    """
+    Class: OfficeHourQueue
+    Description: Contains information about an office hour queue
+    """
     def __init__(self, ta_name, text_channel, voice_channel, waiting_room):
+        """
+        Function:
+            __init__
+        Description:
+            Initializes text channels, waiting room, and the queue.
+        Inputs:
+            - ta_name: Name of the TA
+            - text_channel: text channel associated with the office hour
+            - voice_channel: voice channel associated with the office hour
+            - waiting_room: waiting room channel
+        Output:
+            Class variables are set
+        """
         self.current_student = None
         self.queue = []
         self.prev_queue_message = None
@@ -33,32 +56,30 @@ class OfficeHourQueue:
         self.waiting_room = waiting_room
         self.next_grp_id = 0
 
-
     def enqueue(self, student):
         """
-        Method:
+        Function:
             enqueue
         Description:
-            adds a student to the office hour queue
-        Inputs:
-            student: student to add to the office hour queue
-        Outputs:
+            Adds a student to the office hour queue
+        Input:
+            - student : student to add to the office hour queue
+        Output:
             None
         """
         self.queue.append(Group(student, f'{self.next_grp_id:03d}'))
         self.next_grp_id = (self.next_grp_id + 1) % 1000
 
-
     async def display_queue(self):
         """
-        Method:
+        Function:
             display_queue
         Description:
-            displays the office hour queue in the office hour channel
-        Inputs:
-            self
-        Outputs:
-            office hour queue as a message in the office hour channel
+            Displays the office hour queue in the office hour channel
+        Input:
+            None
+        Output:
+            Office hour queue as a message in the office hour channel
         """
         if self.prev_queue_message:
             await self.prev_queue_message.delete()
@@ -80,15 +101,15 @@ class OfficeHourQueue:
 async def office_hour_command(ctx, command, *args):
     """
     Function:
-            office_hour_command
+        office_hour_command
     Description:
-        handles a command given in an office hour channel
+        Handles a command given in an office hour channel
     Inputs:
         - ctx: context of this discord message
         - command: office hour command given
         - args: extra arguments given to command
-    Outputs:
-        add to office hours
+    Output:
+        Add to office hours
     """
 
     if ctx.channel.name[:len('office-hour-')] == 'office-hour-':
@@ -170,14 +191,14 @@ async def office_hour_command(ctx, command, *args):
 async def open_oh(guild, ta):
     """
     Function:
-            open_oh
+        open_oh
     Description:
-        opens an office hour for students to get help from
+        Opens an office hour for students to get help from
     Inputs:
         - guild: discord guild this office hour is relevant for
-#           - ta: name of TA who is holding this office hour
+        - ta: name of TA who is holding this office hour
     Outputs:
-        creation of channels relevant to office hour
+        Creation of channels relevant to office hour
     """
     category = None
     check = False
@@ -223,18 +244,17 @@ async def open_oh(guild, ta):
                                                                waiting_room)
 
 
-
 async def close_oh(guild, ta):
     """
     Function:
-            close_oh
+        close_oh
     Description:
-        closes an office hour session
+        Closes an office hour session
     Inputs:
         - guild: discord guild this office hour is relevant for
         - ta: name of TA who is holding this office hour
     Outputs:
-        deletion of channels relevant to office hour
+        Deletion of channels relevant to office hour
     """
     ta_name_channelified = ta.lower().replace(" ", "-")
     channels_to_delete = [
@@ -254,11 +274,11 @@ async def close_oh(guild, ta):
     office_hour_queues.pop(ta_name_channelified)
 
 
-###########################
-# Class: TaOfficeHour
-# Description: contains information about when an office hour is held
-###########################
 class TaOfficeHour:
+    """
+    Class: TaOfficeHour
+    Description: Contains information about when an office hour is held
+    """
     def __init__(self, ta, day, times):
         self.ta = ta
         self.day = day
@@ -308,12 +328,6 @@ all_guilds_ta_office_hours = None
 office_hour_queues = None
 
 
-###########################
-# Function:
-# Description:
-# Inputs:
-#
-###########################
 def init(b):
     """
     Function:
