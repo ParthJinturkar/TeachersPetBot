@@ -87,7 +87,14 @@ To install and run Teacher's Pet, follow instructions in the [Installation and T
 
 To run tests on the Teacher's Pet, follow instructions in the [Installation and Testing Guide](https://github.com/qchen59/TeachersPetBot/blob/main/Installation.md).
 
+<h2 align="center"> For Developer </h2>
+
+#### API Documentation
+
+To better help developers, the API documentation can be found here [API Documentation](https://htmlpreview.github.io/?https://github.com/qchen59/TeachersPetBot/blob/main/docs/TeachersPetBot/index.html)
+
 <h2 align="center"> TeachersPetBot Features </h2>
+
 
 ### Initialization
 
