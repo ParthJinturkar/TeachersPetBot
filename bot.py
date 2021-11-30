@@ -222,7 +222,7 @@ async def create_voice_channels(guild):
     Input:
         - server in which voice channels are created
     Output:
-        - create voice channels with limits for the number of users in that channel
+        Create voice channels with limits for the number of users in that channel
     """
 
     for channel in guild.voice_channels:
