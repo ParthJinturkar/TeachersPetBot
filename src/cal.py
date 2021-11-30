@@ -7,15 +7,15 @@ CALENDAR_EMBED = None
 MSG = None
 
 
-###########################
-# Function: display_events
-# Description: Sends or updates the embed for the calendar
-# Inputs:
-#      - ctx: context of function activation
-###########################
+
 async def display_events(ctx):
     """
-    sends the embed to the channel and edits it to update it as well
+    Function:
+        display_events
+    Description:
+        Sends or updates the embed for the calendar
+    Inputs:
+        - ctx: context of function activation
     """
     global MSG
 
@@ -33,13 +33,13 @@ async def display_events(ctx):
         await MSG.channel.send(embed=CALENDAR_EMBED)
 
 
-###########################
-# Function: update_calendar
-# Description: Builds the calendar embed
-###########################
+
 def update_calendar():
     """
-    create the calendar embed, it is a global so also updates it
+    Function:
+        update_calendar
+    Description:
+        Builds the calendar embed
     """
     global CALENDAR_EMBED
 
@@ -145,15 +145,15 @@ def update_calendar():
     CALENDAR_EMBED.set_footer(text=f"{time_now}")
 
 
-###########################
-# Function: init
-# Description: Initializes the calendar, creating channel and embed call
-# Inputs:
-#      - b: bot
-###########################
+
 async def init(b):
     """
-    Initializes the calendar
+    Function:
+        init
+    Description:
+        Initializes the calendar, creating channel and embed call
+    Inputs:
+         - b: bot
     """
     global BOT
 

@@ -122,16 +122,17 @@ async def on_message(message):
         await message.channel.send(response)
 
 
-###########################
-# Function: on_message_edit
-# Description: run when a user edits a message
-# Inputs:
-#      - before: the old message
-#      - after: the new message
-###########################
 @bot.event
 async def on_message_edit(before, after):
-    ''' run on message edited '''
+    """
+    Function:
+        on_message_edit
+    Description:
+        run when a user edits a message
+    Inputs:
+        - before: the old message
+        - after: the new message
+    """
     if profanity.check_profanity(after.content):
         await after.channel.send(after.author.name + ' says: ' +
                                  profanity.censor_profanity(after.content))
@@ -139,17 +140,24 @@ async def on_message_edit(before, after):
 
 
 ############################
-#    Function: on_member_join(member)
+#    Function:
 #    Description: Command for shutting down the bot
 #    Inputs:
-#    - ctx: used to access the values passed through the current context
-#    Outputs:
-#     -
+#
 # ###########################
 @bot.command(name="shutdown", help="Shuts down the bot, only usable by the owner")
 @commands.has_permissions(administrator=True)
 async def shutdown(ctx):
-    ''' Command for shutting down the bot '''
+    """
+    Function:
+        shutdown(ctx)
+    Description:
+        Command for shutting down the bot
+    Inputs:
+        used to access the values passed through the current context
+    Outputs:
+        sends a message after closing the bot
+    """
     db.shutdown()
     await ctx.send('Shutting Down bot')
     print("Bot closed successfully")
@@ -157,16 +165,15 @@ async def shutdown(ctx):
     db.delete_db()
     exit()
 
-############################
-#    Function: start_bot(guild)
-#    Description: run when the bot starts or when a new guild is added
-#    Inputs:
-#    - guild : the guild the bot is added to
-#    Outputs:
-#     -
-# ###########################
 async def start_bot(guild):
-    ''' run when the bot starts or when a new guild is added '''
+    """
+    Function:
+        start_bot(guild)
+    Description:
+        run when the bot starts or when a new guild is added
+    Inputs:
+        - guild : the guild the bot is added to
+    """
     print("Bot is now online")
     check = False
 
@@ -200,16 +207,18 @@ async def start_bot(guild):
         await guild.create_text_channel('q-and-a')
 
 
-###########################
-#    Function: create_voice_channels()
-#    Description: run when the bot starts or when a new guild is added
-#    Inputs:
-#    - guild to create voice channels in
-#    Outputs:
-#     -
-###########################
 async def create_voice_channels(guild):
-    ''' run on bot startup '''
+    """
+    Function:
+        create_voice_channels()
+    Description:
+        run when the bot starts or when a new guild is added
+    Inputs:
+        - guild to create voice channels in
+    Outputs:
+        - create voice channels with limits for the number of users in that channel
+    """
+
     # for cat in guild.categories:
     #     if cat.name == 'General Office Hours' or cat.name == 'Teams':
     #         return

@@ -31,19 +31,20 @@ class qanda(commands.Cog):
             await ctx.author.send('Please send questions to the #q-and-a channel.')
             await ctx.message.delete()
 
-    ###########################
-    # Function: answer
-    # Description: command to answer question and sends to qna module
-    # Inputs:
-    #      - ctx: context of the command
-    #      - q_num: question number to answer
-    #      - answer: answer text
-    # Outputs:
-    #      - User answer in question post
-    ###########################
     @commands.command(name='answer', help='Answer specific question. Please put answer text in quotes.')
     async def answer_question(self, ctx, q_num, answer):
-        ''' answer question command '''
+        """
+        Function:
+            answer
+        Description:
+            command to answer question and sends to qna module
+        Inputs:
+            - ctx: context of the command
+            - q_num: question number to answer
+            - answer: answer text
+        Outputs:
+            User answer in question post
+        """
         # make sure to check that this is actually being asked in the Q&A channel
         if ctx.channel.name == 'q-and-a':
             await qna.answer(ctx, q_num, answer)

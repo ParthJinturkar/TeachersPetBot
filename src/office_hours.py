@@ -33,23 +33,33 @@ class OfficeHourQueue:
         self.waiting_room = waiting_room
         self.next_grp_id = 0
 
-    ###########################
-    # Method: enqueue
-    # Description: adds a student to the office hour queue
-    # Inputs:
-    #      - student: student to add to the office hour queue
-    # Outputs: None
-    ###########################
+
     def enqueue(self, student):
+        """
+        Method:
+            enqueue
+        Description:
+            adds a student to the office hour queue
+        Inputs:
+            student: student to add to the office hour queue
+        Outputs:
+            None
+        """
         self.queue.append(Group(student, f'{self.next_grp_id:03d}'))
         self.next_grp_id = (self.next_grp_id + 1) % 1000
 
-    ###########################
-    # Method: display_queue
-    # Description: displays the office hour queue in the office hour channel
-    # Outputs: office hour queue as a message in the office hour channel
-    ###########################
+
     async def display_queue(self):
+        """
+        Method:
+            display_queue
+        Description:
+            displays the office hour queue in the office hour channel
+        Inputs:
+            self
+        Outputs:
+            office hour queue as a message in the office hour channel
+        """
         if self.prev_queue_message:
             await self.prev_queue_message.delete()
 
@@ -67,15 +77,20 @@ class OfficeHourQueue:
         self.prev_queue_message = await self.text_channel.send(queue_str)
 
 
-###########################
-# Function: office_hour_command
-# Description: handles a command given in an office hour channel
-# Inputs:
-#      - ctx: context of this discord message
-#      - command: office hour command given
-#      - args: extra arguments given to command
-###########################
 async def office_hour_command(ctx, command, *args):
+    """
+    Function:
+            office_hour_command
+    Description:
+        handles a command given in an office hour channel
+    Inputs:
+        - ctx: context of this discord message
+        - command: office hour command given
+        - args: extra arguments given to command
+    Outputs:
+        add to office hours
+    """
+
     if ctx.channel.name[:len('office-hour-')] == 'office-hour-':
         ta = ctx.channel.name[len('office-hour-'):]
 
@@ -152,15 +167,18 @@ async def office_hour_command(ctx, command, *args):
     await ctx.message.delete()
 
 
-###########################
-# Function: open_oh
-# Description: opens an office hour for students to get help from
-# Inputs:
-#      - guild: discord guild this office hour is relevant for
-#      - ta: name of TA who is holding this office hour
-# Outputs: creation of channels relevant to office hour
-###########################
 async def open_oh(guild, ta):
+    """
+    Function:
+            open_oh
+    Description:
+        opens an office hour for students to get help from
+    Inputs:
+        - guild: discord guild this office hour is relevant for
+#           - ta: name of TA who is holding this office hour
+    Outputs:
+        creation of channels relevant to office hour
+    """
     category = None
     check = False
 
@@ -205,15 +223,19 @@ async def open_oh(guild, ta):
                                                                waiting_room)
 
 
-###########################
-# Function: close_oh
-# Description: closes an office hour session
-# Inputs:
-#      - guild: discord guild this office hour is relevant for
-#      - ta: name of TA who is holding this office hour
-# Outputs: deletion of channels relevant to office hour
-###########################
+
 async def close_oh(guild, ta):
+    """
+    Function:
+            close_oh
+    Description:
+        closes an office hour session
+    Inputs:
+        - guild: discord guild this office hour is relevant for
+        - ta: name of TA who is holding this office hour
+    Outputs:
+        deletion of channels relevant to office hour
+    """
     ta_name_channelified = ta.lower().replace(" ", "-")
     channels_to_delete = [
         next((chan for chan in guild.text_channels if chan.name ==
@@ -266,15 +288,18 @@ async def check_office_hour_loop():
                     await close_oh(guild, office_hour.ta)
 
 
-###########################
-# Function: add_office_hour
-# Description: adds a new TA office hour to the guild
-# Inputs:
-#      - guild: discord guild this office hour is relevant for
-#      - ta_office_hour: TA office hour information
-# Outputs: adds a new TA office hour to the system
-###########################
 def add_office_hour(guild, ta_office_hour):
+    """
+    Function:
+        add_office_hour
+    Description:
+        adds a new TA office hour to the guild
+    Inputs:
+        - guild: discord guild this office hour is relevant for
+        - ta_office_hour: TA office hour information
+    Outputs:
+        adds a new TA office hour to the system
+    """
     all_guilds_ta_office_hours[guild.id].append(ta_office_hour)
 
 
@@ -284,12 +309,20 @@ office_hour_queues = None
 
 
 ###########################
-# Function: init
-# Description: initializes office hours module
+# Function:
+# Description:
 # Inputs:
-#      - b: discord bot
+#
 ###########################
 def init(b):
+    """
+    Function:
+        init
+    Description:
+        initializes office hours module
+    Inputs:
+        - b: discord bot
+    """
     global bot
     global all_guilds_ta_office_hours
     global office_hour_queues

@@ -26,17 +26,26 @@ class Helper(commands.Cog):
         }
 
     # ----------------------------------------------------------------------------------------------
-    #    Function: poll(self, ctx, *, poll: str = None)
-    #    Description: Instructor command for creating poll with 2 choices
+    #    Function:
+    #    Description:
     #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
+    #
     #    - *:
-    #    - poll: question for poll
+    #    -
     # ----------------------------------------------------------------------------------------------
     @commands.command(name="poll", help = "This command is used for poll with 2 choices")
     @commands.has_role("Instructor")
     async def poll(self, ctx, *, poll: str = None):
+        """
+        Function:
+            poll(self, ctx, *, poll: str = None)
+        Description:
+            Instructor command for creating poll with 2 choices
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - poll: question for poll
+        """
         msg = ctx.message.content
         await ctx.message.delete()
         if ctx.channel.name == "instructor-commands":
@@ -74,14 +83,22 @@ class Helper(commands.Cog):
             await ctx.author.send(embed=embed)
 
     # ----------------------------------------------------------------------------------------------
-    #    Function: on_reaction(self, reaction)
-    #    Description: Listener to avoid members from selecting both choices in 2 choice poll
+    #    Function:
+    #    Description:
     #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - reaction: reaction on the poll
+
     # ----------------------------------------------------------------------------------------------
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
+        """
+        Function:
+            on_reaction(self, reaction)
+        Description:
+            Listener to avoid members from selecting both choices in 2 choice poll
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - reaction: reaction on the poll
+        """
         user = payload.member
         if user.bot : return
         msg = (await self.bot.get_guild(payload.guild_id)
@@ -108,16 +125,24 @@ class Helper(commands.Cog):
                     return
 
     # ----------------------------------------------------------------------------------------------
-    #    Function: multi_choice(self, ctx, desc: str = None, *choices)
-    #    Description: Instructor command for creating multi choice multi option poll
+    #    Function:
+    #    Description:
     #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - *choices: variable arguments for choices for the poll
+
     # ----------------------------------------------------------------------------------------------
     @commands.command(name="multipoll", help = "This command is used for poll with multiple choice")
     @commands.has_role("Instructor")
     async def multi_choice(self, ctx, desc: str = None, *choices):
+        """
+        Function:
+           multi_choice(self, ctx, desc: str = None, *choices)
+       Description:
+           Instructor command for creating multi choice multi option poll
+       Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - *choices: variable arguments for choices for the poll
+       """
         msg = ctx.message.content
         await ctx.message.delete()
         if ctx.channel.name == "instructor-commands": # check if command is used in 

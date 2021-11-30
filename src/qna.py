@@ -30,17 +30,18 @@ class QuestionsAnswers:
         self.answer = ans
 
 
-###########################
-# Function: question
-# Description: takes question from user and reposts anonymously and numbered
-# Inputs:
-#      - ctx: context of the command
-#      - q: question text
-# Outputs:
-#      - User question in new post
-###########################
 async def question(ctx, qs):
-    ''' add a question '''
+    """
+    Function:
+        question
+    Description:
+        takes question from user and reposts anonymously and numbered
+    Inputs:
+        - ctx: context of the command
+        - q: question text
+    Outputs:
+        User question in new post
+    """
     global QUESTION_NUMBER
 
     # format question
@@ -60,18 +61,19 @@ async def question(ctx, qs):
     await ctx.message.delete()
 
 
-###########################
-# Function: answer
-# Description: adds user answer to specific question and post anonymously
-# Inputs:
-#      - ctx: context of the command
-#      - num: question number being answered
-#      - ans: answer text to question specified in num
-# Outputs:
-#      - User answer added to question post
-###########################
 async def answer(ctx, num, ans):
-    ''' answer the specific question '''
+    """
+    Function:
+        answer
+    Description:
+        adds user answer to specific question and post anonymously
+    Inputs:
+          - ctx: context of the command
+          - num: question number being answered
+          - ans: answer text to question specified in num
+    Outputs:
+        User answer added to question post
+    """
 
     # check if question number exists
     if int(num) not in QNA.keys():
