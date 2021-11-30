@@ -137,8 +137,8 @@ async def on_message_edit(before, after):
     Description:
         Run when a user edits a message. Checks for profanity.
     Input:
-        - before: the old message
-        - after: the new message
+        before - the old message
+        after - the new message
     Output:
         Deletes inappropriate messages
     """
@@ -176,7 +176,7 @@ async def start_bot(guild):
     Description:
         Run when the bot starts or when a new guild (server) is added
     Input:
-        - guild : the server the bot is added to
+        guild - the server the bot is added to
     Output:
         Creates roles and create text channels
     """
@@ -220,7 +220,7 @@ async def create_voice_channels(guild):
     Description:
         Creates voice channels
     Input:
-        - server in which voice channels are created
+        guild - server in which voice channels are created
     Output:
         Create voice channels with limits for the number of users in that channel
     """
