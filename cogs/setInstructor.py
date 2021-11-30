@@ -12,19 +12,21 @@ class setInstructor(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    ###########################
-    # Function: set_instructor
-    # Description: Command used to give Instructor role out by instructors
-    # Inputs:
-    #      - ctx: context of the command
-    #      - member: user to give role
-    # Outputs:
-    #      - Sends confirmation back to channel
-    ###########################
     @commands.command(name='setInstructor', help='Set member to Instructor.')
     @commands.has_role('Instructor')
     async def set_instructor(self, ctx, member_name: str = None):
-        ''' set instructor role command '''
+
+        """
+        Function:
+            set_instructor
+        Description:
+            Command used to give Instructor role out by instructors
+        Inputs:
+            - ctx: context of the command
+            - member: user to give role
+        Outputs:
+            - Sends confirmation back to channel
+        """
         if member_name is None:
             await ctx.send('To use the setInstructor command, do: !setInstructor DISCORDNAME \n ( For example: !setInstructor Steve )')
             return
