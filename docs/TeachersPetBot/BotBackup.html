@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>TeachersPetBot.BotBackup API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>TeachersPetBot.BotBackup</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+import logging
+import discord
+from discord.utils import get
+from discord.ext import commands
+from dotenv import load_dotenv
+from discord_components import DiscordComponents
+
+from src import event_creation
+from src import cal
+from src import office_hours
+from src import profanity
+from src import qna
+from src import db
+
+logging.basicConfig(level=logging.INFO)
+
+load_dotenv()
+TOKEN = os.getenv(&#39;DISCORD_TOKEN&#39;)
+
+GUILD = os.getenv(&#34;GUILD&#34;)
+# GUILD = &#39;TeachersPet-Dev&#39;
+TESTING_MODE = None
+
+UNVERIFIED_ROLE_NAME = os.getenv(&#34;UNVERIFIED_ROLE_NAME&#34;)
+
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=&#39;!&#39;, description=&#39;This is TeachersPetBot!&#39;, intents=intents)
+
+
+###########################
+# Function: on_ready
+# Description: run on bot start-up
+###########################
+@bot.event
+async def on_ready():
+    &#39;&#39;&#39; run on bot start-up &#39;&#39;&#39;
+    global TESTING_MODE
+    TESTING_MODE = False
+
+    DiscordComponents(bot)
+    db.connect()
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS ta_office_hours (
+            guild_id    INT,
+            ta          VARCHAR(50),
+            day         INT,
+            begin_hr    INT,
+            begin_min   INT,
+            end_hr      INT,
+            end_min     INT
+        )
+    &#39;&#39;&#39;)
+
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS exams (
+            guild_id    INT,
+            title       VARCHAR(50),
+            desc        VARCHAR(300),
+            date        VARCHAR(10),
+            begin_hr    INT,
+            begin_min   INT,
+            end_hr      INT,
+            end_min     INT
+        )
+    &#39;&#39;&#39;)
+
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS assignments (
+            guild_id    INT,
+            title       VARCHAR(50),
+            link        VARCHAR(300),
+            desc        VARCHAR(300),
+            date        VARCHAR(10),
+            due_hr      INT,
+            due_min     INT
+        )
+    &#39;&#39;&#39;)
+    for filename in os.listdir(&#34;./cogs&#34;):
+        if filename.endswith(&#34;.py&#34;):
+            bot.load_extension(f&#34;cogs.{filename[:-3]}&#34;)
+
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name=&#34;Over This Server&#34;)
+    )
+    print(&#34;READY!&#34;)
+
+    # event_creation.init(bot)
+    # office_hours.init(bot)
+    # await cal.init(bot)
+    print(&#39;Logged in as&#39;)
+    print(bot.user.name)
+    print(bot.user.id)
+    print(&#39;------&#39;)
+
+    ###########################
+    # Function: on_guild_join
+    # Description: run when a user joins a guild with the bot present
+    # Inputs:
+    #      - guild: the guild the user joined from
+    ###########################
+    @ bot.event
+    async def on_guild_join(guild):
+        &#39;&#39;&#39; run on member joining guild &#39;&#39;&#39;
+        for channel in guild.text_channels:
+            if channel.permissions_for(guild.me).send_messages:
+                await channel.send(&#39;Hi there, I\&#39;m TeachersPetBot, and I\&#39;m here&#39; +
+                                   &#39; to help you manage your class discord! Let\&#39;s do some quick setup. &#39;)
+                # create roles if they don&#39;t exist
+                if &#39;Instructor&#39; in guild.roles:
+                    await channel.send(&#34;Instructor Role already exists&#34;)
+                else:
+                    await guild.create_role(name=&#34;Instructor&#34;, colour=discord.Colour(0x0062ff),
+                                            permissions=discord.Permissions.all())
+                # Assign Instructor role to admin
+                leader = guild.owner
+                leadrole = get(guild.roles, name=&#39;Instructor&#39;)
+                await channel.send(leader.name + &#34; has been given Instructor role!&#34;)
+                await leader.add_roles(leadrole, reason=None, atomic=True)
+                await channel.send(&#34;To assign more Instructors, type \&#34;!setInstructor.py @&lt;member&gt;\&#34;&#34;)
+                # Create Text channels if they don&#39;t exist
+                if &#39;instructor-commands&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;instructor-commands&#39;)
+                    await channel.send(&#34;instructor-commands channel has been added!&#34;)
+                if &#39;q-and-a&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;q-and-a&#39;)
+                    await channel.send(&#34;q-and-a channel has been added!&#34;)
+                if &#39;course-calendar&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;course-calendar&#39;)
+                    await channel.send(&#34;course-calendar channel has been added!&#34;)
+
+            break
+
+    ###########################
+    # Function: on_message
+    # Description: run when a message is sent to a discord the bot occupies
+    # Inputs:
+    #      - message: the message the user sent to a channel
+    ###########################
+    @bot.event
+    async def on_message(message):
+        &#39;&#39;&#39; run on message sent to a channel &#39;&#39;&#39;
+        # allow messages from test bot
+        if message.author.bot and message.author.id == 897663217755623458:
+            ctx = await bot.get_context(message)
+            await bot.invoke(ctx)
+
+        if message.author == bot.user:
+            return
+
+        if profanity.check_profanity(message.content):
+            await message.channel.send(message.author.name + &#39; says: &#39; +
+                                       profanity.censor_profanity(message.content))
+            await message.delete()
+
+        await bot.process_commands(message)
+
+        if message.content == &#39;hey bot&#39;:
+            response = &#39;hey yourself ;)&#39;
+            await message.channel.send(response)
+
+    ###########################
+    # Function: on_message_edit
+    # Description: run when a user edits a message
+    # Inputs:
+    #      - before: the old message
+    #      - after: the new message
+    ###########################
+    @bot.event
+    async def on_message_edit(before, after):
+        &#39;&#39;&#39; run on message edited &#39;&#39;&#39;
+        if profanity.check_profanity(after.content):
+            await after.channel.send(after.author.name + &#39; says: &#39; +
+                                     profanity.censor_profanity(after.content))
+            await after.delete()
+
+    ###########################
+    # Function: test
+    # Description: Simple test command that shows commands are working.
+    # Inputs:
+    #      - ctx: context of the command
+    # Outputs:
+    #      - Sends test successful message back to channel that called test
+    ###########################
+    @bot.command()
+    async def test(ctx):
+        &#39;&#39;&#39; simple sanity check &#39;&#39;&#39;
+        await ctx.send(&#39;test successful&#39;)
+
+    ###########################
+    # Function: set_instructor
+    # Description: Command used to give Instructor role out by instructors
+    # Inputs:
+    #      - ctx: context of the command
+    #      - member: user to give role
+    # Outputs:
+    #      - Sends confirmation back to channel
+    ###########################
+    @bot.command(name=&#39;setInstructor.py&#39;, help=&#39;Set member to Instructor.&#39;)
+    @commands.has_role(&#39;Instructor&#39;)
+    async def set_instructor(ctx, member: discord.Member):
+        &#39;&#39;&#39; set instructor role command &#39;&#39;&#39;
+        irole = get(ctx.guild.roles, name=&#39;Instructor&#39;)
+        await member.add_roles(irole, reason=None, atomic=True)
+        await ctx.channel.send(member.name + &#34; has been given Instructor role!&#34;)
+
+    ###########################
+    # Function: create_event
+    # Description: command to create event and send to event_creation module
+    # Ensures command author is Instructor
+    # Inputs:
+    #      - ctx: context of the command
+    # Outputs:
+    #      - Options to create event
+    ###########################
+    @bot.command(name=&#39;create&#39;, help=&#39;Create a new event.&#39;)
+    # @commands.dm_only()
+    @commands.has_role(&#39;Instructor&#39;)
+    async def create_event(ctx):
+        &#39;&#39;&#39; run event creation interface &#39;&#39;&#39;
+        await event_creation.create_event(ctx, TESTING_MODE)
+
+    ###########################
+    # Function: oh
+    # Description: command related office hour and send to office_hours module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - command: specific command to run
+    #      - *args: arguments for command
+    # Outputs:
+    #      - Office hour details and options
+    ###########################
+    @bot.command(name=&#39;oh&#39;, help=&#39;Operations relevant for office hours.&#39;)
+    async def office_hour_command(ctx, command, *args):
+        &#39;&#39;&#39; run office hour commands with various args &#39;&#39;&#39;
+        await office_hours.office_hour_command(ctx, command, *args)
+
+    ###########################
+    # Function: ask
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @bot.command(name=&#39;ask&#39;, help=&#39;Ask question. Please put question text in quotes.&#39;)
+    async def ask_question(ctx, question):
+        &#39;&#39;&#39; ask question command &#39;&#39;&#39;
+        # make sure to check that this is actually being asked in the Q&amp;A channel
+        if ctx.channel.name == &#39;q-and-a&#39;:
+            await qna.question(ctx, question)
+        else:
+            await ctx.author.send(&#39;Please send questions to the #q-and-a channel.&#39;)
+            await ctx.message.delete()
+
+    ###########################
+    # Function: answer
+    # Description: command to answer question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - q_num: question number to answer
+    #      - answer: answer text
+    # Outputs:
+    #      - User answer in question post
+    ###########################
+    @bot.command(name=&#39;answer&#39;, help=&#39;Answer specific question. Please put answer text in quotes.&#39;)
+    async def answer_question(ctx, q_num, answer):
+        &#39;&#39;&#39; answer question command &#39;&#39;&#39;
+        # make sure to check that this is actually being asked in the Q&amp;A channel
+        if ctx.channel.name == &#39;q-and-a&#39;:
+            await qna.answer(ctx, q_num, answer)
+        else:
+            await ctx.author.send(&#39;Please send answers to the #q-and-a channel.&#39;)
+            await ctx.message.delete()
+
+    ###########################
+    # Function: begin_tests
+    # Description: Start the automated testing
+    # Inputs:
+    #      - ctx: context of the command
+    ###########################
+    @bot.command(&#39;begin-tests&#39;)
+    async def begin_tests(ctx):
+        &#39;&#39;&#39; start test command &#39;&#39;&#39;
+        global TESTING_MODE
+
+        TESTING_MODE = True
+
+        test_oh_chan = next((ch for ch in ctx.guild.text_channels
+                             if &#39;office-hour-test&#39; in ch.name), None)
+        if test_oh_chan:
+            await office_hours.close_oh(ctx.guild, &#39;test&#39;)
+
+        await office_hours.open_oh(ctx.guild, &#39;test&#39;)
+
+    ###########################
+    # Function: end_tests
+    # Description: Finalize automated testing
+    # Inputs:
+    #      - ctx: context of the command
+    ###########################
+    @bot.command(&#39;end-tests&#39;)
+    async def end_tests(ctx):
+        &#39;&#39;&#39; end tests command &#39;&#39;&#39;
+
+        await office_hours.close_oh(ctx.guild, &#39;test&#39;)
+
+        # TODO maybe use ctx.bot.logout()
+        await ctx.bot.close()
+        # quit(0)
+
+    if __name__ == &#39;__main__&#39;:
+        bot.run(TOKEN)
+
+    ###########################
+    # Function: test_dummy
+    # Description: Run the bot
+    ###########################
+    def test_dummy():
+        &#39;&#39;&#39; run bot command &#39;&#39;&#39;
+        bot.run(TOKEN)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="TeachersPetBot.BotBackup.on_ready"><code class="name flex">
+<span>async def <span class="ident">on_ready</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>run on bot start-up</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@bot.event
+async def on_ready():
+    &#39;&#39;&#39; run on bot start-up &#39;&#39;&#39;
+    global TESTING_MODE
+    TESTING_MODE = False
+
+    DiscordComponents(bot)
+    db.connect()
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS ta_office_hours (
+            guild_id    INT,
+            ta          VARCHAR(50),
+            day         INT,
+            begin_hr    INT,
+            begin_min   INT,
+            end_hr      INT,
+            end_min     INT
+        )
+    &#39;&#39;&#39;)
+
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS exams (
+            guild_id    INT,
+            title       VARCHAR(50),
+            desc        VARCHAR(300),
+            date        VARCHAR(10),
+            begin_hr    INT,
+            begin_min   INT,
+            end_hr      INT,
+            end_min     INT
+        )
+    &#39;&#39;&#39;)
+
+    db.mutation_query(&#39;&#39;&#39;
+        CREATE TABLE IF NOT EXISTS assignments (
+            guild_id    INT,
+            title       VARCHAR(50),
+            link        VARCHAR(300),
+            desc        VARCHAR(300),
+            date        VARCHAR(10),
+            due_hr      INT,
+            due_min     INT
+        )
+    &#39;&#39;&#39;)
+    for filename in os.listdir(&#34;./cogs&#34;):
+        if filename.endswith(&#34;.py&#34;):
+            bot.load_extension(f&#34;cogs.{filename[:-3]}&#34;)
+
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name=&#34;Over This Server&#34;)
+    )
+    print(&#34;READY!&#34;)
+
+    # event_creation.init(bot)
+    # office_hours.init(bot)
+    # await cal.init(bot)
+    print(&#39;Logged in as&#39;)
+    print(bot.user.name)
+    print(bot.user.id)
+    print(&#39;------&#39;)
+
+    ###########################
+    # Function: on_guild_join
+    # Description: run when a user joins a guild with the bot present
+    # Inputs:
+    #      - guild: the guild the user joined from
+    ###########################
+    @ bot.event
+    async def on_guild_join(guild):
+        &#39;&#39;&#39; run on member joining guild &#39;&#39;&#39;
+        for channel in guild.text_channels:
+            if channel.permissions_for(guild.me).send_messages:
+                await channel.send(&#39;Hi there, I\&#39;m TeachersPetBot, and I\&#39;m here&#39; +
+                                   &#39; to help you manage your class discord! Let\&#39;s do some quick setup. &#39;)
+                # create roles if they don&#39;t exist
+                if &#39;Instructor&#39; in guild.roles:
+                    await channel.send(&#34;Instructor Role already exists&#34;)
+                else:
+                    await guild.create_role(name=&#34;Instructor&#34;, colour=discord.Colour(0x0062ff),
+                                            permissions=discord.Permissions.all())
+                # Assign Instructor role to admin
+                leader = guild.owner
+                leadrole = get(guild.roles, name=&#39;Instructor&#39;)
+                await channel.send(leader.name + &#34; has been given Instructor role!&#34;)
+                await leader.add_roles(leadrole, reason=None, atomic=True)
+                await channel.send(&#34;To assign more Instructors, type \&#34;!setInstructor.py @&lt;member&gt;\&#34;&#34;)
+                # Create Text channels if they don&#39;t exist
+                if &#39;instructor-commands&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;instructor-commands&#39;)
+                    await channel.send(&#34;instructor-commands channel has been added!&#34;)
+                if &#39;q-and-a&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;q-and-a&#39;)
+                    await channel.send(&#34;q-and-a channel has been added!&#34;)
+                if &#39;course-calendar&#39; not in guild.text_channels:
+                    await guild.create_text_channel(&#39;course-calendar&#39;)
+                    await channel.send(&#34;course-calendar channel has been added!&#34;)
+
+            break
+
+    ###########################
+    # Function: on_message
+    # Description: run when a message is sent to a discord the bot occupies
+    # Inputs:
+    #      - message: the message the user sent to a channel
+    ###########################
+    @bot.event
+    async def on_message(message):
+        &#39;&#39;&#39; run on message sent to a channel &#39;&#39;&#39;
+        # allow messages from test bot
+        if message.author.bot and message.author.id == 897663217755623458:
+            ctx = await bot.get_context(message)
+            await bot.invoke(ctx)
+
+        if message.author == bot.user:
+            return
+
+        if profanity.check_profanity(message.content):
+            await message.channel.send(message.author.name + &#39; says: &#39; +
+                                       profanity.censor_profanity(message.content))
+            await message.delete()
+
+        await bot.process_commands(message)
+
+        if message.content == &#39;hey bot&#39;:
+            response = &#39;hey yourself ;)&#39;
+            await message.channel.send(response)
+
+    ###########################
+    # Function: on_message_edit
+    # Description: run when a user edits a message
+    # Inputs:
+    #      - before: the old message
+    #      - after: the new message
+    ###########################
+    @bot.event
+    async def on_message_edit(before, after):
+        &#39;&#39;&#39; run on message edited &#39;&#39;&#39;
+        if profanity.check_profanity(after.content):
+            await after.channel.send(after.author.name + &#39; says: &#39; +
+                                     profanity.censor_profanity(after.content))
+            await after.delete()
+
+    ###########################
+    # Function: test
+    # Description: Simple test command that shows commands are working.
+    # Inputs:
+    #      - ctx: context of the command
+    # Outputs:
+    #      - Sends test successful message back to channel that called test
+    ###########################
+    @bot.command()
+    async def test(ctx):
+        &#39;&#39;&#39; simple sanity check &#39;&#39;&#39;
+        await ctx.send(&#39;test successful&#39;)
+
+    ###########################
+    # Function: set_instructor
+    # Description: Command used to give Instructor role out by instructors
+    # Inputs:
+    #      - ctx: context of the command
+    #      - member: user to give role
+    # Outputs:
+    #      - Sends confirmation back to channel
+    ###########################
+    @bot.command(name=&#39;setInstructor.py&#39;, help=&#39;Set member to Instructor.&#39;)
+    @commands.has_role(&#39;Instructor&#39;)
+    async def set_instructor(ctx, member: discord.Member):
+        &#39;&#39;&#39; set instructor role command &#39;&#39;&#39;
+        irole = get(ctx.guild.roles, name=&#39;Instructor&#39;)
+        await member.add_roles(irole, reason=None, atomic=True)
+        await ctx.channel.send(member.name + &#34; has been given Instructor role!&#34;)
+
+    ###########################
+    # Function: create_event
+    # Description: command to create event and send to event_creation module
+    # Ensures command author is Instructor
+    # Inputs:
+    #      - ctx: context of the command
+    # Outputs:
+    #      - Options to create event
+    ###########################
+    @bot.command(name=&#39;create&#39;, help=&#39;Create a new event.&#39;)
+    # @commands.dm_only()
+    @commands.has_role(&#39;Instructor&#39;)
+    async def create_event(ctx):
+        &#39;&#39;&#39; run event creation interface &#39;&#39;&#39;
+        await event_creation.create_event(ctx, TESTING_MODE)
+
+    ###########################
+    # Function: oh
+    # Description: command related office hour and send to office_hours module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - command: specific command to run
+    #      - *args: arguments for command
+    # Outputs:
+    #      - Office hour details and options
+    ###########################
+    @bot.command(name=&#39;oh&#39;, help=&#39;Operations relevant for office hours.&#39;)
+    async def office_hour_command(ctx, command, *args):
+        &#39;&#39;&#39; run office hour commands with various args &#39;&#39;&#39;
+        await office_hours.office_hour_command(ctx, command, *args)
+
+    ###########################
+    # Function: ask
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @bot.command(name=&#39;ask&#39;, help=&#39;Ask question. Please put question text in quotes.&#39;)
+    async def ask_question(ctx, question):
+        &#39;&#39;&#39; ask question command &#39;&#39;&#39;
+        # make sure to check that this is actually being asked in the Q&amp;A channel
+        if ctx.channel.name == &#39;q-and-a&#39;:
+            await qna.question(ctx, question)
+        else:
+            await ctx.author.send(&#39;Please send questions to the #q-and-a channel.&#39;)
+            await ctx.message.delete()
+
+    ###########################
+    # Function: answer
+    # Description: command to answer question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - q_num: question number to answer
+    #      - answer: answer text
+    # Outputs:
+    #      - User answer in question post
+    ###########################
+    @bot.command(name=&#39;answer&#39;, help=&#39;Answer specific question. Please put answer text in quotes.&#39;)
+    async def answer_question(ctx, q_num, answer):
+        &#39;&#39;&#39; answer question command &#39;&#39;&#39;
+        # make sure to check that this is actually being asked in the Q&amp;A channel
+        if ctx.channel.name == &#39;q-and-a&#39;:
+            await qna.answer(ctx, q_num, answer)
+        else:
+            await ctx.author.send(&#39;Please send answers to the #q-and-a channel.&#39;)
+            await ctx.message.delete()
+
+    ###########################
+    # Function: begin_tests
+    # Description: Start the automated testing
+    # Inputs:
+    #      - ctx: context of the command
+    ###########################
+    @bot.command(&#39;begin-tests&#39;)
+    async def begin_tests(ctx):
+        &#39;&#39;&#39; start test command &#39;&#39;&#39;
+        global TESTING_MODE
+
+        TESTING_MODE = True
+
+        test_oh_chan = next((ch for ch in ctx.guild.text_channels
+                             if &#39;office-hour-test&#39; in ch.name), None)
+        if test_oh_chan:
+            await office_hours.close_oh(ctx.guild, &#39;test&#39;)
+
+        await office_hours.open_oh(ctx.guild, &#39;test&#39;)
+
+    ###########################
+    # Function: end_tests
+    # Description: Finalize automated testing
+    # Inputs:
+    #      - ctx: context of the command
+    ###########################
+    @bot.command(&#39;end-tests&#39;)
+    async def end_tests(ctx):
+        &#39;&#39;&#39; end tests command &#39;&#39;&#39;
+
+        await office_hours.close_oh(ctx.guild, &#39;test&#39;)
+
+        # TODO maybe use ctx.bot.logout()
+        await ctx.bot.close()
+        # quit(0)
+
+    if __name__ == &#39;__main__&#39;:
+        bot.run(TOKEN)
+
+    ###########################
+    # Function: test_dummy
+    # Description: Run the bot
+    ###########################
+    def test_dummy():
+        &#39;&#39;&#39; run bot command &#39;&#39;&#39;
+        bot.run(TOKEN)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="TeachersPetBot" href="index.html">TeachersPetBot</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="TeachersPetBot.BotBackup.on_ready" href="#TeachersPetBot.BotBackup.on_ready">on_ready</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

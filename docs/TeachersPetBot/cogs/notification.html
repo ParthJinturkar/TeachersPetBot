@@ -1,0 +1,1613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>TeachersPetBot.cogs.notification API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>TeachersPetBot.cogs.notification</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import discord
+from discord import Client
+from discord.ext import commands
+import json
+import os
+import asyncio
+import time
+import smtplib
+from email.message import EmailMessage
+from datetime import datetime
+
+from src import logmsg
+
+BOT = None
+
+
+class Deadline(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+        self.reminders = json.load(open(&#34;data/remindme/reminders.json&#34;))
+        self.notifs = json.load(open(&#34;data/remindme/groupremind.json&#34;))
+        self.units = {&#34;second&#34;: 1, &#34;minute&#34;: 60, &#34;hour&#34;: 3600, &#34;day&#34;: 86400, &#34;week&#34;: 604800, &#34;month&#34;: 2592000}
+
+
+    @commands.command(name=&#34;addhw&#34;,
+                      help=&#34;add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02&#34;)
+    async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
+        &#34;&#34;&#34;
+        Function:
+            duedate(self, ctx, coursename: str, hwcount: str, *, date: str)
+        Description:
+            Adds the homework to json in the specified format
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwcount: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or returns a success message
+          indicating that the reminder has been added
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        # print(&#39;Author: &#39;+str(author)+&#39; coursename: &#39;+coursename+&#39; homework count: &#39;+hwcount+&#39; date: &#39;+str(date))
+        try:
+            duedate = datetime.strptime(date, &#39;%b %d %Y %H:%M&#39;)
+            # print(seconds)
+        except ValueError:
+            try:
+                duedate = datetime.strptime(date, &#39;%b %d %Y&#39;)
+            except:
+                await ctx.send(&#34;Due date could not be parsed&#34;)
+                return
+        a_timedelta = duedate - datetime.today()
+        seconds = (time.time() + a_timedelta.total_seconds())
+        flag = True
+        if self.reminders:
+            for reminder in self.reminders:
+                if ((reminder[&#34;COURSE&#34;] == coursename) and (reminder[&#34;HOMEWORK&#34;] == hwcount)):
+                    flag = False
+                    break
+        if (flag):
+            self.reminders.append({&#34;ID&#34;: author.id, &#34;COURSE&#34;: coursename, &#34;HOMEWORK&#34;: hwcount, &#34;DUEDATE&#34;: str(duedate),
+                                   &#34;FUTURE&#34;: seconds})
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(
+                &#34;A date has been added for: {} homework named: {} which is due on: {} by {}.&#34;.format(coursename,
+                                                                                                     hwcount,
+                                                                                                     str(duedate),
+                                                                                                     author))
+        else:
+            await ctx.send(&#34;This homework has already been added..!!&#34;)
+        ###########################
+    # Function: create voice channel
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @commands.command(name=&#39;voice_channel&#39;, help=&#39;Create voice channel. Please input category, channel name, limit &#39;
+                                                 &#39;and number of channels. ex. !voice_channel teams meeting 10 3&#39;)
+    async def voice_channel(self, ctx, channelname: str, catename: str, limit: str, num: str):
+        &#39;&#39;&#39; Create voice channel command &#39;&#39;&#39;
+        TESTING_MODE = False
+        &#39;&#39;&#39; create voice channel input flow &#39;&#39;&#39;
+        GUILD = os.getenv(&#34;GUILD&#34;)
+        discord.utils.get(BOT.guilds, name=GUILD)
+        # if ctx.channel.name == &#39;instructor-commands&#39;:
+        cat_exist = False
+        for guild in BOT.guilds:
+            # Category
+            for cat in guild.categories:
+                if cat.name == catename:
+                    cat_exist = True
+                    print(&#39;exist&#39;)
+                    if int(num) == 1:
+                        await guild.create_voice_channel(channelname, user_limit=int(limit), category=cat)
+                    else:
+                        for i in range(int(num)):
+                            temp = channelname + str(i + 1)
+                            await guild.create_voice_channel(temp, user_limit=int(limit), category=cat)
+
+
+        if not cat_exist:
+            category = await guild.create_category(catename)
+            print(&#39;exist&#39;)
+            if int(num) == 1:
+                await guild.create_voice_channel(channelname, user_limit=int(limit), category=category)
+            else:
+                for i in range(int(num)):
+                    temp = channelname + str(i + 1)
+                    await guild.create_voice_channel(temp, user_limit=int(limit), category=category)
+
+        await ctx.send(&#34;Voice channel has been created!!&#34;)
+
+    @duedate.error
+    async def duedate_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )&#39;)
+
+    @commands.command(name=&#34;listreminders&#34;, pass_context=True, help=&#34;lists all reminders&#34;)
+    async def listreminders(self, ctx):
+        to_remove = []
+        for reminder in self.reminders:
+            # if reminder[&#34;FUTURE&#34;] &lt;= int(time.time()):
+            try:
+                # await ctx.send(&#34;{} homework named: {} which is due on: {} by {}&#34;.format(self.bot.get_user(reminder[&#34;ID&#34;]), reminder[&#34;TEXT&#34;]))
+                # await ctx.send(&#34;{} homework named: {} which is due on: {} by {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;],reminder[&#34;DUEDATE&#34;],self.bot.get_user(reminder[&#34;ID&#34;])))
+                embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at,
+                                      title=reminder[&#34;COURSE&#34;])
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Homework Title&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                post_author = &#34;&lt;@&#34; + str(reminder[&#34;ID&#34;]) + &#34;&gt;&#34;
+                embed.add_field(name=&#34;Posted By:&#34;, value=post_author, inline=False)
+                await ctx.send(embed=embed)
+            except (discord.errors.Forbidden, discord.errors.NotFound):
+                to_remove.append(reminder)
+            except discord.errors.HTTPException:
+                pass
+            else:
+                to_remove.append(reminder)
+        if not self.reminders:
+            await ctx.send(&#34;Mission Accomplished..!! You don&#39;t have any more dues..!!&#34;)
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        await ctx.send(&#39;Unidentified command..please use !help to get the list of available comamnds&#39; + str(error))
+
+
+    @commands.command(name=&#34;deletereminder&#34;, pass_context=True,
+                      help=&#34;delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 &#34;)
+    async def deleteReminder(self, ctx, courseName: str, hwName: str):
+        &#34;&#34;&#34;
+        Function:
+            deleteReminder(self, ctx, courseName: str, hwName: str)
+        Description:
+            Delete a reminder using Classname and Homework name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwName: name of the homework
+        Outputs:
+            returns either an error stating a reason for failure or
+         returns a success message indicating that the reminder has been deleted
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        to_remove = []
+        for reminder in self.reminders:
+            # print(&#39;in json &#39;+str(reminder[&#34;HOMEWORK&#34;])+&#39; hwName &#39;+hwName)
+            if ((reminder[&#34;HOMEWORK&#34;] == hwName) and (reminder[&#34;COURSE&#34;] == courseName)):
+                # print(&#39;true &#39;+hwName)
+                to_remove.append(reminder)
+                # print(&#39;to_remove &#39;+ str(to_remove))
+        for reminder in to_remove:
+            self.reminders.remove(reminder)
+        if to_remove:
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(&#34;Following reminder has been deleted: Course: {}, Homework Name: {}, Due Date: {}&#34;.format(
+                str(reminder[&#34;COURSE&#34;]), str(reminder[&#34;HOMEWORK&#34;]), str(reminder[&#34;DUEDATE&#34;])))
+
+    @deleteReminder.error
+    async def deleteReminder_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )&#39;)
+
+
+    @commands.command(name=&#34;changeduedate&#34;, pass_context=True,
+                      help=&#34;update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 &#34;)
+    async def changeduedate(self, ctx, classid: str, hwid: str, *, date: str):
+        &#34;&#34;&#34;
+        Function:
+            changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
+        Description:
+            Update the &#39;Due date&#39; for a homework by providing the classname and homewwork name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - classid: name of the course for which homework is to be added
+            - hwid: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or
+          returns a success message indicating that the reminder has been updated
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        flag = False
+        try:
+            duedate = datetime.strptime(date, &#39;%b %d %Y %H:%M&#39;)
+        except ValueError:
+            try:
+                duedate = datetime.strptime(date, &#39;%b %d %Y&#39;)
+            except:
+                await ctx.send(&#34;Due date could not be parsed&#34;)
+                return
+        for reminder in self.reminders:
+            flag = False
+            if ((reminder[&#34;HOMEWORK&#34;] == hwid) and (reminder[&#34;COURSE&#34;] == classid)):
+                reminder[&#34;DUEDATE&#34;] = str(duedate)
+                a_timedelta = duedate - datetime.today()
+                seconds = (time.time() + a_timedelta.total_seconds())
+                reminder[&#34;FUTURE&#34;] = seconds
+                reminder[&#34;ID&#34;] = author.id
+                flag = True
+                if (flag):
+                    json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+                    # await ctx.send(&#34;{} {} has been updated with following date: {}&#34;.format(classid, hwid, reminder[&#34;DUEDATE&#34;]))
+                    embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                          title=&#34;Updated Courses:&#34;)
+                    embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                    embed.add_field(name=&#34;Coursework&#34;, value=classid, inline=False)
+                    embed.add_field(name=&#34;Homework:&#34;, value=hwid, inline=False)
+                    embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                    await ctx.send(embed=embed)
+                    # await ctx.send(&#34;Data updated..!!&#34;)
+
+    @changeduedate.error
+    async def changeduedate_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )&#39;)
+
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function:
+    #    Description:
+    #    Inputs:
+    #
+    #    Outputs:
+    # -----------------------------------------------------------------------------------------------------------------
+
+    @commands.command(name=&#34;duethisweek&#34;, pass_context=True,
+                      help=&#34;check all the homeworks that are due this week !duethisweek&#34;)
+    async def duethisweek(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            duethisweek(self, ctx)
+        Description:
+            Displays all the homeworks that are due this week along with the coursename and due date
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure
+            or returns a list of all the assignments that are due this week
+        &#34;&#34;&#34;
+        time = ctx.message.created_at
+
+        if len(self.reminders) == 0:
+            await ctx.send(&#34;No dues this week&#34;)
+
+        flag = False
+
+        for reminder in self.reminders:
+            timeleft = datetime.strptime(reminder[&#34;DUEDATE&#34;], &#39;%Y-%m-%d %H:%M:%S&#39;) - time
+            print(&#34;timeleft: &#34; + str(timeleft) + &#34; days left: &#34; + str(timeleft.days))
+            if timeleft.days &lt;= 7:
+                flag = True
+                # await ctx.send(&#34;{} {} is due this week at {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;],reminder[&#34;DUEDATE&#34;]))
+                await ctx.send(&#34;Following homeworks are due this week&#34;)
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due this week&#34;)
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Coursework&#34;, value=reminder[&#34;COURSE&#34;], inline=False)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+
+        if not flag:
+            await ctx.send(&#34;No dues this week&#34;)
+
+
+    @commands.command(name=&#34;duetoday&#34;, pass_context=True, help=&#34;check all the homeworks that are due today !duetoday&#34;)
+    async def duetoday(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            duetoday(self, ctx)
+        Description:
+            Displays all the homeworks that are due today
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+           returns a list of all the assignments that are due on the day the command is run
+        &#34;&#34;&#34;
+        flag = True
+        for reminder in self.reminders:
+            timedate = datetime.strptime(reminder[&#34;DUEDATE&#34;], &#39;%Y-%m-%d %H:%M:%S&#39;)
+            if timedate.date() == ctx.message.created_at.date():
+                flag = False
+                # await ctx.send(&#34;{} {} is due today at {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;], timedate.time()))
+                await ctx.send(&#34;Following homeworks are due today&#34;)
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due this week&#34;)
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Coursework&#34;, value=reminder[&#34;COURSE&#34;], inline=False)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+        if (flag):
+            await ctx.send(&#34;You have no dues today..!!&#34;)
+
+    @commands.command(name=&#34;coursedue&#34;, pass_context=True,
+                      help=&#34;check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505&#34;)
+    async def coursedue(self, ctx, courseid: str):
+        &#34;&#34;&#34;
+        Function:
+            coursedue(self, ctx, courseid: str)
+        Description:
+            Displays all the homeworks that are due for a specific course
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - courseid: name of the course for which homework is to be added
+        Outputs:
+            returns either an error stating a reason for failure or
+          a list of assignments that are due for the provided courseid
+        &#34;&#34;&#34;
+        course_due = []
+        for reminder in self.reminders:
+            if reminder[&#34;COURSE&#34;] == courseid:
+                course_due.append(reminder)
+                # await  ctx.send(&#34;{} is due at {}&#34;.format(reminder[&#34;HOMEWORK&#34;], reminder[&#34;DUEDATE&#34;]))
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due for this course&#34;)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+        if not course_due:
+            await ctx.send(&#34;Rejoice..!! You have no pending homeworks for {}..!!&#34;.format(courseid))
+
+    @coursedue.error
+    async def coursedue_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )&#39;)
+
+    # ---------------------------------------------------------------------------------
+    #    Function:
+    #    Description:
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    Outputs:
+    # ---------------------------------------------------------------------------------
+
+    @commands.command(name=&#34;clearreminders&#34;, pass_context=True, help=&#34;deletes all reminders&#34;)
+    async def clearallreminders(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            clearallreminders(self, ctx)
+        Description:
+            Delete all the reminders
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+             returns a success message stating that reminders have been deleted
+        &#34;&#34;&#34;
+        to_remove = []
+        for reminder in self.reminders:
+            to_remove.append(reminder)
+        for reminder in to_remove:
+            self.reminders.remove(reminder)
+        if to_remove:
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(&#34;All reminders have been cleared..!!&#34;)
+        else:
+            await ctx.send(&#34;No reminders to delete..!!&#34;)
+
+    @commands.command(name=&#34;notifyme&#34;, pass_context=True, help=&#34;provides a way to set up notifications ex. !notifyme 1 minutes Complete CSC510 Project2&#34;)
+    async def notify_me(self, ctx, quantity: int, time_unit: str, *, text: str):
+        time_unit = time_unit.lower()
+        msg_email = &#34;&#34;
+        contact = &#34;&#34;
+        author = ctx.message.author
+        s = &#34;&#34;
+        if time_unit.endswith(&#34;s&#34;):
+            time_unit = time_unit[:-1]
+            s = &#34;s&#34;
+        if not time_unit in self.units:
+            await ctx.send(&#34;Invalid unit of time. Select from seconds/minutes/hours/days/weeks/months&#34;)
+            return
+        if quantity &lt; 1:
+            await ctx.send(&#34;Quantity must not be 0 or negative&#34;)
+            return
+        if len(text) &gt; 1960:
+            await ctx.send(&#34;Text is too long.&#34;)
+            return
+
+        seconds = self.units[time_unit] * quantity
+        future = int(time.time() + seconds)
+
+        def check(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in [&#34;y&#34;, &#34;n&#34;]
+
+        def check_answer(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in [&#34;email&#34;, &#34;text&#34;]
+
+        def check_email(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        def check_phone(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        await ctx.send(&#34;Would you like to receive reminder on your email or phone? [y/n]&#34;)
+        #logmsg.logerror(ctx.channel.id)
+        # print(&#34;The id is here&#34; + ctx.channel.id)
+        msg = await BOT.wait_for(&#34;message&#34;, check=check)
+        if msg.content.lower() == &#34;y&#34;:
+            await ctx.send(&#34;Great..!! So, [email/text]..??&#34;)
+            msg_answer = await BOT.wait_for(&#34;message&#34;, check=check_answer)
+            if msg_answer.content.lower() == &#34;email&#34;:
+                await ctx.send(&#34;Enter your email id&#34;)
+                msg_email_text = await BOT.wait_for(&#34;message&#34;, check=check_email)
+                msg_email = msg_email_text.content.strip()
+                await ctx.send(&#34;I will remind you through mail&#34;)
+            elif msg_answer.content.lower() == &#34;text&#34;:
+                await ctx.send(&#34;Enter your contact number&#34;)
+                msg_contact = await BOT.wait_for(&#34;message&#34;, check=check_phone)
+                contact = msg_contact.content.strip()
+                await ctx.send(&#34;I will remind you through text&#34;)
+
+        self.notifs.append({&#34;ID&#34;: author.id, &#34;FUTURE&#34;: future, &#34;TEXT&#34;: text, &#34;EMAIL&#34;: msg_email, &#34;PHONE&#34;: contact, &#34;GUILD&#34;: ctx.channel.id})
+
+        await ctx.send(&#34;I will remind you that in {} {}.&#34;.format(str(quantity), time_unit + s))
+        json.dump(self.notifs, open(&#34;data/remindme/groupremind.json&#34;, &#34;w&#34;))
+
+    async def notification_reminders(self):
+        print(&#34;inside delete old notifications&#34;)
+        while self is self.bot.get_cog(&#34;Deadline&#34;):
+            to_remove = []
+            for notif in self.notifs:
+                if notif[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                    try:
+                        # await ctx.send(&#34;A reminder has been deleted&#34;)
+                        await self.bot.wait_until_ready()
+                        channel = self.bot.get_channel(notif[&#34;GUILD&#34;]);
+                        await channel.send(
+                            &#34;&lt;@{}&gt;, You asked me to remind you this: {}&#34;.format(notif[&#34;ID&#34;], notif[&#34;TEXT&#34;]))
+                        if notif[&#34;EMAIL&#34;]:
+                            await self.email_alert(&#34;You have a reminder, Sir&#34;,
+                                                   &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                                   notif[&#34;EMAIL&#34;])
+                        if notif[&#34;PHONE&#34;]:
+                            await self.phone_alert(&#34;You have a reminder, Sir&#34;,
+                                                   &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                                   notif[&#34;PHONE&#34;])
+                        print(&#34;Deleting an old notification..!!&#34;)
+                    except (discord.errors.Forbidden, discord.errors.NotFound):
+                        to_remove.append(notif)
+                    except discord.errors.HTTPException:
+                        pass
+                    # except AttributeError as e:
+                    #     logerror.logerror(str(e), logerror.get_today())
+                    else:
+                        to_remove.append(notif)
+            for notif in to_remove:
+                self.notifs.remove(notif)
+            if to_remove:
+                json.dump(self.notifs, open(&#34;data/remindme/groupremind.json&#34;, &#34;w&#34;))
+            await asyncio.sleep(5)
+
+    async def email_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg[&#39;subject&#39;] = subject
+        msg[&#39;to&#39;] = to
+        user = &#34;teacher.petbot@gmail.com&#34;
+        msg[&#39;from&#39;] = user
+        password = &#34;bbyfvjamujjjwrna&#34;
+
+        server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
+    async def phone_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg[&#39;subject&#39;] = subject
+        msg[&#39;to&#39;] = to + &#34;@tmomail.net&#34;
+        user = &#34;teacher.petbot@gmail.com&#34;
+        msg[&#39;from&#39;] = user
+        password = &#34;bbyfvjamujjjwrna&#34;
+
+        server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
+    async def delete_old_reminders(self):
+        &#34;&#34;&#34;
+        Function:
+            delete_old_reminders(self)
+        Description:
+            asynchronously keeps on tracking the json file for expired reminders and cleans them.
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+        Outputs:
+            deletes the expired reminders and sends a message
+        &#34;&#34;&#34;
+        print(&#34;inside delete old reminders&#34;)
+        while self is self.bot.get_cog(&#34;Deadline&#34;):
+            to_remove = []
+            for reminder in self.reminders:
+                if reminder[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                    try:
+                        # await ctx.send(&#34;A reminder has been deleted&#34;)
+                        channel = self.bot.get_channel(897661152371290172);
+                        await channel.send(
+                            &#34;The due date for {} {} which was {} set by &lt;@{}&gt; has now passed&#34;.format(reminder[&#34;COURSE&#34;],
+                                                                                                     reminder[
+                                                                                                         &#34;HOMEWORK&#34;],
+                                                                                                     reminder[
+                                                                                                         &#34;DUEDATE&#34;],
+                                                                                                     reminder[&#34;ID&#34;]))
+                        print(&#34;Deleting an old reminder..!!&#34;)
+                    except (discord.errors.Forbidden, discord.errors.NotFound):
+                        to_remove.append(reminder)
+                    except discord.errors.HTTPException:
+                        pass
+                    else:
+                        to_remove.append(reminder)
+            for reminder in to_remove:
+                self.reminders.remove(reminder)
+            if to_remove:
+                json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await asyncio.sleep(5)
+
+
+# -----------------------------------------------------------------------------
+# checks if the folder that is going to hold json exists else creates a new one
+# -----------------------------------------------------------------------------
+def check_folders():
+    if not os.path.exists(&#34;data/remindme&#34;):
+        print(&#34;Creating data/remindme folder...&#34;)
+        os.makedirs(&#34;data/remindme&#34;)
+
+
+# ----------------------------------------------------
+# checks if a json file exists else creates a new one
+# ----------------------------------------------------
+def check_files():
+    f = &#34;data/remindme/reminders.json&#34;
+    group = &#34;data/remindme/groupremind.json&#34;
+
+    print(&#34;Creating file...&#34;)
+    if not os.path.exists(f):
+        print(&#34;Creating empty reminders.json...&#34;)
+        json.dump([], open(f, &#34;w&#34;))
+
+    if not os.path.exists(group):
+        print(&#34;Creating group reminders file&#34;)
+        json.dump([], open(group, &#34;w&#34;))
+
+
+# -------------------------------------
+# add the file to the bot&#39;s cog system
+# -------------------------------------
+def setup(bot):
+    check_folders()
+    check_files()
+    n = Deadline(bot)
+    loop = asyncio.get_event_loop()
+    loop_notify = asyncio.get_event_loop()
+    loop.create_task(n.delete_old_reminders())
+    loop_notify.create_task(n.notification_reminders())
+    global BOT
+    BOT = bot
+    bot.add_cog(n)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="TeachersPetBot.cogs.notification.check_files"><code class="name flex">
+<span>def <span class="ident">check_files</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_files():
+    f = &#34;data/remindme/reminders.json&#34;
+    group = &#34;data/remindme/groupremind.json&#34;
+
+    print(&#34;Creating file...&#34;)
+    if not os.path.exists(f):
+        print(&#34;Creating empty reminders.json...&#34;)
+        json.dump([], open(f, &#34;w&#34;))
+
+    if not os.path.exists(group):
+        print(&#34;Creating group reminders file&#34;)
+        json.dump([], open(group, &#34;w&#34;))</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.check_folders"><code class="name flex">
+<span>def <span class="ident">check_folders</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_folders():
+    if not os.path.exists(&#34;data/remindme&#34;):
+        print(&#34;Creating data/remindme folder...&#34;)
+        os.makedirs(&#34;data/remindme&#34;)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.setup"><code class="name flex">
+<span>def <span class="ident">setup</span></span>(<span>bot)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setup(bot):
+    check_folders()
+    check_files()
+    n = Deadline(bot)
+    loop = asyncio.get_event_loop()
+    loop_notify = asyncio.get_event_loop()
+    loop.create_task(n.delete_old_reminders())
+    loop_notify.create_task(n.notification_reminders())
+    global BOT
+    BOT = bot
+    bot.add_cog(n)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="TeachersPetBot.cogs.notification.Deadline"><code class="flex name class">
+<span>class <span class="ident">Deadline</span></span>
+<span>(</span><span>bot)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The base class that all cogs must inherit from.</p>
+<p>A cog is a collection of commands, listeners, and optional state to
+help group commands together. More information on them can be found on
+the :ref:<code>ext_commands_cogs</code> page.</p>
+<p>When inheriting from this class, the options shown in :class:<code>CogMeta</code>
+are equally valid here.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Deadline(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+        self.reminders = json.load(open(&#34;data/remindme/reminders.json&#34;))
+        self.notifs = json.load(open(&#34;data/remindme/groupremind.json&#34;))
+        self.units = {&#34;second&#34;: 1, &#34;minute&#34;: 60, &#34;hour&#34;: 3600, &#34;day&#34;: 86400, &#34;week&#34;: 604800, &#34;month&#34;: 2592000}
+
+
+    @commands.command(name=&#34;addhw&#34;,
+                      help=&#34;add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02&#34;)
+    async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
+        &#34;&#34;&#34;
+        Function:
+            duedate(self, ctx, coursename: str, hwcount: str, *, date: str)
+        Description:
+            Adds the homework to json in the specified format
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwcount: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or returns a success message
+          indicating that the reminder has been added
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        # print(&#39;Author: &#39;+str(author)+&#39; coursename: &#39;+coursename+&#39; homework count: &#39;+hwcount+&#39; date: &#39;+str(date))
+        try:
+            duedate = datetime.strptime(date, &#39;%b %d %Y %H:%M&#39;)
+            # print(seconds)
+        except ValueError:
+            try:
+                duedate = datetime.strptime(date, &#39;%b %d %Y&#39;)
+            except:
+                await ctx.send(&#34;Due date could not be parsed&#34;)
+                return
+        a_timedelta = duedate - datetime.today()
+        seconds = (time.time() + a_timedelta.total_seconds())
+        flag = True
+        if self.reminders:
+            for reminder in self.reminders:
+                if ((reminder[&#34;COURSE&#34;] == coursename) and (reminder[&#34;HOMEWORK&#34;] == hwcount)):
+                    flag = False
+                    break
+        if (flag):
+            self.reminders.append({&#34;ID&#34;: author.id, &#34;COURSE&#34;: coursename, &#34;HOMEWORK&#34;: hwcount, &#34;DUEDATE&#34;: str(duedate),
+                                   &#34;FUTURE&#34;: seconds})
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(
+                &#34;A date has been added for: {} homework named: {} which is due on: {} by {}.&#34;.format(coursename,
+                                                                                                     hwcount,
+                                                                                                     str(duedate),
+                                                                                                     author))
+        else:
+            await ctx.send(&#34;This homework has already been added..!!&#34;)
+        ###########################
+    # Function: create voice channel
+    # Description: command to ask question and sends to qna module
+    # Inputs:
+    #      - ctx: context of the command
+    #      - question: question text
+    # Outputs:
+    #      - User question in new post
+    ###########################
+    @commands.command(name=&#39;voice_channel&#39;, help=&#39;Create voice channel. Please input category, channel name, limit &#39;
+                                                 &#39;and number of channels. ex. !voice_channel teams meeting 10 3&#39;)
+    async def voice_channel(self, ctx, channelname: str, catename: str, limit: str, num: str):
+        &#39;&#39;&#39; Create voice channel command &#39;&#39;&#39;
+        TESTING_MODE = False
+        &#39;&#39;&#39; create voice channel input flow &#39;&#39;&#39;
+        GUILD = os.getenv(&#34;GUILD&#34;)
+        discord.utils.get(BOT.guilds, name=GUILD)
+        # if ctx.channel.name == &#39;instructor-commands&#39;:
+        cat_exist = False
+        for guild in BOT.guilds:
+            # Category
+            for cat in guild.categories:
+                if cat.name == catename:
+                    cat_exist = True
+                    print(&#39;exist&#39;)
+                    if int(num) == 1:
+                        await guild.create_voice_channel(channelname, user_limit=int(limit), category=cat)
+                    else:
+                        for i in range(int(num)):
+                            temp = channelname + str(i + 1)
+                            await guild.create_voice_channel(temp, user_limit=int(limit), category=cat)
+
+
+        if not cat_exist:
+            category = await guild.create_category(catename)
+            print(&#39;exist&#39;)
+            if int(num) == 1:
+                await guild.create_voice_channel(channelname, user_limit=int(limit), category=category)
+            else:
+                for i in range(int(num)):
+                    temp = channelname + str(i + 1)
+                    await guild.create_voice_channel(temp, user_limit=int(limit), category=category)
+
+        await ctx.send(&#34;Voice channel has been created!!&#34;)
+
+    @duedate.error
+    async def duedate_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )&#39;)
+
+    @commands.command(name=&#34;listreminders&#34;, pass_context=True, help=&#34;lists all reminders&#34;)
+    async def listreminders(self, ctx):
+        to_remove = []
+        for reminder in self.reminders:
+            # if reminder[&#34;FUTURE&#34;] &lt;= int(time.time()):
+            try:
+                # await ctx.send(&#34;{} homework named: {} which is due on: {} by {}&#34;.format(self.bot.get_user(reminder[&#34;ID&#34;]), reminder[&#34;TEXT&#34;]))
+                # await ctx.send(&#34;{} homework named: {} which is due on: {} by {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;],reminder[&#34;DUEDATE&#34;],self.bot.get_user(reminder[&#34;ID&#34;])))
+                embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at,
+                                      title=reminder[&#34;COURSE&#34;])
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Homework Title&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                post_author = &#34;&lt;@&#34; + str(reminder[&#34;ID&#34;]) + &#34;&gt;&#34;
+                embed.add_field(name=&#34;Posted By:&#34;, value=post_author, inline=False)
+                await ctx.send(embed=embed)
+            except (discord.errors.Forbidden, discord.errors.NotFound):
+                to_remove.append(reminder)
+            except discord.errors.HTTPException:
+                pass
+            else:
+                to_remove.append(reminder)
+        if not self.reminders:
+            await ctx.send(&#34;Mission Accomplished..!! You don&#39;t have any more dues..!!&#34;)
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        await ctx.send(&#39;Unidentified command..please use !help to get the list of available comamnds&#39; + str(error))
+
+
+    @commands.command(name=&#34;deletereminder&#34;, pass_context=True,
+                      help=&#34;delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 &#34;)
+    async def deleteReminder(self, ctx, courseName: str, hwName: str):
+        &#34;&#34;&#34;
+        Function:
+            deleteReminder(self, ctx, courseName: str, hwName: str)
+        Description:
+            Delete a reminder using Classname and Homework name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwName: name of the homework
+        Outputs:
+            returns either an error stating a reason for failure or
+         returns a success message indicating that the reminder has been deleted
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        to_remove = []
+        for reminder in self.reminders:
+            # print(&#39;in json &#39;+str(reminder[&#34;HOMEWORK&#34;])+&#39; hwName &#39;+hwName)
+            if ((reminder[&#34;HOMEWORK&#34;] == hwName) and (reminder[&#34;COURSE&#34;] == courseName)):
+                # print(&#39;true &#39;+hwName)
+                to_remove.append(reminder)
+                # print(&#39;to_remove &#39;+ str(to_remove))
+        for reminder in to_remove:
+            self.reminders.remove(reminder)
+        if to_remove:
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(&#34;Following reminder has been deleted: Course: {}, Homework Name: {}, Due Date: {}&#34;.format(
+                str(reminder[&#34;COURSE&#34;]), str(reminder[&#34;HOMEWORK&#34;]), str(reminder[&#34;DUEDATE&#34;])))
+
+    @deleteReminder.error
+    async def deleteReminder_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )&#39;)
+
+
+    @commands.command(name=&#34;changeduedate&#34;, pass_context=True,
+                      help=&#34;update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 &#34;)
+    async def changeduedate(self, ctx, classid: str, hwid: str, *, date: str):
+        &#34;&#34;&#34;
+        Function:
+            changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
+        Description:
+            Update the &#39;Due date&#39; for a homework by providing the classname and homewwork name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - classid: name of the course for which homework is to be added
+            - hwid: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or
+          returns a success message indicating that the reminder has been updated
+        &#34;&#34;&#34;
+        author = ctx.message.author
+        flag = False
+        try:
+            duedate = datetime.strptime(date, &#39;%b %d %Y %H:%M&#39;)
+        except ValueError:
+            try:
+                duedate = datetime.strptime(date, &#39;%b %d %Y&#39;)
+            except:
+                await ctx.send(&#34;Due date could not be parsed&#34;)
+                return
+        for reminder in self.reminders:
+            flag = False
+            if ((reminder[&#34;HOMEWORK&#34;] == hwid) and (reminder[&#34;COURSE&#34;] == classid)):
+                reminder[&#34;DUEDATE&#34;] = str(duedate)
+                a_timedelta = duedate - datetime.today()
+                seconds = (time.time() + a_timedelta.total_seconds())
+                reminder[&#34;FUTURE&#34;] = seconds
+                reminder[&#34;ID&#34;] = author.id
+                flag = True
+                if (flag):
+                    json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+                    # await ctx.send(&#34;{} {} has been updated with following date: {}&#34;.format(classid, hwid, reminder[&#34;DUEDATE&#34;]))
+                    embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                          title=&#34;Updated Courses:&#34;)
+                    embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                    embed.add_field(name=&#34;Coursework&#34;, value=classid, inline=False)
+                    embed.add_field(name=&#34;Homework:&#34;, value=hwid, inline=False)
+                    embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                    await ctx.send(embed=embed)
+                    # await ctx.send(&#34;Data updated..!!&#34;)
+
+    @changeduedate.error
+    async def changeduedate_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )&#39;)
+
+    # -----------------------------------------------------------------------------------------------------------------
+    #    Function:
+    #    Description:
+    #    Inputs:
+    #
+    #    Outputs:
+    # -----------------------------------------------------------------------------------------------------------------
+
+    @commands.command(name=&#34;duethisweek&#34;, pass_context=True,
+                      help=&#34;check all the homeworks that are due this week !duethisweek&#34;)
+    async def duethisweek(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            duethisweek(self, ctx)
+        Description:
+            Displays all the homeworks that are due this week along with the coursename and due date
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure
+            or returns a list of all the assignments that are due this week
+        &#34;&#34;&#34;
+        time = ctx.message.created_at
+
+        if len(self.reminders) == 0:
+            await ctx.send(&#34;No dues this week&#34;)
+
+        flag = False
+
+        for reminder in self.reminders:
+            timeleft = datetime.strptime(reminder[&#34;DUEDATE&#34;], &#39;%Y-%m-%d %H:%M:%S&#39;) - time
+            print(&#34;timeleft: &#34; + str(timeleft) + &#34; days left: &#34; + str(timeleft.days))
+            if timeleft.days &lt;= 7:
+                flag = True
+                # await ctx.send(&#34;{} {} is due this week at {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;],reminder[&#34;DUEDATE&#34;]))
+                await ctx.send(&#34;Following homeworks are due this week&#34;)
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due this week&#34;)
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Coursework&#34;, value=reminder[&#34;COURSE&#34;], inline=False)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+
+        if not flag:
+            await ctx.send(&#34;No dues this week&#34;)
+
+
+    @commands.command(name=&#34;duetoday&#34;, pass_context=True, help=&#34;check all the homeworks that are due today !duetoday&#34;)
+    async def duetoday(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            duetoday(self, ctx)
+        Description:
+            Displays all the homeworks that are due today
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+           returns a list of all the assignments that are due on the day the command is run
+        &#34;&#34;&#34;
+        flag = True
+        for reminder in self.reminders:
+            timedate = datetime.strptime(reminder[&#34;DUEDATE&#34;], &#39;%Y-%m-%d %H:%M:%S&#39;)
+            if timedate.date() == ctx.message.created_at.date():
+                flag = False
+                # await ctx.send(&#34;{} {} is due today at {}&#34;.format(reminder[&#34;COURSE&#34;], reminder[&#34;HOMEWORK&#34;], timedate.time()))
+                await ctx.send(&#34;Following homeworks are due today&#34;)
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due this week&#34;)
+                embed.set_footer(text=f&#34;Requested by {ctx.author}&#34;)
+                embed.add_field(name=&#34;Coursework&#34;, value=reminder[&#34;COURSE&#34;], inline=False)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+        if (flag):
+            await ctx.send(&#34;You have no dues today..!!&#34;)
+
+    @commands.command(name=&#34;coursedue&#34;, pass_context=True,
+                      help=&#34;check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505&#34;)
+    async def coursedue(self, ctx, courseid: str):
+        &#34;&#34;&#34;
+        Function:
+            coursedue(self, ctx, courseid: str)
+        Description:
+            Displays all the homeworks that are due for a specific course
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - courseid: name of the course for which homework is to be added
+        Outputs:
+            returns either an error stating a reason for failure or
+          a list of assignments that are due for the provided courseid
+        &#34;&#34;&#34;
+        course_due = []
+        for reminder in self.reminders:
+            if reminder[&#34;COURSE&#34;] == courseid:
+                course_due.append(reminder)
+                # await  ctx.send(&#34;{} is due at {}&#34;.format(reminder[&#34;HOMEWORK&#34;], reminder[&#34;DUEDATE&#34;]))
+                embed = discord.Embed(colour=discord.Colour.blurple(), timestamp=ctx.message.created_at,
+                                      title=&#34;Due for this course&#34;)
+                embed.add_field(name=&#34;Homework:&#34;, value=reminder[&#34;HOMEWORK&#34;], inline=False)
+                embed.add_field(name=&#34;Due Date:&#34;, value=reminder[&#34;DUEDATE&#34;], inline=False)
+                await ctx.send(embed=embed)
+        if not course_due:
+            await ctx.send(&#34;Rejoice..!! You have no pending homeworks for {}..!!&#34;.format(courseid))
+
+    @coursedue.error
+    async def coursedue_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(
+                &#39;To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )&#39;)
+
+    # ---------------------------------------------------------------------------------
+    #    Function:
+    #    Description:
+    #    Inputs:
+    #    - self: used to access parameters passed to the class through the constructor
+    #    - ctx: used to access the values passed through the current context
+    #    Outputs:
+    # ---------------------------------------------------------------------------------
+
+    @commands.command(name=&#34;clearreminders&#34;, pass_context=True, help=&#34;deletes all reminders&#34;)
+    async def clearallreminders(self, ctx):
+        &#34;&#34;&#34;
+        Function:
+            clearallreminders(self, ctx)
+        Description:
+            Delete all the reminders
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+             returns a success message stating that reminders have been deleted
+        &#34;&#34;&#34;
+        to_remove = []
+        for reminder in self.reminders:
+            to_remove.append(reminder)
+        for reminder in to_remove:
+            self.reminders.remove(reminder)
+        if to_remove:
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await ctx.send(&#34;All reminders have been cleared..!!&#34;)
+        else:
+            await ctx.send(&#34;No reminders to delete..!!&#34;)
+
+    @commands.command(name=&#34;notifyme&#34;, pass_context=True, help=&#34;provides a way to set up notifications ex. !notifyme 1 minutes Complete CSC510 Project2&#34;)
+    async def notify_me(self, ctx, quantity: int, time_unit: str, *, text: str):
+        time_unit = time_unit.lower()
+        msg_email = &#34;&#34;
+        contact = &#34;&#34;
+        author = ctx.message.author
+        s = &#34;&#34;
+        if time_unit.endswith(&#34;s&#34;):
+            time_unit = time_unit[:-1]
+            s = &#34;s&#34;
+        if not time_unit in self.units:
+            await ctx.send(&#34;Invalid unit of time. Select from seconds/minutes/hours/days/weeks/months&#34;)
+            return
+        if quantity &lt; 1:
+            await ctx.send(&#34;Quantity must not be 0 or negative&#34;)
+            return
+        if len(text) &gt; 1960:
+            await ctx.send(&#34;Text is too long.&#34;)
+            return
+
+        seconds = self.units[time_unit] * quantity
+        future = int(time.time() + seconds)
+
+        def check(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in [&#34;y&#34;, &#34;n&#34;]
+
+        def check_answer(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel and msg.content.lower() in [&#34;email&#34;, &#34;text&#34;]
+
+        def check_email(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        def check_phone(msg):
+            # print(&#34;inside msg: msg&#34;+msg)
+            return msg.author == ctx.author and msg.channel == ctx.channel
+
+        await ctx.send(&#34;Would you like to receive reminder on your email or phone? [y/n]&#34;)
+        #logmsg.logerror(ctx.channel.id)
+        # print(&#34;The id is here&#34; + ctx.channel.id)
+        msg = await BOT.wait_for(&#34;message&#34;, check=check)
+        if msg.content.lower() == &#34;y&#34;:
+            await ctx.send(&#34;Great..!! So, [email/text]..??&#34;)
+            msg_answer = await BOT.wait_for(&#34;message&#34;, check=check_answer)
+            if msg_answer.content.lower() == &#34;email&#34;:
+                await ctx.send(&#34;Enter your email id&#34;)
+                msg_email_text = await BOT.wait_for(&#34;message&#34;, check=check_email)
+                msg_email = msg_email_text.content.strip()
+                await ctx.send(&#34;I will remind you through mail&#34;)
+            elif msg_answer.content.lower() == &#34;text&#34;:
+                await ctx.send(&#34;Enter your contact number&#34;)
+                msg_contact = await BOT.wait_for(&#34;message&#34;, check=check_phone)
+                contact = msg_contact.content.strip()
+                await ctx.send(&#34;I will remind you through text&#34;)
+
+        self.notifs.append({&#34;ID&#34;: author.id, &#34;FUTURE&#34;: future, &#34;TEXT&#34;: text, &#34;EMAIL&#34;: msg_email, &#34;PHONE&#34;: contact, &#34;GUILD&#34;: ctx.channel.id})
+
+        await ctx.send(&#34;I will remind you that in {} {}.&#34;.format(str(quantity), time_unit + s))
+        json.dump(self.notifs, open(&#34;data/remindme/groupremind.json&#34;, &#34;w&#34;))
+
+    async def notification_reminders(self):
+        print(&#34;inside delete old notifications&#34;)
+        while self is self.bot.get_cog(&#34;Deadline&#34;):
+            to_remove = []
+            for notif in self.notifs:
+                if notif[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                    try:
+                        # await ctx.send(&#34;A reminder has been deleted&#34;)
+                        await self.bot.wait_until_ready()
+                        channel = self.bot.get_channel(notif[&#34;GUILD&#34;]);
+                        await channel.send(
+                            &#34;&lt;@{}&gt;, You asked me to remind you this: {}&#34;.format(notif[&#34;ID&#34;], notif[&#34;TEXT&#34;]))
+                        if notif[&#34;EMAIL&#34;]:
+                            await self.email_alert(&#34;You have a reminder, Sir&#34;,
+                                                   &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                                   notif[&#34;EMAIL&#34;])
+                        if notif[&#34;PHONE&#34;]:
+                            await self.phone_alert(&#34;You have a reminder, Sir&#34;,
+                                                   &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                                   notif[&#34;PHONE&#34;])
+                        print(&#34;Deleting an old notification..!!&#34;)
+                    except (discord.errors.Forbidden, discord.errors.NotFound):
+                        to_remove.append(notif)
+                    except discord.errors.HTTPException:
+                        pass
+                    # except AttributeError as e:
+                    #     logerror.logerror(str(e), logerror.get_today())
+                    else:
+                        to_remove.append(notif)
+            for notif in to_remove:
+                self.notifs.remove(notif)
+            if to_remove:
+                json.dump(self.notifs, open(&#34;data/remindme/groupremind.json&#34;, &#34;w&#34;))
+            await asyncio.sleep(5)
+
+    async def email_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg[&#39;subject&#39;] = subject
+        msg[&#39;to&#39;] = to
+        user = &#34;teacher.petbot@gmail.com&#34;
+        msg[&#39;from&#39;] = user
+        password = &#34;bbyfvjamujjjwrna&#34;
+
+        server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
+    async def phone_alert(self, subject, body, to):
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg[&#39;subject&#39;] = subject
+        msg[&#39;to&#39;] = to + &#34;@tmomail.net&#34;
+        user = &#34;teacher.petbot@gmail.com&#34;
+        msg[&#39;from&#39;] = user
+        password = &#34;bbyfvjamujjjwrna&#34;
+
+        server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+        server.starttls()
+        server.login(user, password)
+        server.send_message(msg)
+
+        server.quit()
+
+    async def delete_old_reminders(self):
+        &#34;&#34;&#34;
+        Function:
+            delete_old_reminders(self)
+        Description:
+            asynchronously keeps on tracking the json file for expired reminders and cleans them.
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+        Outputs:
+            deletes the expired reminders and sends a message
+        &#34;&#34;&#34;
+        print(&#34;inside delete old reminders&#34;)
+        while self is self.bot.get_cog(&#34;Deadline&#34;):
+            to_remove = []
+            for reminder in self.reminders:
+                if reminder[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                    try:
+                        # await ctx.send(&#34;A reminder has been deleted&#34;)
+                        channel = self.bot.get_channel(897661152371290172);
+                        await channel.send(
+                            &#34;The due date for {} {} which was {} set by &lt;@{}&gt; has now passed&#34;.format(reminder[&#34;COURSE&#34;],
+                                                                                                     reminder[
+                                                                                                         &#34;HOMEWORK&#34;],
+                                                                                                     reminder[
+                                                                                                         &#34;DUEDATE&#34;],
+                                                                                                     reminder[&#34;ID&#34;]))
+                        print(&#34;Deleting an old reminder..!!&#34;)
+                    except (discord.errors.Forbidden, discord.errors.NotFound):
+                        to_remove.append(reminder)
+                    except discord.errors.HTTPException:
+                        pass
+                    else:
+                        to_remove.append(reminder)
+            for reminder in to_remove:
+                self.reminders.remove(reminder)
+            if to_remove:
+                json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+            await asyncio.sleep(5)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>discord.ext.commands.cog.Cog</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="TeachersPetBot.cogs.notification.Deadline.changeduedate"><code class="name">var <span class="ident">changeduedate</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.clearallreminders"><code class="name">var <span class="ident">clearallreminders</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.coursedue"><code class="name">var <span class="ident">coursedue</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.deleteReminder"><code class="name">var <span class="ident">deleteReminder</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.duedate"><code class="name">var <span class="ident">duedate</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.duethisweek"><code class="name">var <span class="ident">duethisweek</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.duetoday"><code class="name">var <span class="ident">duetoday</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.listreminders"><code class="name">var <span class="ident">listreminders</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.notify_me"><code class="name">var <span class="ident">notify_me</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.voice_channel"><code class="name">var <span class="ident">voice_channel</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="TeachersPetBot.cogs.notification.Deadline.changeduedate_error"><code class="name flex">
+<span>async def <span class="ident">changeduedate_error</span></span>(<span>self, ctx, error)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@changeduedate.error
+async def changeduedate_error(self, ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(
+            &#39;To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )&#39;)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.coursedue_error"><code class="name flex">
+<span>async def <span class="ident">coursedue_error</span></span>(<span>self, ctx, error)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@coursedue.error
+async def coursedue_error(self, ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(
+            &#39;To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )&#39;)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.deleteReminder_error"><code class="name flex">
+<span>async def <span class="ident">deleteReminder_error</span></span>(<span>self, ctx, error)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@deleteReminder.error
+async def deleteReminder_error(self, ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(
+            &#39;To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )&#39;)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.delete_old_reminders"><code class="name flex">
+<span>async def <span class="ident">delete_old_reminders</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="function">Function</h2>
+<p>delete_old_reminders(self)</p>
+<h2 id="description">Description</h2>
+<p>asynchronously keeps on tracking the json file for expired reminders and cleans them.</p>
+<h2 id="inputs">Inputs</h2>
+<ul>
+<li>self: used to access parameters passed to the class through the constructor</li>
+</ul>
+<h2 id="outputs">Outputs</h2>
+<p>deletes the expired reminders and sends a message</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def delete_old_reminders(self):
+    &#34;&#34;&#34;
+    Function:
+        delete_old_reminders(self)
+    Description:
+        asynchronously keeps on tracking the json file for expired reminders and cleans them.
+    Inputs:
+        - self: used to access parameters passed to the class through the constructor
+    Outputs:
+        deletes the expired reminders and sends a message
+    &#34;&#34;&#34;
+    print(&#34;inside delete old reminders&#34;)
+    while self is self.bot.get_cog(&#34;Deadline&#34;):
+        to_remove = []
+        for reminder in self.reminders:
+            if reminder[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                try:
+                    # await ctx.send(&#34;A reminder has been deleted&#34;)
+                    channel = self.bot.get_channel(897661152371290172);
+                    await channel.send(
+                        &#34;The due date for {} {} which was {} set by &lt;@{}&gt; has now passed&#34;.format(reminder[&#34;COURSE&#34;],
+                                                                                                 reminder[
+                                                                                                     &#34;HOMEWORK&#34;],
+                                                                                                 reminder[
+                                                                                                     &#34;DUEDATE&#34;],
+                                                                                                 reminder[&#34;ID&#34;]))
+                    print(&#34;Deleting an old reminder..!!&#34;)
+                except (discord.errors.Forbidden, discord.errors.NotFound):
+                    to_remove.append(reminder)
+                except discord.errors.HTTPException:
+                    pass
+                else:
+                    to_remove.append(reminder)
+        for reminder in to_remove:
+            self.reminders.remove(reminder)
+        if to_remove:
+            json.dump(self.reminders, open(&#34;data/remindme/reminders.json&#34;, &#34;w&#34;))
+        await asyncio.sleep(5)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.duedate_error"><code class="name flex">
+<span>async def <span class="ident">duedate_error</span></span>(<span>self, ctx, error)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@duedate.error
+async def duedate_error(self, ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send(
+            &#39;To use the addhw command, do: !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !addhw CSC510 HW2 SEP 25 2024 17:02 )&#39;)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.email_alert"><code class="name flex">
+<span>async def <span class="ident">email_alert</span></span>(<span>self, subject, body, to)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def email_alert(self, subject, body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg[&#39;subject&#39;] = subject
+    msg[&#39;to&#39;] = to
+    user = &#34;teacher.petbot@gmail.com&#34;
+    msg[&#39;from&#39;] = user
+    password = &#34;bbyfvjamujjjwrna&#34;
+
+    server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+
+    server.quit()</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.notification_reminders"><code class="name flex">
+<span>async def <span class="ident">notification_reminders</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def notification_reminders(self):
+    print(&#34;inside delete old notifications&#34;)
+    while self is self.bot.get_cog(&#34;Deadline&#34;):
+        to_remove = []
+        for notif in self.notifs:
+            if notif[&#34;FUTURE&#34;] &lt;= int(time.time()):
+                try:
+                    # await ctx.send(&#34;A reminder has been deleted&#34;)
+                    await self.bot.wait_until_ready()
+                    channel = self.bot.get_channel(notif[&#34;GUILD&#34;]);
+                    await channel.send(
+                        &#34;&lt;@{}&gt;, You asked me to remind you this: {}&#34;.format(notif[&#34;ID&#34;], notif[&#34;TEXT&#34;]))
+                    if notif[&#34;EMAIL&#34;]:
+                        await self.email_alert(&#34;You have a reminder, Sir&#34;,
+                                               &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                               notif[&#34;EMAIL&#34;])
+                    if notif[&#34;PHONE&#34;]:
+                        await self.phone_alert(&#34;You have a reminder, Sir&#34;,
+                                               &#34;You asked me to remind you this: {}&#34;.format(notif[&#34;TEXT&#34;]),
+                                               notif[&#34;PHONE&#34;])
+                    print(&#34;Deleting an old notification..!!&#34;)
+                except (discord.errors.Forbidden, discord.errors.NotFound):
+                    to_remove.append(notif)
+                except discord.errors.HTTPException:
+                    pass
+                # except AttributeError as e:
+                #     logerror.logerror(str(e), logerror.get_today())
+                else:
+                    to_remove.append(notif)
+        for notif in to_remove:
+            self.notifs.remove(notif)
+        if to_remove:
+            json.dump(self.notifs, open(&#34;data/remindme/groupremind.json&#34;, &#34;w&#34;))
+        await asyncio.sleep(5)</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.on_command_error"><code class="name flex">
+<span>async def <span class="ident">on_command_error</span></span>(<span>self, ctx, error)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@commands.Cog.listener()
+async def on_command_error(self, ctx, error):
+    await ctx.send(&#39;Unidentified command..please use !help to get the list of available comamnds&#39; + str(error))</code></pre>
+</details>
+</dd>
+<dt id="TeachersPetBot.cogs.notification.Deadline.phone_alert"><code class="name flex">
+<span>async def <span class="ident">phone_alert</span></span>(<span>self, subject, body, to)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def phone_alert(self, subject, body, to):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg[&#39;subject&#39;] = subject
+    msg[&#39;to&#39;] = to + &#34;@tmomail.net&#34;
+    user = &#34;teacher.petbot@gmail.com&#34;
+    msg[&#39;from&#39;] = user
+    password = &#34;bbyfvjamujjjwrna&#34;
+
+    server = smtplib.SMTP(&#34;smtp.gmail.com&#34;, 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+
+    server.quit()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="TeachersPetBot.cogs" href="index.html">TeachersPetBot.cogs</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="TeachersPetBot.cogs.notification.check_files" href="#TeachersPetBot.cogs.notification.check_files">check_files</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.check_folders" href="#TeachersPetBot.cogs.notification.check_folders">check_folders</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.setup" href="#TeachersPetBot.cogs.notification.setup">setup</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="TeachersPetBot.cogs.notification.Deadline" href="#TeachersPetBot.cogs.notification.Deadline">Deadline</a></code></h4>
+<ul class="">
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.changeduedate" href="#TeachersPetBot.cogs.notification.Deadline.changeduedate">changeduedate</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.changeduedate_error" href="#TeachersPetBot.cogs.notification.Deadline.changeduedate_error">changeduedate_error</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.clearallreminders" href="#TeachersPetBot.cogs.notification.Deadline.clearallreminders">clearallreminders</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.coursedue" href="#TeachersPetBot.cogs.notification.Deadline.coursedue">coursedue</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.coursedue_error" href="#TeachersPetBot.cogs.notification.Deadline.coursedue_error">coursedue_error</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.deleteReminder" href="#TeachersPetBot.cogs.notification.Deadline.deleteReminder">deleteReminder</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.deleteReminder_error" href="#TeachersPetBot.cogs.notification.Deadline.deleteReminder_error">deleteReminder_error</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.delete_old_reminders" href="#TeachersPetBot.cogs.notification.Deadline.delete_old_reminders">delete_old_reminders</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.duedate" href="#TeachersPetBot.cogs.notification.Deadline.duedate">duedate</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.duedate_error" href="#TeachersPetBot.cogs.notification.Deadline.duedate_error">duedate_error</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.duethisweek" href="#TeachersPetBot.cogs.notification.Deadline.duethisweek">duethisweek</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.duetoday" href="#TeachersPetBot.cogs.notification.Deadline.duetoday">duetoday</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.email_alert" href="#TeachersPetBot.cogs.notification.Deadline.email_alert">email_alert</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.listreminders" href="#TeachersPetBot.cogs.notification.Deadline.listreminders">listreminders</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.notification_reminders" href="#TeachersPetBot.cogs.notification.Deadline.notification_reminders">notification_reminders</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.notify_me" href="#TeachersPetBot.cogs.notification.Deadline.notify_me">notify_me</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.on_command_error" href="#TeachersPetBot.cogs.notification.Deadline.on_command_error">on_command_error</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.phone_alert" href="#TeachersPetBot.cogs.notification.Deadline.phone_alert">phone_alert</a></code></li>
+<li><code><a title="TeachersPetBot.cogs.notification.Deadline.voice_channel" href="#TeachersPetBot.cogs.notification.Deadline.voice_channel">voice_channel</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

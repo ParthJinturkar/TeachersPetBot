@@ -2,7 +2,6 @@
 # # Tests Event creation & calendar functionality
 # ###########################
 import discord
-from utils import wait_for_msg
 
 import discord.ext.test as dpytest
 import pytest

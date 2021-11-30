@@ -1,4 +1,3 @@
-from utils import wait_for_msg, wait_for_channel_create
 
 import discord.ext.test as dpytest
 import pytest
