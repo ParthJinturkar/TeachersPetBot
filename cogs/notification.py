@@ -280,19 +280,22 @@ class Deadline(commands.Cog):
         if (flag):
             await ctx.send("You have no dues today..!!")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: coursedue(self, ctx, courseid: str)
-    #    Description: Displays all the homeworks that are due for a specific course
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - courseid: name of the course for which homework is to be added
-    #    Outputs: returns either an error stating a reason for failure or
-    #          a list of assignments that are due for the provided courseid
-    # -----------------------------------------------------------------------------------------------------------------
     @commands.command(name="coursedue", pass_context=True,
                       help="check all the homeworks that are due for a specific course !coursedue coursename ex. !coursedue CSC505")
     async def coursedue(self, ctx, courseid: str):
+        """
+        Function:
+            coursedue(self, ctx, courseid: str)
+        Description:
+            Displays all the homeworks that are due for a specific course
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - courseid: name of the course for which homework is to be added
+        Outputs:
+            returns either an error stating a reason for failure or
+          a list of assignments that are due for the provided courseid
+        """
         course_due = []
         for reminder in self.reminders:
             if reminder["COURSE"] == courseid:
@@ -313,17 +316,28 @@ class Deadline(commands.Cog):
                 'To use the coursedue command, do: !coursedue CLASSNAME \n ( For example: !coursedue CSC510 )')
 
     # ---------------------------------------------------------------------------------
-    #    Function: clearallreminders(self, ctx)
-    #    Description: Delete all the reminders
+    #    Function:
+    #    Description:
     #    Inputs:
     #    - self: used to access parameters passed to the class through the constructor
     #    - ctx: used to access the values passed through the current context
-    #    Outputs: returns either an error stating a reason for failure or
-    #             returns a success message stating that reminders have been deleted
+    #    Outputs:
     # ---------------------------------------------------------------------------------
 
     @commands.command(name="clearreminders", pass_context=True, help="deletes all reminders")
     async def clearallreminders(self, ctx):
+        """
+        Function:
+            clearallreminders(self, ctx)
+        Description:
+            Delete all the reminders
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+             returns a success message stating that reminders have been deleted
+        """
         to_remove = []
         for reminder in self.reminders:
             to_remove.append(reminder)
@@ -459,13 +473,17 @@ class Deadline(commands.Cog):
 
         server.quit()
 
-    # -----------------------------------------------------------------------------------------------------
-    #    Function: delete_old_reminders(self)
-    #    Description: asynchronously keeps on tracking the json file for expired reminders and cleans them.
-    #    Inputs: self: used to access parameters passed to the class through the constructor
-    #    Outputs:deletes the expired reminders and sends a message
-    # -----------------------------------------------------------------------------------------------------
     async def delete_old_reminders(self):
+        """
+        Function:
+            delete_old_reminders(self)
+        Description:
+            asynchronously keeps on tracking the json file for expired reminders and cleans them.
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+        Outputs:
+            deletes the expired reminders and sends a message
+        """
         print("inside delete old reminders")
         while self is self.bot.get_cog("Deadline"):
             to_remove = []
