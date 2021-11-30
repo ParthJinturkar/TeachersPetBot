@@ -21,9 +21,23 @@ QNA = {}
 # Outputs: None
 ###########################
 class QuestionsAnswers:
-    ''' Class containing needed question/answer information and identification '''
-
+    """
+    Class: QuestionsAnswers
+    Description: Class containing needed question/answer information and identification
+    """
     def __init__(self, qs, number, message, ans):
+        """
+        Function:
+            __init__
+        Description:
+            Initializes class variables
+        Inputs:
+            - q: question text
+            - number: question number
+            - message: id of the message associated with question
+            - ans: answers to the question
+        Outputs: None
+        """
         self.question = qs
         self.number = number
         self.msg = message
@@ -35,7 +49,7 @@ async def question(ctx, qs):
     Function:
         question
     Description:
-        takes question from user and reposts anonymously and numbered
+        Takes question from user and reposts anonymously and numbered
     Inputs:
         - ctx: context of the command
         - q: question text
@@ -66,7 +80,7 @@ async def answer(ctx, num, ans):
     Function:
         answer
     Description:
-        adds user answer to specific question and post anonymously
+        Adds user answer to specific question and post anonymously
     Inputs:
           - ctx: context of the command
           - num: question number being answered

@@ -65,7 +65,7 @@ async def on_guild_join(guild):
     Description:
         Runs when the bot joins a guild (server)
     Input:
-        guild - the server that the bot is added into
+        - guild: the server that the bot is added into
     Output:
         Sends welcome message, create roles and channels
     """
@@ -109,7 +109,7 @@ async def on_message(message):
      Description:
          Runs when a message is sent to the server. Checks for profanity.
      Input:
-         message - the message a user sent to a channel of the server
+         - message: the message a user sent to a channel of the server
      Output:
          Deletes inappropriate messages
      """
@@ -136,9 +136,9 @@ async def on_message_edit(before, after):
         on_message_edit
     Description:
         Run when a user edits a message. Checks for profanity.
-    Input:
-        before - the old message
-        after - the new message
+    Inputs:
+        - before: the old message
+        - after: the new message
     Output:
         Deletes inappropriate messages
     """
@@ -157,7 +157,7 @@ async def shutdown(ctx):
     Description:
         Shuts down the bot. Can only be used by server owner.
     Input:
-        ctx - current context
+        - ctx: current context
     Output:
         Deletes the database and sends a message indicating successful shutdown
     """
@@ -176,7 +176,7 @@ async def start_bot(guild):
     Description:
         Run when the bot starts or when a new guild (server) is added
     Input:
-        guild - the server the bot is added to
+        - guild: the server the bot is added to
     Output:
         Creates roles and create text channels
     """
@@ -220,7 +220,7 @@ async def create_voice_channels(guild):
     Description:
         Creates voice channels
     Input:
-        guild - server in which voice channels are created
+        - guild: server in which voice channels are created
     Output:
         Create voice channels with limits for the number of users in that channel
     """
