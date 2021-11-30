@@ -122,16 +122,17 @@ async def on_message(message):
         await message.channel.send(response)
 
 
-###########################
-# Function: on_message_edit
-# Description: run when a user edits a message
-# Inputs:
-#      - before: the old message
-#      - after: the new message
-###########################
 @bot.event
 async def on_message_edit(before, after):
-    ''' run on message edited '''
+    """
+    Function:
+        on_message_edit
+    Description:
+        run when a user edits a message
+    Inputs:
+        - before: the old message
+        - after: the new message
+    """
     if profanity.check_profanity(after.content):
         await after.channel.send(after.author.name + ' says: ' +
                                  profanity.censor_profanity(after.content))
