@@ -144,22 +144,25 @@ class Deadline(commands.Cog):
             await ctx.send(
                 'To use the deletereminder command, do: !deletereminder CLASSNAME HW_NAME \n ( For example: !deletereminder CSC510 HW2 )')
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
-    #    Description: Update the 'Due date' for a homework by providing the classname and homewwork name
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - classid: name of the course for which homework is to be added
-    #    - hwid: name of the homework
-    #    - date: due date of the assignment
-    #    Outputs: returns either an error stating a reason for failure or
-    #          returns a success message indicating that the reminder has been updated
-    # -----------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="changeduedate", pass_context=True,
                       help="update the assignment date. !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !changeduedate CSC510 HW2 SEP 25 2024 17:02 ")
     async def changeduedate(self, ctx, classid: str, hwid: str, *, date: str):
+        """
+        Function:
+            changeduedate(self, ctx, classid: str, hwid: str, *, date: str)
+        Description:
+            Update the 'Due date' for a homework by providing the classname and homewwork name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - classid: name of the course for which homework is to be added
+            - hwid: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or
+          returns a success message indicating that the reminder has been updated
+        """
         author = ctx.message.author
         flag = False
         try:
@@ -198,18 +201,28 @@ class Deadline(commands.Cog):
                 'To use the changeduedate command, do: !changeduedate CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) \n ( For example: !changeduedate CSC510 HW2 SEP 25 2024 17:02 )')
 
     # -----------------------------------------------------------------------------------------------------------------
-    #    Function: duethisweek(self, ctx)
-    #    Description: Displays all the homeworks that are due this week along with the coursename and due date
+    #    Function:
+    #    Description:
     #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: returns either an error stating a reason for failure
-    #             or returns a list of all the assignments that are due this week
+    #
+    #    Outputs:
     # -----------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="duethisweek", pass_context=True,
                       help="check all the homeworks that are due this week !duethisweek")
     async def duethisweek(self, ctx):
+        """
+        Function:
+            duethisweek(self, ctx)
+        Description:
+            Displays all the homeworks that are due this week along with the coursename and due date
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure
+            or returns a list of all the assignments that are due this week
+        """
         time = ctx.message.created_at
 
         if len(self.reminders) == 0:
@@ -235,17 +248,21 @@ class Deadline(commands.Cog):
         if not flag:
             await ctx.send("No dues this week")
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: duetoday(self, ctx)
-    #    Description: Displays all the homeworks that are due today
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    Outputs: returns either an error stating a reason for failure or
-    #           returns a list of all the assignments that are due on the day the command is run
-    # -----------------------------------------------------------------------------------------------------------------
+
     @commands.command(name="duetoday", pass_context=True, help="check all the homeworks that are due today !duetoday")
     async def duetoday(self, ctx):
+        """
+        Function:
+            duetoday(self, ctx)
+        Description:
+            Displays all the homeworks that are due today
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+        Outputs:
+            returns either an error stating a reason for failure or
+           returns a list of all the assignments that are due on the day the command is run
+        """
         flag = True
         for reminder in self.reminders:
             timedate = datetime.strptime(reminder["DUEDATE"], '%Y-%m-%d %H:%M:%S')
