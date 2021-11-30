@@ -20,21 +20,25 @@ class Deadline(commands.Cog):
         self.notifs = json.load(open("data/remindme/groupremind.json"))
         self.units = {"second": 1, "minute": 60, "hour": 3600, "day": 86400, "week": 604800, "month": 2592000}
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: duedate(self, ctx, coursename: str, hwcount: str, *, date: str)
-    #    Description: Adds the homework to json in the specified format
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - coursename: name of the course for which homework is to be added
-    #    - hwcount: name of the homework
-    #    - date: due date of the assignment
-    #    Outputs: returns either an error stating a reason for failure or returns a success message
-    #          indicating that the reminder has been added
-    # -----------------------------------------------------------------------------------------------------------------
+
     @commands.command(name="addhw",
                       help="add homework and due-date !addhw CLASSNAME HW_NAME MMM DD YYYY optional(HH:MM) ex. !addhw CSC510 HW2 SEP 25 2024 17:02")
     async def duedate(self, ctx, coursename: str, hwcount: str, *, date: str):
+        """
+        Function:
+            duedate(self, ctx, coursename: str, hwcount: str, *, date: str)
+        Description:
+            Adds the homework to json in the specified format
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwcount: name of the homework
+            - date: due date of the assignment
+        Outputs:
+            returns either an error stating a reason for failure or returns a success message
+          indicating that the reminder has been added
+        """
         author = ctx.message.author
         # print('Author: '+str(author)+' coursename: '+coursename+' homework count: '+hwcount+' date: '+str(date))
         try:
@@ -101,21 +105,24 @@ class Deadline(commands.Cog):
     async def on_command_error(self, ctx, error):
         await ctx.send('Unidentified command..please use !help to get the list of available comamnds')
 
-    # -----------------------------------------------------------------------------------------------------------------
-    #    Function: deleteReminder(self, ctx, courseName: str, hwName: str)
-    #    Description: Delete a reminder using Classname and Homework name
-    #    Inputs:
-    #    - self: used to access parameters passed to the class through the constructor
-    #    - ctx: used to access the values passed through the current context
-    #    - coursename: name of the course for which homework is to be added
-    #    - hwName: name of the homework
-    #    Outputs: returns either an error stating a reason for failure or
-    #          returns a success message indicating that the reminder has been deleted
-    # -----------------------------------------------------------------------------------------------------------------
 
     @commands.command(name="deletereminder", pass_context=True,
                       help="delete a specific reminder using course name and homework name using !deletereminder CLASSNAME HW_NAME ex. !deletereminder CSC510 HW2 ")
     async def deleteReminder(self, ctx, courseName: str, hwName: str):
+        """
+        Function:
+            deleteReminder(self, ctx, courseName: str, hwName: str)
+        Description:
+            Delete a reminder using Classname and Homework name
+        Inputs:
+            - self: used to access parameters passed to the class through the constructor
+            - ctx: used to access the values passed through the current context
+            - coursename: name of the course for which homework is to be added
+            - hwName: name of the homework
+        Outputs:
+            returns either an error stating a reason for failure or
+         returns a success message indicating that the reminder has been deleted
+        """
         author = ctx.message.author
         to_remove = []
         for reminder in self.reminders:
