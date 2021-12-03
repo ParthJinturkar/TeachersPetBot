@@ -73,6 +73,7 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 
 :open_file_folder: [!take command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
+:open_file_folder: [!voice_channel](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/voice_channel.md) This command lets the Instructors create vocie channels.
 
 <h2 align="center"> Installation and Running </h2>
 
