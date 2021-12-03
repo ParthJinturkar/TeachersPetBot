@@ -10,7 +10,7 @@
 | 1         | Docs: what: point  descriptions of each class/function (in isolation) | https://htmlpreview.github.io/?https://github.com/qchen59/TeachersPetBot/blob/main/docs/TeachersPetBot/index.html | 1                   |
 | .5        | Number of commits: by  different people                      | https://github.com/qchen59/TeachersPetBot/commits/main       | 0.5                 |
 | 1         | issues are being  closed                                     | evidence in GH                                               | 1                   |
-| .5        | issues are discussed  before they are closed                 | even if you discuss  in slack, need a summary statement here | 0.5                 |
+| .5        | issues are discussed  before they are closed                 | Summary statements included in issues.                       | 0.5                 |
 | .5        | Use of syntax  checkers.                                     | https://github.com/qchen59/TeachersPetBot/tree/main/configs  | 0.5                 |
 | 1         | Issues reports: there  are many                              | https://github.com/qchen59/TeachersPetBot/issues?q=is%3Aissue+is%3Aclosed | 1                   |
 | .5        | Use of code  formatters.                                     | https://github.com/qchen59/TeachersPetBot/tree/main/configs  | 0.5                 |
