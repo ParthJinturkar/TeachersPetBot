@@ -166,7 +166,7 @@ Using the Python package better-profanity, Teacher's Pet will catch profane word
 
 ![alt text](https://github.com/shikhanair/TeachersPetBot/blob/main/images/profanity_example.PNG)
 
-## Releases
+<h2 align="center"> Releases </h2> 
 -   [All releases](https://github.com/qchen59/TeachersPetBot/releases)
 -   [v3.0](https://github.com/qchen59/TeachersPetBot/releases/tag/zenodo): First functional release
 -   [v3.1](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.1): Custom Events function
@@ -174,21 +174,52 @@ Using the Python package better-profanity, Teacher's Pet will catch profane word
 -   [v3.3](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.3): Parse uploaded csv
 
 
+<h2 align="center"> What’s new in V3 </h2>
+
+**Event creation improvements**
+In the previous version, the calendar was not getting updated upon event creation. This has been fixed in the new version. Furthermore, the event creation subroutine is updated with looping and error checking. Now the user will not have to start over if they enter an invaid input. Also, users can now exit the process properly at any point by simply typing ‘quit’.
+
+**Custom events**
+Instructors of the course can now add custom events to the calendar. The database is updated to cater to this and the calendar is improved to have a new section called ‘special events’ to showcase custom events.
+
+**Documentation improvements**
+To better help the developers. The entire code base is updated to have docstrings of pdoc3 format and subsequently a new API documentation was generated. 
+
+**Command specific voice channel creation**
+Now teachers' pet bot supports command specific voice channel creation. Users can input the number of voice channels, the category name, the channel name, and max limit to create channels.
+
+**Voice channel fix**
+In V2, the teachers’ pet will report an error when generating the voice channels if there is a channel not in a category. We fix the auto voice channel creation bug in V3. 
+
+**Get the channel Id when sending the notification**
+In V2, the Teachers’ pet remainder is only functional in one specific channel from the original discord server(The server from the V2 team). In V3, we modified the method, so it can get the current channel ID and the remainder is working in a new channel.
+
+**Parse an uploaded csv to check for reminders and events**
+The previous group had started on this but it was, however we wound up essentially completely recreating the flow for how this feature should operate.
+
+**Fix old unit tests**
+The previous group was starting to transition their unit tests into another system. Their old system, where they used a separate bot to run tests, had a large number of issues such as not being able to see which specific tests failed when something was not working.
+We transitioned the old unit tests into using the Dpytest library, which required rewriting almost all of them since the previous group had only converted 4 tests.
+
+
+
 <h2 align="center"> Future Scope </h2>
 
-This bot has endless possibilities for functionality. Features which we are interested in adding but did not have time for include but are not limited to:
-* Command specific voice channel creation
-* Track Participation of Students and their Ranking
-* Sentiiment Analysis of messages being sent on the server
-* Attendance Tracker
-* Conversion of bot to JavaScript
-* Data Visualization 
-* Link Collection
-* Cloud Hosting
+- Track Participation of Students and their Ranking
+- Sentiment Analysis of messages being sent on the server
+- Attendance Tracker
+- Conversion of bot to JavaScript
+  - Data VisualizationExport data as graph(attendance)
+  - Create a visualized table for events and remainders.
+- Link Collection
+- Calendar improvements 
+  - When drawing the calendar, events without starting/ending times should indicate it specifically (or show nothing), instead of showing a 0.
+-  Cloud Hosting
+  - Upload bot to a hosting server, and also add bot to the top.gg, or discord.bots.gg
 
 
 
-For a full list of future features, upgrades, and bug fixes, please visit our [Project 2 Board](https://github.com/qchen59/TeachersPetBot/projects/1).
+For a full list of future features, upgrades, and bug fixes, please visit our [Project 3 Board](https://github.com/qchen59/TeachersPetBot/projects/1).
 
 <h2 align="center"> How to Contribute? </h2>
 
