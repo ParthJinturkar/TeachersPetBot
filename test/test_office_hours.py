@@ -73,6 +73,28 @@ async def test_oh_open_instructor(bot):
         # Limitation of dpytest; expected behavior
         pass
 
+@pytest.mark.asyncio
+async def test_oh_close_instructor(bot):
+    await dpytest.empty_queue()
+    guild0 = dpytest.get_config().guilds[0]
+    user0 = dpytest.get_config().guilds[0].members[0]
+    oh_channel = dpytest.backend.make_text_channel(name='office-hour-test', guild=guild0, position=2, id_num=2)
+
+    await guild0.create_category(name='TA Office Hours')
+    await guild0.create_category(name='Not TA Office Hours')
+    await guild0.create_category(name='Not TA Office Hours')
+
+    instructorRole = dpytest.backend.make_role(name="Instructor", guild=guild0, id_num=5, colour=0, permissions=8,
+                                               hoist=False,
+                                               mentionable=False)
+    dpytest.backend.update_member(user0, nick=None, roles=[instructorRole])
+
+    try:
+        await office_hours.close_oh(guild0, "test")
+    except AttributeError:
+        # Due to an array not existing in the fake environment; expected behavior
+        pass
+
 
 @pytest.mark.asyncio
 async def test_oh_no_channel(bot):
