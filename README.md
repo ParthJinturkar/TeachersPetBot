@@ -148,11 +148,7 @@ The bot contains functionality for getting information about a member using the 
 ![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/member_information/whois.gif)
 
 ### Take Event CSV
-The bot contains functionality that lets Instructor get an example CSV from bot using eventcsv command and upload it back to the bot using take command. This lets Instructor add all the events in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
-
-![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/createqna/eventcsv.gif)
-
-![image](https://github.com/qchen59/TeachersPetBot/blob/main/images/gifs/createqna/take.gif)
+The bot contains functionality that lets Instructor get an example CSV from bot using !templates command and upload it back to the bot using !importevents command. This lets Instructor add all the events in one go.
 
 ### Notification Module
 This command lets the user display all the homeworks that are due this week for all the courses. Whenever a user wants to be reminded about an upcoming project/assignment he/she can just use a notification command to get the bot to remind the user about the same. Notification can also be sent to email or text.
