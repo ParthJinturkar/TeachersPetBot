@@ -16,12 +16,12 @@
 | .5        | Use of code  formatters.                                     | https://github.com/qchen59/TeachersPetBot/tree/main/configs  | 0.5                 |
 | .5        | Use of style checkers                                        | https://github.com/qchen59/TeachersPetBot/tree/main/configs  | 0.5                 |
 | .5        | Docs: short video,  animated, hosted on your repo. That convinces people why they want to work on  your code. | In README                                                    |                     |
-| .5        | test cases exist                                             |                                                              | 0.5                 |
+| .5        | test cases exist                                             | https://github.com/qchen59/TeachersPetBot/tree/main/test     | 0.5                 |
 | .5        | Use of code coverage                                         | Coverall:  https://coveralls.io/github/qchen59/TeachersPetBot?branch=main | 0.5                 |
 | .5        | other automated  analysis tools                              | Pylintrc:  https://github.com/qchen59/TeachersPetBot/tree/main/configs | 0.5                 |
-| .5        | test cases:.a large  proportion of the issues related to handling failing cases. | Git issue [#29](https://github.com/qchen59/TeachersPetBot/issues/29), [#34](https://github.com/qchen59/TeachersPetBot/issues/34) | 0.5                 |
+| .5        | test cases:.a large  proportion of the issues related to handling failing cases. | Git issue [#29](https://github.com/qchen59/TeachersPetBot/issues/29), [#34](https://github.com/qchen59/TeachersPetBot/issues/34), [#37](https://github.com/qchen59/TeachersPetBot/issues/37) | 0.5                 |
 | .5        | test cases are  routinely executed                           | Travis_CI:  https://app.travis-ci.com/github/qchen59/TeachersPetBot | 0.5                 |
-| 1         | Documentation  describing how this version improves on the older version | In README                                                    |                     |
+| 1         | Documentation  describing how this version improves on the older version | In README (https://github.com/qchen59/TeachersPetBot#-whats-new-in-v3-) |
 | 3         | This version is a  little(1), some(2), much(3) improved on the last version. | Tutor's assessment.                                          |                     |
 | 16        | Total                                                        |                                                              |                     |
 
