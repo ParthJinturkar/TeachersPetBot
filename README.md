@@ -168,11 +168,15 @@ Using the Python package better-profanity, Teacher's Pet will catch profane word
 ![alt text](https://github.com/shikhanair/TeachersPetBot/blob/main/images/profanity_example.PNG)
 
 <h2 align="center"> Releases </h2> 
+
 -   [All releases](https://github.com/qchen59/TeachersPetBot/releases)
+
 -   [v3.0](https://github.com/qchen59/TeachersPetBot/releases/tag/zenodo): First functional release
 -   [v3.1](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.1): Custom Events function
 -   [v3.2](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.2):Command specific voice channel creation and other bug fixs
 -   [v3.3](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.3): Parse uploaded csv
+-   [v3.4](https://github.com/qchen59/TeachersPetBot/releases/tag/V3.4): Expand testing and API documentation
+
 
 
 <h2 align="center"> What’s new in V3 </h2>
