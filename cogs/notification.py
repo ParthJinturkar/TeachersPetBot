@@ -80,7 +80,7 @@ class Deadline(commands.Cog):
     # Outputs:
     #      - User question in new post
     ###########################
-    @commands.command(name='voice_channel', help='Create voice channel. Please input category, channel name, limit '
+    @commands.command(name='voice_channel', help='Create voice channel. Please input channel name, category, limit '
                                                  'and number of channels. ex. !voice_channel teams meeting 10 3')
     async def voice_channel(self, ctx, channelname: str, catename: str, limit: str, num: str):
         ''' Create voice channel command '''
