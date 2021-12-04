@@ -25,9 +25,10 @@ Then you will see a list of buttons that you can choose from.
 Exam
 Assignment
 TA Office Hours
+Custom Event
 ```
 You will then be asked questions that corresponds to the button that you chose.
-and you can exit out of the event creation process by typing "exit" or "quit".
+and you can exit out of the event creation process by typing "quit".
 
 
 # Example Run
