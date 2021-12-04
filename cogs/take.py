@@ -4,6 +4,8 @@ import os
 import discord
 from discord.ext import commands
 
+from src import cal
+
 # ----------------------------------------------------------------------------------------------
 # Returns the ping of the bot, useful for testing bot lag and as a simple functionality command
 # ----------------------------------------------------------------------------------------------
@@ -46,14 +48,15 @@ class Create(commands.Cog):
                         ctx.message.attachments = event_msg.attachments
                         break
 
-            await ctx.message.attachments[0].save(
-                temp + '/' + ctx.message.attachments[0].filename)
-
             if ctx.message.attachments[0].filename.endswith('.csv'):
                 if ctx.message.attachments[0].filename.startswith('exams'):
+                    await ctx.message.attachments[0].save(
+                        temp + '/exams.csv')
                     await self.read_exams(ctx)
 
                 if ctx.message.attachments[0].filename.startswith('assignments'):
+                    await ctx.message.attachments[0].save(
+                        temp + '/assignments.csv')
                     await self.read_assignments(ctx)
         except Exception as e:
             print(e)
@@ -83,14 +86,7 @@ class Create(commands.Cog):
                 line_count += 1
         await ctx.send('File Submitted and Exams successfully created!')
 
-        for guild in self.bot.guilds:
-            if guild.id == ctx.guild.id:
-                for channel in guild.text_channels:
-                    if channel.name == 'course-calendar':
-                        await channel.delete()
-
-                channel = await guild.create_text_channel('course-calendar')
-                await cal.display_events(channel)
+        await cal.display_events(ctx)
 
     async def read_assignments(self, ctx):
         temp = 'data/events/' + str(ctx.message.guild.id) + '/'
@@ -101,19 +97,13 @@ class Create(commands.Cog):
                 if line_count > 1:
                     print(f'Testing {", ".join(row)}')
                     db.mutation_query(
-                        'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                        'INSERT INTO assignments VALUES (?, ?, ?, ?, ?, ?, ?)',
                         [ctx.guild.id, row[0], row[1], row[2], row[3], row[4], row[5]]
                     )
+                    print(db.select_query('SELECT * FROM assignments'))
                 line_count += 1
         await ctx.send('File Submitted and Assignments successfully created!')
-        for guild in self.bot.guilds:
-            if guild.id == ctx.guild.id:
-                for channel in guild.text_channels:
-                    if channel.name == 'course-calendar':
-                        await channel.delete()
-
-                channel = await guild.create_text_channel('course-calendar')
-                await cal.display_events(channel)
+        await cal.display_events(ctx)
 
 
 # -------------------------------------

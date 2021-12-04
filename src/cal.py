@@ -19,7 +19,6 @@ async def display_events(ctx):
         Calendar is created or calendar is updated with new events
     """
     global MSG
-
     # recreate the embed from the database
     update_calendar()
 
@@ -31,6 +30,7 @@ async def display_events(ctx):
         async for msg in MSG.channel.history(limit=2):
             await msg.delete()
         # Adding the updated calender
+
         await MSG.channel.send(embed=CALENDAR_EMBED)
 
 
