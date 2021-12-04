@@ -2,7 +2,7 @@
   
   <h1 align="center"> Teacher's Pet </h1>
   
-<h2 align="center"> Streamline Your Class Discord</h1>
+<h2 align="center"> Streamline Your Class Discord</h2>
 
 [![Build Status](https://app.travis-ci.com/qchen59/TeachersPetBot.svg?branch=main)](https://app.travis-ci.com/github/qchen59/TeachersPetBot)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/TeachersPetBot/badge.svg?branch=main)](https://coveralls.io/github/qchen59/TeachersPetBot?branch=main)
@@ -29,49 +29,49 @@ Teacher's Pet is a Discord Bot for class instructors to streamline their Discord
 
 <h2 align="center"> Bot Commands </h2>
 
-:open_file_folder: [!setInstructor command](https://github.com/qchen59/TeachersPetBot/blob/main/cogs/setInstructor.py) Set a server member to be an instructor (Instructor command)
+:open_file_folder: [!setInstructor](https://github.com/qchen59/TeachersPetBot/blob/main/cogs/setInstructor.py) Set a server member to be an instructor (Instructor command)
 
-:open_file_folder: [!ask command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md)  Ask a question  
+:open_file_folder: [!ask](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md)  Ask a question  
 
-:open_file_folder: [!answer command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md) Answer a question  
+:open_file_folder: [!answer](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/ask_and_answer.md) Answer a question  
 
-:open_file_folder: [!oh_enter_ command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue as an individual student 
+:open_file_folder: [!oh enter](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue as an individual student 
 
-:open_file_folder: [!oh_enter_group_id command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue with a group of students  
+:open_file_folder: [!oh enter *Group ID*](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Enter an office hour queue with a group of students  
 
-:open_file_folder: [!oh_exit command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Exit the office hour queue  
+:open_file_folder: [!oh exit](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Exit the office hour queue  
 
-:open_file_folder: [!oh_next command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Go to next student in queue as an instructor (Instructor command)  
+:open_file_folder: [!oh next](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/oh.md) Go to next student in queue as an instructor (Instructor command)  
 
-:open_file_folder: [!create command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/create.md) Start creating an event (Instructor command)  
+:open_file_folder: [!create](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/create.md) Start creating an event (Instructor command)  
 
 -----
 
-:open_file_folder: [!addhw command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/addhw.md) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
+:open_file_folder: [!addhw](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/addhw.md) This command lets the user (either the TAs or professor) to add a homework as a reminder to the discord channel
 
-:open_file_folder: [!changeduedate command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/changeduedate.md) This command lets the user update the due date.
+:open_file_folder: [!changeduedate](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/changeduedate.md) This command lets the user update the due date.
 
-:open_file_folder: [!clearreminders command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/clearreminders.md) This command lets the user delete all the reminders irrespective of courses or homeworks.
+:open_file_folder: [!clearreminders](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/clearreminders.md) This command lets the user delete all the reminders irrespective of courses or homeworks.
 
-:open_file_folder: [!coursedue command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/coursedue.md) This command lets the user display all the homeworks that are due for a specific course.
+:open_file_folder: [!coursedue](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/coursedue.md) This command lets the user display all the homeworks that are due for a specific course.
 
-:open_file_folder: [!deletereminder command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/deletereminder.md) This command lets the user delete a reminder for a specified coursename and homework.
+:open_file_folder: [!deletereminder](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/deletereminder.md) This command lets the user delete a reminder for a specified coursename and homework.
 
-:open_file_folder: [!duethisweek command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duethisweek.md) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!duethisweek](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duethisweek.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!duetoday command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duetoday.md) This command lets the user display all the homeworks that are due today for all the courses.
+:open_file_folder: [!duetoday](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/duetoday.md) This command lets the user display all the homeworks that are due today for all the courses.
 
-:open_file_folder: [!listreminders command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/listreminders.md) This command lets the user display all the homeworks that are due for all the courses.
+:open_file_folder: [!listreminders](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/listreminders.md) This command lets the user display all the homeworks that are due for all the courses.
 
-:open_file_folder: [!notify command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/notifyme.md) This command lets the user display all the homeworks that are due this week for all the courses.
+:open_file_folder: [!notify](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/notifyme.md) This command lets the user display all the homeworks that are due this week for all the courses.
 
-:open_file_folder: [!whois command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/member_information.md) This command lets the Instructors get information about the member using his/her username. 
+:open_file_folder: [!whois](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/member_information.md) This command lets the Instructors get information about the member using his/her username. 
 
-:open_file_folder: [!multipoll command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/multipoll.md) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
+:open_file_folder: [!multipoll](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/multipoll.md) This command lets the Instructors create a poll with specified number of choices ( 2 to 10 ).
 
-:open_file_folder: [!poll command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/poll.md) This command lets the Instructors create a poll with 2 choices.
+:open_file_folder: [!poll](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/poll.md) This command lets the Instructors create a poll with 2 choices.
 
-:open_file_folder: [!take command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv command](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
+:open_file_folder: [!take](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) and :open_file_folder: [!eventcsv](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/take.md) The eventcsv command lets instructors get a example CSV of all the events in a course. You can download the csv and upload it back to the bot with the take command. This will let you add all the events to the calendar in one go. When using the take command, drag the csv to discord and use the take command in the comment as you upload it.
 
 :open_file_folder: [!voice_channel](https://github.com/qchen59/TeachersPetBot/blob/main/docs/Command_Details/voice_channel.md) This command lets the Instructors create vocie channels.
 
@@ -178,27 +178,35 @@ Using the Python package better-profanity, Teacher's Pet will catch profane word
 <h2 align="center"> What’s new in V3 </h2>
 
 **Event creation improvements**
-In the previous version, the calendar was not getting updated upon event creation. This has been fixed in the new version. Furthermore, the event creation subroutine is updated with looping and error checking. Now the user will not have to start over if they enter an invaid input. Also, users can now exit the process properly at any point by simply typing ‘quit’.
+
+In V2, the calendar was not getting updated upon event creation. This has been fixed in the new version. Furthermore, the event creation subroutine is updated with looping and error checking. Now the user will not have to start over if they enter an invaid input. Also, users can now exit the process properly at any point by simply typing ‘quit’.
 
 **Custom events**
+
 Instructors of the course can now add custom events to the calendar. The database is updated to cater to this and the calendar is improved to have a new section called ‘special events’ to showcase custom events.
 
 **Documentation improvements**
+
 To better help the developers. The entire code base is updated to have docstrings of pdoc3 format and subsequently a new API documentation was generated. 
 
 **Command specific voice channel creation**
+
 Now teachers' pet bot supports command specific voice channel creation. Users can input the number of voice channels, the category name, the channel name, and max limit to create channels.
 
 **Voice channel fix**
+
 In V2, the teachers’ pet will report an error when generating the voice channels if there is a channel not in a category. We fix the auto voice channel creation bug in V3. 
 
 **Get the channel Id when sending the notification**
+
 In V2, the Teachers’ pet remainder is only functional in one specific channel from the original discord server(The server from the V2 team). In V3, we modified the method, so it can get the current channel ID and the remainder is working in a new channel.
 
 **Parse an uploaded csv to check for reminders and events**
+
 The previous group had started on this but it was, however we wound up essentially completely recreating the flow for how this feature should operate.
 
 **Fix old unit tests**
+
 The previous group was starting to transition their unit tests into another system. Their old system, where they used a separate bot to run tests, had a large number of issues such as not being able to see which specific tests failed when something was not working.
 We transitioned the old unit tests into using the Dpytest library, which required rewriting almost all of them since the previous group had only converted 4 tests.
 
